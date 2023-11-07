@@ -3,9 +3,9 @@ package be.thomasmore.streamfindr.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-//@Entity
+@Entity
 public class Actor {
-//    @Id
+    @Id
     private Integer id;
     private String firstName;
     private String lastName;
