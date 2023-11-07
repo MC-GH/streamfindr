@@ -1,8 +1,10 @@
 package be.thomasmore.streamfindr.model;
-import jakarta.persistence.*;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 @Entity
-public class Movie {
+public class Show {
     @Id
     private Integer id;
     private String name;
@@ -10,10 +12,13 @@ public class Movie {
     private String genre;
     @Column(length = 500)
     private String plotDescription;
-    private int yearReleased;
+    private int firstYearAired;
+    private int lastYearAired;
+    private int numberOfSeasons;
     private String posterSrc;
 
-    public Movie() {}
+    public Show() {
+    }
 
     public Integer getId() {
         return id;
@@ -55,12 +60,28 @@ public class Movie {
         this.plotDescription = plotDescription;
     }
 
-    public int getYearReleased() {
-        return yearReleased;
+    public int getFirstYearAired() {
+        return firstYearAired;
     }
 
-    public void setYearReleased(int yearReleased) {
-        this.yearReleased = yearReleased;
+    public void setFirstYearAired(int firstYearAired) {
+        this.firstYearAired = firstYearAired;
+    }
+
+    public int getLastYearAired() {
+        return lastYearAired;
+    }
+
+    public void setLastYearAired(int lastYearAired) {
+        this.lastYearAired = lastYearAired;
+    }
+
+    public int getNumberOfSeasons() {
+        return numberOfSeasons;
+    }
+
+    public void setNumberOfSeasons(int numberOfSeasons) {
+        this.numberOfSeasons = numberOfSeasons;
     }
 
     public String getPosterSrc() {
@@ -71,4 +92,3 @@ public class Movie {
         this.posterSrc = posterSrc;
     }
 }
-

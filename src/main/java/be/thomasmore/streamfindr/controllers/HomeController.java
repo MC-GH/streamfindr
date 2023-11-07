@@ -1,7 +1,7 @@
 package be.thomasmore.streamfindr.controllers;
-
-import be.thomasmore.streamfindr.model.Movie;
+import be.thomasmore.streamfindr.model.Show;
 import be.thomasmore.streamfindr.repositories.MovieRepository;
+import be.thomasmore.streamfindr.repositories.ShowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,14 +14,14 @@ import java.time.format.DateTimeFormatter;
 public class HomeController {
 
     @Autowired
-    private MovieRepository movieRepository;
+    private ShowRepository showRepository;
 
     @GetMapping({"/", "/home"})
     public String home(Model model) {
         //Get date of today, fetch latest 9 movies that were released to display
         //Store in Iterable
-        Iterable<Movie> allMovies = movieRepository.findAll();
-        model.addAttribute("movies", allMovies);
+        Iterable<Show> allShows = showRepository.findAll();
+        model.addAttribute("shows", allShows);
         return "home";
     }
 
