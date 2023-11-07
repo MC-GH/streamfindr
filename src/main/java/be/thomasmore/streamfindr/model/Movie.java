@@ -1,9 +1,5 @@
 package be.thomasmore.streamfindr.model;
-
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
-
-import java.util.ArrayList;
 
 @Entity
 public class Movie {
