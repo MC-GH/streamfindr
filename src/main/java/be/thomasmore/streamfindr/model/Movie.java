@@ -1,7 +1,7 @@
 package be.thomasmore.streamfindr.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.ArrayList;
 
@@ -10,20 +10,14 @@ public class Movie {
     @Id
     private Integer id;
     private String name;
+    private String director;
     private String genre;
+    @Column(length = 500)
+    private String movieDescription;
     private int yearReleased;
     private String posterSrc;
-//    private ArrayList<String> cast;
 
     public Movie() {}
-
-    public Movie(Integer id, String name, String genre, int yearReleased, String posterSrc) {
-        this.id = id;
-        this.name = name;
-        this.genre = genre;
-        this.yearReleased = yearReleased;
-        this.posterSrc = posterSrc;
-    }
 
     public Integer getId() {
         return id;
@@ -41,12 +35,28 @@ public class Movie {
         this.name = name;
     }
 
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
     public String getGenre() {
         return genre;
     }
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public String getMovieDescription() {
+        return movieDescription;
+    }
+
+    public void setMovieDescription(String movieDescription) {
+        this.movieDescription = movieDescription;
     }
 
     public int getYearReleased() {
