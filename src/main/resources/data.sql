@@ -1,0 +1,2 @@
+INSERT INTO MOVIE(ID,NAME,GENRE,YEAR_RELEASED,POSTER_SRC)
+VALUES (1,'The Hobbit','Fantasy','2001','/img/demon.jpg');
