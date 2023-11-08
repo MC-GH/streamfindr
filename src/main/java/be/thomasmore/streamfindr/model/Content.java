@@ -1,7 +1,5 @@
 package be.thomasmore.streamfindr.model;
-
 import jakarta.persistence.*;
-
 import java.util.Set;
 
 @Entity
@@ -23,6 +21,9 @@ public class Content {
             joinColumns = @JoinColumn(name = "content_id"),
             inverseJoinColumns = @JoinColumn(name = "actor_id"))
     Set<Actor> cast;
+    @OneToMany(mappedBy = "content")
+    Set<Review> reviews;
+
 
     public Content() {
     }

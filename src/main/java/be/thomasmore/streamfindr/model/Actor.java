@@ -1,9 +1,7 @@
 package be.thomasmore.streamfindr.model;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-
 import java.util.Set;
 
 @Entity
