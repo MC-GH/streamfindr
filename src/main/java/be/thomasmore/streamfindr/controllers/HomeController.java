@@ -25,8 +25,7 @@ public class HomeController {
 
         Iterable<Content> allContent = contentRepository.findAll();
 
-        //StreamSupport used to create Stream, Spliterator used to create Stream from Iterator
-        //as Iterator itself does not have a stream() method.
+        //StreamSupport used to create Stream, Spliterator used to create Stream from Iterator as Iterator itself does not have a stream() method.
         List<Content> list = StreamSupport.stream(allContent.spliterator(),false).sorted(Comparator.comparing(Content::getName)).toList();
 
         List<Content> mostRecentContent = new ArrayList<>();
