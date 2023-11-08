@@ -150,7 +150,7 @@ VALUES (30, 'Wood', 'Sebastian Bennet', 'Horror',
 
 -- Inserts for Content table for Shows
 INSERT INTO Content(ID, NAME, DIRECTOR, GENRE, PLOT_DESCRIPTION, POSTER_SRC, CONTENT_TYPE, FIRST_YEAR_AIRED, LAST_YEAR_AIRED, NUMBER_OF_SEASONS)
-VALUES (31, 'ANIMUS', 'Neil Tran', 'Lifestyle', 'Join an amateur painter as he embarks on a passionate journey to turn his artistic hobby into a thriving profession. Witness his struggles, creative breakthroughs, and encounters with the art world''s elite.', '/img/showposters/animus.jpg', 'Show', 2018, 2020, 2);
+VALUES (31, 'Animus', 'Neil Tran', 'Lifestyle', 'Join an amateur painter as he embarks on a passionate journey to turn his artistic hobby into a thriving profession. Witness his struggles, creative breakthroughs, and encounters with the art world''s elite.', '/img/showposters/animus.jpg', 'Show', 2018, 2020, 2);
 
 INSERT INTO Content(ID, NAME, DIRECTOR, GENRE, PLOT_DESCRIPTION, POSTER_SRC, CONTENT_TYPE, FIRST_YEAR_AIRED, LAST_YEAR_AIRED, NUMBER_OF_SEASONS)
 VALUES (32, 'Journey To The Peak', 'Avery Davis', 'Adventure', 'Follow the thrilling adventures of a courageous woman who globe-trots to conquer the world''s most formidable mountains. Experience the triumphs, physical challenges, and emotional highs of her quest for the ultimate peak.', '/img/showposters/journey-to-the-peak.jpg', 'Show', 2016, 2020, 4);
@@ -165,7 +165,7 @@ INSERT INTO Content(ID, NAME, DIRECTOR, GENRE, PLOT_DESCRIPTION, POSTER_SRC, CON
 VALUES (35, 'Never Be Alone', 'Lorna Alvarado', 'Adventure', 'Accompany a nature photographer on breathtaking journeys to capture elusive exotic animals. Witness close encounters with wildlife as the lens captures the raw beauty of nature.', '/img/showposters/never-be-alone.jpg', 'Show', 2024, 2024, 1);
 
 INSERT INTO Content(ID, NAME, DIRECTOR, GENRE, PLOT_DESCRIPTION, POSTER_SRC, CONTENT_TYPE, FIRST_YEAR_AIRED, LAST_YEAR_AIRED, NUMBER_OF_SEASONS)
-VALUES (36, 'RAW', 'Neil Tran', 'Action', 'Step into the brutal world of MMA fighting. Follow the grueling training, rivalries, and intense bouts of a dedicated fighter on their path to glory.', '/img/showposters/raw.jpg', 'Show', 2018, 2022, 2);
+VALUES (36, 'Raw', 'Neil Tran', 'Action', 'Step into the brutal world of MMA fighting. Follow the grueling training, rivalries, and intense bouts of a dedicated fighter on their path to glory.', '/img/showposters/raw.jpg', 'Show', 2018, 2022, 2);
 
 INSERT INTO Content(ID, NAME, DIRECTOR, GENRE, PLOT_DESCRIPTION, POSTER_SRC, CONTENT_TYPE, FIRST_YEAR_AIRED, LAST_YEAR_AIRED, NUMBER_OF_SEASONS)
 VALUES (37, 'Silent Street', 'Alfredo Torres', 'Reality', 'Delve into the darkest mysteries and unsolved crimes, from kidnappings to violent acts. Uncover chilling details and shocking revelations in a suspenseful journey to solve the unsolvable.', '/img/showposters/silent-street.jpg', 'Show', 2019, 2024, 5);
