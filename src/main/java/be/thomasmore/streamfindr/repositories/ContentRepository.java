@@ -18,7 +18,7 @@ public interface ContentRepository extends CrudRepository<Content, Integer> {
 
 
     //Using Native Query we can filter on content_type
-    @Query(value = "SELECT c.* FROM Content c WHERE c.content_type = :contentType", nativeQuery = true)
+    @Query(value = "SELECT c.* FROM Content c WHERE c.contentType = :contentType", nativeQuery = true)
     Iterable<Content> findAllByContentType(@Param("contentType") String contentType);
 }
 

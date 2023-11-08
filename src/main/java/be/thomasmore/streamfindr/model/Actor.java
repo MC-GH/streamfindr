@@ -2,6 +2,9 @@ package be.thomasmore.streamfindr.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+
+import java.util.Set;
 
 @Entity
 public class Actor {
@@ -9,6 +12,8 @@ public class Actor {
     private Integer id;
     private String firstName;
     private String lastName;
+    @ManyToMany(mappedBy = "cast")
+    Set<Content> repertoire;
 
     public Actor() {
     }

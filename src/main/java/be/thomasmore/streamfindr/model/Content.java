@@ -1,10 +1,13 @@
 package be.thomasmore.streamfindr.model;
+
 import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="content_type",
-discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "contentType",
+        discriminatorType = DiscriminatorType.STRING)
 public class Content {
     @Id
     private Integer id;
@@ -14,6 +17,12 @@ public class Content {
     @Column(length = 500)
     private String plotDescription;
     private String posterSrc;
+    @ManyToMany
+    @JoinTable(
+                name="content_actor",
+            joinColumns = @JoinColumn(name = "content_id"),
+            inverseJoinColumns = @JoinColumn(name = "actor_id"))
+    Set<Actor> cast;
 
     public Content() {
     }
