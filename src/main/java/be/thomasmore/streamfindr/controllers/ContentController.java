@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 @Controller
@@ -83,12 +85,19 @@ public class ContentController {
     }
 
     @GetMapping("/contentlist")
-    public String contentList() {
+    public String contentList(Model model) {
+        Iterable<Content> allContent = contentRepository.findAll();
+        model.addAttribute("allContent",allContent);
         return "contentlist";
     }
 
-    @GetMapping("/contentdetails")
-    public String contentDetails() {
+    @GetMapping({"/contentdetails","/contentdetails/{id}"})
+    public String contentDetails(Model model, @PathVariable(required = false) Integer id) {
+        if(id == null) return "contentdetails";
+
+        Optional<Content> content = contentRepository.findById(id);
+        model.addAttribute("content",content.get());
+
         return "contentdetails";
     }
 
