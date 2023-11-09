@@ -11,7 +11,7 @@ public class Actor {
     private String firstName;
     private String lastName;
     @ManyToMany(mappedBy = "cast")
-    Set<Content> repertoire;
+    private Set<Content> repertoire;
 
     public Actor() {
     }
@@ -38,6 +38,14 @@ public class Actor {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Set<Content> getRepertoire() {
+        return repertoire;
+    }
+
+    public void setRepertoire(Set<Content> repertoire) {
+        this.repertoire = repertoire;
     }
 }
 

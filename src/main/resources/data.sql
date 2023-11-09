@@ -372,8 +372,15 @@ INSERT INTO CONTENT_ACTOR (CONTENT_ID, ACTOR_ID) VALUES (40,60);
 INSERT INTO ACCOUNT (ID,USER_NAME,PASSWORD,EMAIL,FIRST_NAME,LAST_NAME)
 VALUES (1,'MichaëlC','test','r0333121@student.thomasmore.be','Michaël','Cornelis');
 
-INSERT INTO REVIEW (ID,CONTENT_ID,ACCOUNT_ID,REVIEW_TEXT,SCORE)
-VALUES (2,10,1,'Poor casting!',4);
+--Insert some dummy reviews
+INSERT INTO REVIEW (ID, CONTENT_ID, ACCOUNT_ID, REVIEW_TEXT, SCORE)
+VALUES (1, 10, 1, 'Poor casting!', 4),
+       (2, 15, 1, 'Great to watch!', 8),
+       (3, 20, 1, 'Could be better!', 5),
+       (4, 25, 1, 'Lovely!', 7),
+       (5, 30, 1, 'Highly recommend!', 9),
+       (6, 35, 1, 'Best I have ever watched!', 7);
+
 
 INSERT INTO PLATFORM (ID,NAME,DESCRIPTION,UNIQUE_SELLING_POINT,MONTHLY_PRICE,YEARLY_SUBSCRIPTION_POSSIBLE,YEARLY_PRICE)
 VALUES (1,'Streamio','Popular Streaming platform with tv shows and movies.','Primetime movies',9.99,true,79.99);
@@ -390,3 +397,4 @@ INSERT INTO CONTENT_PLATFORM (PLATFORM_ID,CONTENT_ID) VALUES  (1,9);
 INSERT INTO CONTENT_PLATFORM (PLATFORM_ID,CONTENT_ID) VALUES  (1,10);
 
 INSERT INTO ACCOUNT_PLATFORM (ACCOUNT_ID,PLATFORM_ID) VALUES (1,1);
+

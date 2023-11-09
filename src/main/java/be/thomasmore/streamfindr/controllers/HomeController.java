@@ -22,15 +22,16 @@ public class HomeController {
 
     @GetMapping({"/", "/home"})
     public String home(Model model) {
-
         Iterable<Content> allContent = contentRepository.findAll();
-
         //StreamSupport used to create Stream, Spliterator used to create Stream from Iterator as Iterator itself does not have a stream() method.
-        List<Content> list = StreamSupport.stream(allContent.spliterator(),false).sorted(Comparator.comparing(Content::getName)).toList();
+        List<Content> list = StreamSupport.stream(allContent.spliterator(), false).sorted(Comparator.comparing(Content::getName)).toList();
+        List<Content> mostRecentContent = findMostRecent(list);
 
-        List<Content> mostRecentContent = new ArrayList<>();
-        mostRecentContent = findMostRecent(list);
+        List<Content> top3Reviewed = contentRepository.findTop3ReviewedContent();
+
         model.addAttribute("content", mostRecentContent);
+        model.addAttribute("top3",top3Reviewed);
+
         return "home";
     }
 

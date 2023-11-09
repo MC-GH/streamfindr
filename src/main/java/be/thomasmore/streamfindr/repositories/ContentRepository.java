@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface ContentRepository extends CrudRepository<Content, Integer> {
 
     @Query("SELECT c FROM Content c where TYPE(c) = Movie")
@@ -13,13 +15,12 @@ public interface ContentRepository extends CrudRepository<Content, Integer> {
     @Query("SELECT c FROM Content c where TYPE(c) = Show")
     Iterable<Content> findAllShows();
 
-//    @Query(value = "SELECT c.* FROM Content c WHERE c.", nativeQuery = true)
-//    Iterable<Content> findMostRecent9Results(int currentYear);
+    @Query("SELECT c FROM Content c WHERE TYPE(c) = :contentType")
+    Iterable<Content> findAllByContentType(@Param("contentType") Class<? extends Content> contentType);
 
-
-    //Using Native Query we can filter on content_type
-    @Query(value = "SELECT c.* FROM Content c WHERE c.contentType = :contentType", nativeQuery = true)
-    Iterable<Content> findAllByContentType(@Param("contentType") String contentType);
+    @Query("SELECT c FROM Content c ORDER BY (" +
+            "SELECT AVG(r.score) FROM c.reviews r) DESC LIMIT 3")
+    List<Content> findTop3ReviewedContent();
 }
 
 

@@ -24,5 +24,75 @@ public class Platform {
     public Platform() {
     }
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUniqueSellingPoint() {
+        return uniqueSellingPoint;
+    }
+
+    public void setUniqueSellingPoint(String uniqueSellingPoint) {
+        this.uniqueSellingPoint = uniqueSellingPoint;
+    }
+
+    public double getMonthlyPrice() {
+        return monthlyPrice;
+    }
+
+    public void setMonthlyPrice(double monthlyPrice) {
+        this.monthlyPrice = monthlyPrice;
+    }
+
+    public boolean isYearlySubscriptionPossible() {
+        return yearlySubscriptionPossible;
+    }
+
+    public void setYearlySubscriptionPossible(boolean yearlySubscriptionPossible) {
+        this.yearlySubscriptionPossible = yearlySubscriptionPossible;
+    }
+
+    public double getYearlyPrice() {
+        return yearlyPrice;
+    }
+
+    public void setYearlyPrice(double yearlyPrice) {
+        this.yearlyPrice = yearlyPrice;
+    }
+
+    public Set<Content> getCatalogue() {
+        return catalogue;
+    }
+
+    public void setCatalogue(Set<Content> catalogue) {
+        this.catalogue = catalogue;
+    }
+
+    public Set<Account> getMembers() {
+        return members;
+    }
+
+    public void setMembers(Set<Account> members) {
+        this.members = members;
+    }
 }

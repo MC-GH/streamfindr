@@ -80,4 +80,28 @@ public class Content {
     public void setPosterSrc(String posterSrc) {
         this.posterSrc = posterSrc;
     }
+
+    public Set<Actor> getCast() {
+        return cast;
+    }
+
+    public void setCast(Set<Actor> cast) {
+        this.cast = cast;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public Set<Platform> getAvailableOnPlatforms() {
+        return availableOnPlatforms;
+    }
+
+    public void setAvailableOnPlatforms(Set<Platform> availableOnPlatforms) {
+        this.availableOnPlatforms = availableOnPlatforms;
+    }
 }

@@ -20,7 +20,8 @@
     <div class="row">
         <div class="col-12">
             <h1 class="p-5">Welcome to StreamFindr</h1>
-
+            <div>Top 3 reviewed titles:</div>
+            <p th:each="item: ${top3}" th:text="|${item.getName()} avgscore:|"></p>
 
         </div>
     </div>
