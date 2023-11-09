@@ -23,11 +23,42 @@
         </div>
     </div>
 
-    <div class="row p-xxl-2 col-12 col-xxl-10 mx-auto bg-light">Filters
+    <div class="row p-xxl-2 col-12 col-xxl-10 mx-auto bg-light">
+        <div th:if="${showFilters}">
+            <a class="btn btn-info" th:href="@{/contentlist}">Hide Filters</a>
+
+        <form class="d-flex">
+                <select class="form-select">
+                    <option selected>Content Type</option>
+                    <option value="Movie">Movies</option>
+                    <option value="Show">Shows</option>
+                </select>
+            <select class="form-select">
+                <option selected>Genre</option>
+                <option value="Movie">Movies</option>
+                <option value="Show">Shows</option>
+            </select>
+
+            <!--Filter on
+            type: Movies/Shows/All
+            name(text)
+            director (text)
+            genre - select
+            cast: text
+            score
+            platform-->
+
+            <input type="submit" value="search" class="btn btn-secondary my-2">
+        </form>
+        </div>
+        <div th:unless="${showFilters}">
+            <a class="btn btn-info" th:href="@{/contentlist/filter}">Show Filters</a>
+        </div>
     </div>
 
+
     <div class="row p-xxl-2 col-12 col-xxl-10 mx-auto bg-light">
-        <a th:each="content: ${allContent}" th:href="@{|/contentdetails/${content.getId()}|}" class="col-12 col-sm-6 col-lg-4 col-xxl-3 g-2">
+        <a th:each="content: ${content}" th:href="@{|/contentdetails/${content.getId()}|}" class="col-12 col-sm-6 col-lg-4 col-xxl-3 g-2">
             <img th:src="${content.getPosterSrc()}" class="img-fluid rounded ">
         </a>
     </div>

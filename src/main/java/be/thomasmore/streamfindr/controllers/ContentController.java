@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -84,21 +85,36 @@ public class ContentController {
         return mostRecentContent;
     }
 
-    @GetMapping("/contentlist")
+    @GetMapping({"/contentlist", "/contentlist/"})
     public String contentList(Model model) {
         Iterable<Content> allContent = contentRepository.findAll();
-        model.addAttribute("allContent",allContent);
+        model.addAttribute("content",allContent);
+        return "contentlist";
+    }
+
+    @GetMapping("/contentlist/filter")
+    public String contentListWithFilter(Model model,
+                                        @RequestParam(required = false) String contentType) {
+
+        List<Content> filteredContent = contentRepository.findByCombinedFilter(null);
+
+
+        model.addAttribute("showFilters",true);
+        model.addAttribute("content",filteredContent);
         return "contentlist";
     }
 
     @GetMapping({"/contentdetails","/contentdetails/{id}"})
     public String contentDetails(Model model, @PathVariable(required = false) Integer id) {
         if(id == null) return "contentdetails";
-
         Optional<Content> content = contentRepository.findById(id);
-        model.addAttribute("content",content.get());
 
+
+
+        model.addAttribute("content",content.get());
         return "contentdetails";
     }
+
+
 
 }
