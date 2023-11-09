@@ -4,18 +4,18 @@ import be.thomasmore.streamfindr.model.Content;
 import be.thomasmore.streamfindr.model.Movie;
 import be.thomasmore.streamfindr.model.Show;
 import be.thomasmore.streamfindr.repositories.ContentRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.StreamSupport;
 
 @Controller
-public class HomeController {
+public class ContentController {
 
     @Autowired
     private ContentRepository contentRepository;
@@ -87,15 +87,9 @@ public class HomeController {
         return "contentlist";
     }
 
-    @GetMapping("/platformlist")
-    public String platformList() {
-        return "platformlist";
-    }
-
     @GetMapping("/contentdetails")
     public String contentDetails() {
         return "contentdetails";
     }
-
 
 }
