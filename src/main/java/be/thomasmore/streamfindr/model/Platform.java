@@ -19,6 +19,8 @@ public class Platform {
     @ManyToMany(mappedBy = "availableOnPlatforms")
     private Set<Content> catalogue;
 
+    @ManyToMany(mappedBy = "memberOfPlatforms")
+    private Set<Account> members;
     public Platform() {
     }
 

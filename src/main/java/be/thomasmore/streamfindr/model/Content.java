@@ -20,16 +20,15 @@ public class Content {
                 name="content_actor",
             joinColumns = @JoinColumn(name = "content_id"),
             inverseJoinColumns = @JoinColumn(name = "actor_id"))
-    Set<Actor> cast;
+    private Set<Actor> cast;
     @OneToMany(mappedBy = "content")
-    Set<Review> reviews;
+    private Set<Review> reviews;
     @ManyToMany
     @JoinTable(
             name = "content_platform",
             joinColumns = @JoinColumn(name = "content_id"),
             inverseJoinColumns = @JoinColumn(name = "platform_id"))
-    Set<Platform> availableOnPlatforms;
-
+    private Set<Platform> availableOnPlatforms;
 
     public Content() {
     }
