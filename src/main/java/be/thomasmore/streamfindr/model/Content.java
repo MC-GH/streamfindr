@@ -23,6 +23,12 @@ public class Content {
     Set<Actor> cast;
     @OneToMany(mappedBy = "content")
     Set<Review> reviews;
+    @ManyToMany
+    @JoinTable(
+            name = "content_platform",
+            joinColumns = @JoinColumn(name = "content_id"),
+            inverseJoinColumns = @JoinColumn(name = "platform_id"))
+    Set<Platform> availableOnPlatforms;
 
 
     public Content() {
