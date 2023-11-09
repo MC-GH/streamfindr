@@ -379,7 +379,7 @@ VALUES (1, 10, 1, 'Poor casting!', 4),
        (3, 20, 1, 'Could be better!', 5),
        (4, 25, 1, 'Lovely!', 7),
        (5, 30, 1, 'Highly recommend!', 9),
-       (6, 35, 1, 'Best I have ever watched!', 7);
+       (6, 35, 1, 'Best I have ever watched!', 7.5);
 
 
 INSERT INTO PLATFORM (ID,NAME,DESCRIPTION,UNIQUE_SELLING_POINT,MONTHLY_PRICE,YEARLY_SUBSCRIPTION_POSSIBLE,YEARLY_PRICE)

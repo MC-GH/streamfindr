@@ -21,7 +21,7 @@
         <div class="col-12">
             <h1 class="p-5">Welcome to StreamFindr</h1>
             <div>Top 3 reviewed titles:</div>
-            <p th:each="item: ${top3}" th:text="|${item.getName()} avgscore:|"></p>
+            <p th:each="item: ${top3}" th:text="${item.getName()}"></p>
 
         </div>
     </div>
@@ -60,18 +60,11 @@
                 <div class="row m-auto p-0 gy-3">
                     <div id="carouselExampleFade" class="carousel slide carousel-fade">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img th:src="@{/img/movieposters/faith.jpg}" src="/img/movieposters/faith.jpg"
-                                     class="d-block w-100" alt="...">
+
+                            <div th:each="item, iterStat: ${top3}" class="carousel-item" th:classappend="${iterStat.first}? 'active'">
+                                <img th:src="${item.getPosterSrc()}" class="d-block w-100" th:alt="${item.getName()}">
                             </div>
-                            <div class="carousel-item">
-                                <img th:src="@{/img/movieposters/basement.jpg}" src="/img/movieposters/basement.jpg"
-                                     class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img th:src="@{/img/movieposters/monster.jpg}" src="/img/movieposters/monster.jpg"
-                                     class="d-block w-100" alt="...">
-                            </div>
+
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
                                 data-bs-slide="prev">
