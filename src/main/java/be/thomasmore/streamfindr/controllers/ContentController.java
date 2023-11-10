@@ -4,6 +4,8 @@ import be.thomasmore.streamfindr.model.Content;
 import be.thomasmore.streamfindr.model.Movie;
 import be.thomasmore.streamfindr.model.Show;
 import be.thomasmore.streamfindr.repositories.ContentRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,8 @@ import java.util.stream.StreamSupport;
 
 @Controller
 public class ContentController {
+
+    Logger logger = LoggerFactory.getLogger(ContentController.class);
 
     @Autowired
     private ContentRepository contentRepository;
@@ -94,13 +98,24 @@ public class ContentController {
 
     @GetMapping("/contentlist/filter")
     public String contentListWithFilter(Model model,
-                                        @RequestParam(required = false) String contentType) {
+                                        @RequestParam(required = false) String contentType,
+                                        @RequestParam(required = false) String genre,
+                                        @RequestParam(required = false) String keyword) {
 
-            List<Content> filteredContent = contentRepository.findByCombinedFilter(convertStringToClassType(contentType));
+        logger.info(String.format("Contentlistfilter -- type:%s", contentType));
+        logger.info(String.format("contentlistFilter -- genre:%s", genre));
+        logger.info(String.format("contentlistFilter -- keyword:%s", keyword));
+
+
+        List<Content> filteredContent = contentRepository.findByCombinedFilter(convertStringToClassType(contentType),
+                genre,keyword);
 
         model.addAttribute("showFilters",true);
         model.addAttribute("content",filteredContent);
         model.addAttribute("contentType",contentType);
+        model.addAttribute("selectedGenre",genre);
+        model.addAttribute("keyword",keyword);
+        model.addAttribute("distinctGenres",contentRepository.findDistinctGenres());
         return "contentlist";
     }
 

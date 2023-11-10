@@ -27,8 +27,22 @@ public interface ContentRepository extends CrudRepository<Content, Integer> {
 //    @Query(value = "SELECT * FROM CONTENT WHERE CONTENT_TYPE = :contentType OR :contentType IS NULL", nativeQuery = true)
 //    List<Content> findByCombinedFilter(@Param("contentType") String contentType);
 
-    @Query("SELECT c FROM Content c WHERE TYPE(c) = :contentType OR :contentType IS NULL")
-    List<Content> findByCombinedFilter(@Param("contentType") Class<? extends Content> contentType);
+    @Query("SELECT c FROM Content c " +
+            "LEFT JOIN c.cast actors " +
+            "WHERE (:contentType IS NULL OR TYPE(c) = :contentType)" +
+            " AND (:genre IS NULL OR :genre = '' OR c.genre = :genre)" +
+            " AND (:keyword IS NULL OR :keyword = '' OR LOWER(c.name) LIKE LOWER(CONCAT('%',:keyword,'%'))" +
+            " OR LOWER(actors.firstName) LIKE LOWER(CONCAT('%', :keyword, '%'))" +
+            " OR LOWER(actors.lastName) LIKE LOWER(CONCAT('%', :keyword, '%')))")
+    List<Content> findByCombinedFilter(@Param("contentType") Class<? extends Content> contentType,
+                                       @Param("genre") String genre,
+                                       @Param("keyword") String keyword);
+
+//    @Query("SELECT c FROM Content c WHERE TYPE(c) = :contentType OR :contentType IS NULL")
+//    List<Content> findByCombinedFilter(@Param("contentType") Class<? extends Content> contentType);
+
+    @Query("SELECT DISTINCT c.genre FROM Content c")
+    List<String> findDistinctGenres();
 }
 
 

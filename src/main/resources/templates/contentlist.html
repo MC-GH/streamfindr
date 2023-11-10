@@ -27,29 +27,36 @@
         <div th:if="${showFilters}">
             <a class="btn btn-info" th:href="@{/contentlist}">Hide Filters</a>
 
-        <form class="d-flex">
+            <form class="d-flex flex-column">
                 <select class="form-select" name="contentType">
-                    <option selected>Content Type</option>
+                    <option value="" selected>Content Type</option>
                     <option th:selected="${contentType == 'Movie'}" value="Movie">Movies</option>
                     <option th:selected="${contentType == 'Show'}" value="Show">Shows</option>
                 </select>
-            <select class="form-select">
-                <option selected>Genre</option>
-                <option value="Movie">Movies</option>
-                <option value="Show">Shows</option>
-            </select>
+                <select class="form-select" name="genre">
+                    <option value="">Genre</option>
+                    <option th:each="item: ${distinctGenres}" th:value="${item}" th:text="${item}"
+                            th:selected="${item == selectedGenre}"></option>
+                </select>
+                <div class="input-group">
+                    <label for="keyword">Content name or cast member</label>
+                    <input type="text" class="form-control" id="keyword" name="keyword"
+                         th:value="${keyword}" value="">
+                </div>
 
-            <!--Filter on
-            type: Movies/Shows/All
-            name(text)
-            director (text)
-            genre - select
-            cast: text
-            score
-            platform-->
 
-            <input type="submit" value="search" class="btn btn-secondary my-2">
-        </form>
+                <!--Filter on
+                type: Movies/Shows/All SELECT OK
+                name + cast members(1 textveld) OK => Add director as well
+                director (dropdown)
+                genre - SELECT OK
+                score - RANGE?
+                platform-->
+
+                <input type="submit" value="search" class="btn btn-secondary my-2">
+            </form>
+            <p th:text="|Items found: ${content.size()}|"></p>
+
         </div>
         <div th:unless="${showFilters}">
             <a class="btn btn-info" th:href="@{/contentlist/filter}">Show Filters</a>
@@ -58,7 +65,8 @@
 
 
     <div class="row p-xxl-2 col-12 col-xxl-10 mx-auto bg-light">
-        <a th:each="content: ${content}" th:href="@{|/contentdetails/${content.getId()}|}" class="col-12 col-sm-6 col-lg-4 col-xxl-3 g-2">
+        <a th:each="content: ${content}" th:href="@{|/contentdetails/${content.getId()}|}"
+           class="col-12 col-sm-6 col-lg-4 col-xxl-3 g-2">
             <img th:src="${content.getPosterSrc()}" class="img-fluid rounded ">
         </a>
     </div>
