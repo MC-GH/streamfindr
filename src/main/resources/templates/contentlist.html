@@ -23,8 +23,8 @@
         </div>
     </div>
 
-    <div class="row p-xxl-2 col-12 col-xxl-10 mx-auto bg-light">
-        <div th:if="${showFilters}">
+    <div class="row p-2 p-xxl-2 col-12 col-xxl-10 mx-auto bg-light">
+        <div class="col-12 col-sm-8 col-lg-6 col-xxl-4" th:if="${showFilters}">
             <a class="btn btn-info" th:href="@{/contentlist}">Hide Filters</a>
 
             <form class="d-flex flex-column">
@@ -38,19 +38,19 @@
                     <option th:each="item: ${distinctGenres}" th:value="${item}" th:text="${item}"
                             th:selected="${item == selectedGenre}"></option>
                 </select>
-                <div class="input-group">
-                    <label for="keyword">Content name or cast member</label>
-                    <input type="text" class="form-control" id="keyword" name="keyword"
+                <div class="py-2 text-start" id="keywordSearch">
+                    <label class="fw-bold" for="keyword">Keyword search</label>
+                    <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Search on title, actor, director"
                          th:value="${keyword}" value="">
                 </div>
 
+                <div class="py-2 text-start fw-bold" id="minScoreRange">
+                <label for="scoreRange" class="form-label">Minimum reviewer score:</label>
+                    <span th:text="${minScore}" id="sliderValue">0</span>
+                    <input type="range" class="form-range" id="scoreRange" min="0" max="10" step="1" th:value="${minScore}" name="minScore" value="5" onChange="updateSliderValue()">
+                </div>
 
                 <!--Filter on
-                type: Movies/Shows/All SELECT OK
-                name + cast members(1 textveld) OK => Add director as well
-                director (dropdown)
-                genre - SELECT OK
-                score - RANGE?
                 platform-->
 
                 <input type="submit" value="search" class="btn btn-secondary my-2">
@@ -77,3 +77,11 @@
 
 </body>
 </html>
+
+<script>
+    function updateSliderValue() {
+        var slider = document.getElementById("scoreRange");
+        var output = document.getElementById("sliderValue");
+        output.textContent = slider.value;
+    }
+</script>

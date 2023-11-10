@@ -33,10 +33,13 @@ public interface ContentRepository extends CrudRepository<Content, Integer> {
             " AND (:genre IS NULL OR :genre = '' OR c.genre = :genre)" +
             " AND (:keyword IS NULL OR :keyword = '' OR LOWER(c.name) LIKE LOWER(CONCAT('%',:keyword,'%'))" +
             " OR LOWER(actors.firstName) LIKE LOWER(CONCAT('%', :keyword, '%'))" +
-            " OR LOWER(actors.lastName) LIKE LOWER(CONCAT('%', :keyword, '%')))")
+            " OR LOWER(actors.lastName) LIKE LOWER(CONCAT('%', :keyword, '%'))" +
+            " OR LOWER(c.director) LIKE LOWER(CONCAT('%', :keyword, '%')))" +
+            " AND (:minScore IS NULL or :minScore <= (SELECT AVG(r.score) FROM c.reviews r))")
     List<Content> findByCombinedFilter(@Param("contentType") Class<? extends Content> contentType,
                                        @Param("genre") String genre,
-                                       @Param("keyword") String keyword);
+                                       @Param("keyword") String keyword,
+                                       @Param("minScore") Integer minScore);
 
 //    @Query("SELECT c FROM Content c WHERE TYPE(c) = :contentType OR :contentType IS NULL")
 //    List<Content> findByCombinedFilter(@Param("contentType") Class<? extends Content> contentType);

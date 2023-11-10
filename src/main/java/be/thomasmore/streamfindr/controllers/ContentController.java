@@ -100,21 +100,25 @@ public class ContentController {
     public String contentListWithFilter(Model model,
                                         @RequestParam(required = false) String contentType,
                                         @RequestParam(required = false) String genre,
-                                        @RequestParam(required = false) String keyword) {
+                                        @RequestParam(required = false) String keyword,
+                                        @RequestParam(required = false) Integer minScore) {
 
         logger.info(String.format("Contentlistfilter -- type:%s", contentType));
         logger.info(String.format("contentlistFilter -- genre:%s", genre));
         logger.info(String.format("contentlistFilter -- keyword:%s", keyword));
+        logger.info(String.format("contentlistFilter -- minScore:%d", minScore));
 
 
         List<Content> filteredContent = contentRepository.findByCombinedFilter(convertStringToClassType(contentType),
-                genre,keyword);
+                genre,keyword,minScore);
 
         model.addAttribute("showFilters",true);
         model.addAttribute("content",filteredContent);
         model.addAttribute("contentType",contentType);
         model.addAttribute("selectedGenre",genre);
         model.addAttribute("keyword",keyword);
+        model.addAttribute("minScore",minScore);
+
         model.addAttribute("distinctGenres",contentRepository.findDistinctGenres());
         return "contentlist";
     }
