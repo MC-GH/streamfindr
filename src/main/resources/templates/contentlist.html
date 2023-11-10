@@ -28,10 +28,10 @@
             <a class="btn btn-info" th:href="@{/contentlist}">Hide Filters</a>
 
         <form class="d-flex">
-                <select class="form-select">
+                <select class="form-select" name="contentType">
                     <option selected>Content Type</option>
-                    <option value="Movie">Movies</option>
-                    <option value="Show">Shows</option>
+                    <option th:selected="${contentType == 'Movie'}" value="Movie">Movies</option>
+                    <option th:selected="${contentType == 'Show'}" value="Show">Shows</option>
                 </select>
             <select class="form-select">
                 <option selected>Genre</option>

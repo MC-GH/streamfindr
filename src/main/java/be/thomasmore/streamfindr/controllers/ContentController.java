@@ -96,12 +96,20 @@ public class ContentController {
     public String contentListWithFilter(Model model,
                                         @RequestParam(required = false) String contentType) {
 
-        List<Content> filteredContent = contentRepository.findByCombinedFilter(null);
-
+            List<Content> filteredContent = contentRepository.findByCombinedFilter(convertStringToClassType(contentType));
 
         model.addAttribute("showFilters",true);
         model.addAttribute("content",filteredContent);
+        model.addAttribute("contentType",contentType);
         return "contentlist";
+    }
+
+    public Class<? extends Content> convertStringToClassType(String contentType) {
+        if(contentType != null) {
+            if(contentType.equals("Movie")) { return Movie.class;}
+            if(contentType.equals("Show")) { return Show.class;}
+        }
+        return null;
     }
 
     @GetMapping({"/contentdetails","/contentdetails/{id}"})

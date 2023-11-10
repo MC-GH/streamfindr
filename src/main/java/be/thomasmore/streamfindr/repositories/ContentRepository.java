@@ -24,8 +24,11 @@ public interface ContentRepository extends CrudRepository<Content, Integer> {
 
     //Ofwel alles in Native Query schrijven als het mogelijk is, ofwel String parameter converteren naar Type
     // (laatste is misschien het makkelijskte)
-    @Query(value = "SELECT * FROM CONTENT WHERE CONTENT_TYPE = :contentType OR :contentType IS NULL", nativeQuery = true)
-    List<Content> findByCombinedFilter(@Param("contentType") String contentType);
+//    @Query(value = "SELECT * FROM CONTENT WHERE CONTENT_TYPE = :contentType OR :contentType IS NULL", nativeQuery = true)
+//    List<Content> findByCombinedFilter(@Param("contentType") String contentType);
+
+    @Query("SELECT c FROM Content c WHERE TYPE(c) = :contentType OR :contentType IS NULL")
+    List<Content> findByCombinedFilter(@Param("contentType") Class<? extends Content> contentType);
 }
 
 
