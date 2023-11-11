@@ -1,14 +1,14 @@
 package be.thomasmore.streamfindr.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
 import java.util.Set;
 
 @Entity
 public class Platform {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "platform_generator")
+    @SequenceGenerator(name = "platform_generator", sequenceName = "platform_seq", allocationSize = 1)
     private Integer id;
     private String name;
     private String description;

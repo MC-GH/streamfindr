@@ -6,6 +6,8 @@ import java.util.Set;
 @Entity
 public class Account {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_generator")
+    @SequenceGenerator(name = "account_generator", sequenceName = "account_seq", allocationSize = 1)
     private Integer id;
     private String userName;
     private String password;

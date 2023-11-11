@@ -1,12 +1,13 @@
 package be.thomasmore.streamfindr.model;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
+
 import java.util.Set;
 
 @Entity
 public class Actor {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "actor_generator")
+    @SequenceGenerator(name = "actor_generator", sequenceName = "actor_seq", allocationSize = 1)
     private Integer id;
     private String firstName;
     private String lastName;

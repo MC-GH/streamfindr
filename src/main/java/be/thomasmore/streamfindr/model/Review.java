@@ -1,12 +1,12 @@
 package be.thomasmore.streamfindr.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Review {
      @Id
+     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_generator")
+     @SequenceGenerator(name = "review_generator", sequenceName = "review_seq", allocationSize = 1)
     private Integer id;
      private int score;
      private String reviewText;
