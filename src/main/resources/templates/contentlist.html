@@ -47,7 +47,7 @@
                 <div class="py-2 text-start fw-bold" id="minScoreRange">
                 <label for="scoreRange" class="form-label">Minimum reviewer score:</label>
                     <span th:text="${minScore}" id="sliderValue">0</span>
-                    <input type="range" class="form-range" id="scoreRange" min="0" max="10" step="1" th:value="${minScore}" name="minScore" value="5" onChange="updateSliderValue()">
+                    <input type="range" class="form-range" id="scoreRange" min="0" max="10" step="1" th:value="${minScore ?:0}" name="minScore" value="5" onChange="updateSliderValue()">
                 </div>
 
                 <!--Filter on

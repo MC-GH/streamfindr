@@ -8,6 +8,8 @@ import java.util.Set;
         discriminatorType = DiscriminatorType.STRING)
 public class Content {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "content_generator")
+    @SequenceGenerator(name = "content_generator", sequenceName = "content_seq", allocationSize = 1)
     private Integer id;
     private String name;
     private String director;
