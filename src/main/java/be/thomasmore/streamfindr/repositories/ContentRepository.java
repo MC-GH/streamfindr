@@ -22,15 +22,12 @@ public interface ContentRepository extends CrudRepository<Content, Integer> {
             "SELECT AVG(r.score) FROM c.reviews r) DESC LIMIT 3")
     List<Content> findTop3ReviewedContent();
 
-    //Ofwel alles in Native Query schrijven als het mogelijk is, ofwel String parameter converteren naar Type
-    // (laatste is misschien het makkelijskte)
-//    @Query(value = "SELECT * FROM CONTENT WHERE CONTENT_TYPE = :contentType OR :contentType IS NULL", nativeQuery = true)
-//    List<Content> findByCombinedFilter(@Param("contentType") String contentType);
-
     @Query("SELECT c FROM Content c " +
             "LEFT JOIN c.cast actors " +
+            "LEFT JOIN c.availableOnPlatforms platforms " +
             "WHERE (:contentType IS NULL OR TYPE(c) = :contentType)" +
-            " AND (:genre IS NULL OR :genre = '' OR c.genre = :genre)" +
+            " AND (:genre IS NULL OR :genre='' OR c.genre = :genre)" +
+            " AND (:platformName IS NULL OR :platformName='' OR platforms.name = :platformName)" +
             " AND (:keyword IS NULL OR :keyword = '' OR LOWER(c.name) LIKE LOWER(CONCAT('%',:keyword,'%'))" +
             " OR LOWER(actors.firstName) LIKE LOWER(CONCAT('%', :keyword, '%'))" +
             " OR LOWER(actors.lastName) LIKE LOWER(CONCAT('%', :keyword, '%'))" +
@@ -38,14 +35,19 @@ public interface ContentRepository extends CrudRepository<Content, Integer> {
             " AND (:minScore IS NULL or :minScore <= (SELECT AVG(r.score) FROM c.reviews r))")
     List<Content> findByCombinedFilter(@Param("contentType") Class<? extends Content> contentType,
                                        @Param("genre") String genre,
+                                       @Param("platformName") String platformName,
                                        @Param("keyword") String keyword,
                                        @Param("minScore") Integer minScore);
 
-//    @Query("SELECT c FROM Content c WHERE TYPE(c) = :contentType OR :contentType IS NULL")
-//    List<Content> findByCombinedFilter(@Param("contentType") Class<? extends Content> contentType);
-
     @Query("SELECT DISTINCT c.genre FROM Content c")
     List<String> findDistinctGenres();
+
+    @Query("SELECT DISTINCT p.name FROM Content c JOIN c.availableOnPlatforms p")
+    List<String> findDistinctPlatformNames();
+
+
+
+
 }
 
 

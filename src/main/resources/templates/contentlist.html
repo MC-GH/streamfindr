@@ -38,6 +38,11 @@
                     <option th:each="item: ${distinctGenres}" th:value="${item}" th:text="${item}"
                             th:selected="${item == selectedGenre}"></option>
                 </select>
+                <select class="form-select" name="platform">
+                    <option value="">Platform</option>
+                    <option th:each="platform: ${distinctPlatformNames}" th:value="${platform}" th:text="${platform}"
+                            th:selected="${platform == selectedPlatform}"></option>
+                </select>
                 <div class="py-2 text-start" id="keywordSearch">
                     <label class="fw-bold" for="keyword">Keyword search</label>
                     <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Search on title, actor, director"
@@ -49,9 +54,6 @@
                     <span th:text="${minScore}" id="sliderValue">0</span>
                     <input type="range" class="form-range" id="scoreRange" min="0" max="10" step="1" th:value="${minScore ?:0}" name="minScore" value="5" onChange="updateSliderValue()">
                 </div>
-
-                <!--Filter on
-                platform-->
 
                 <input type="submit" value="search" class="btn btn-secondary my-2">
             </form>

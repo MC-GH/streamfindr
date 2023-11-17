@@ -1,8 +1,6 @@
 package be.thomasmore.streamfindr.controllers;
 
-import be.thomasmore.streamfindr.model.Content;
-import be.thomasmore.streamfindr.model.Movie;
-import be.thomasmore.streamfindr.model.Show;
+import be.thomasmore.streamfindr.model.*;
 import be.thomasmore.streamfindr.repositories.ContentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,10 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.StreamSupport;
 
 @Controller
@@ -100,26 +95,30 @@ public class ContentController {
     public String contentListWithFilter(Model model,
                                         @RequestParam(required = false) String contentType,
                                         @RequestParam(required = false) String genre,
+                                        @RequestParam(required = false) String platform,
                                         @RequestParam(required = false) String keyword,
                                         @RequestParam(required = false) Integer minScore) {
 
         logger.info(String.format("Contentlistfilter -- type:%s", contentType));
         logger.info(String.format("contentlistFilter -- genre:%s", genre));
+        logger.info(String.format("contentlistFilter -- platform:%s", platform));
         logger.info(String.format("contentlistFilter -- keyword:%s", keyword));
         logger.info(String.format("contentlistFilter -- minScore:%d", minScore));
 
 
         List<Content> filteredContent = contentRepository.findByCombinedFilter(convertStringToClassType(contentType),
-                genre,keyword,minScore);
+                genre,platform,keyword,minScore);
 
         model.addAttribute("showFilters",true);
         model.addAttribute("content",filteredContent);
         model.addAttribute("contentType",contentType);
         model.addAttribute("selectedGenre",genre);
+        model.addAttribute("selectedPlatform", platform);
         model.addAttribute("keyword",keyword);
         model.addAttribute("minScore",minScore);
 
         model.addAttribute("distinctGenres",contentRepository.findDistinctGenres());
+        model.addAttribute("distinctPlatformNames", contentRepository.findDistinctPlatformNames());
         return "contentlist";
     }
 
@@ -136,7 +135,9 @@ public class ContentController {
         if(id == null) return "contentdetails";
         Optional<Content> content = contentRepository.findById(id);
 
-
+//        Eenvoudig reviews opvragen van film:
+//        Set<Review> reviews = content.get().getReviews();
+//        Set<Actor> cast = content.get().getCast();
 
         model.addAttribute("content",content.get());
         return "contentdetails";

@@ -15,6 +15,7 @@ public class Platform {
     private String uniqueSellingPoint;
     private double monthlyPrice;
     private boolean yearlySubscriptionPossible;
+    @Column(nullable = true)
     private double yearlyPrice;
     @ManyToMany(mappedBy = "availableOnPlatforms")
     private Set<Content> catalogue;
