@@ -44,10 +44,9 @@
             <div class="row p-2">
                 <h2>New Releases</h2>
                 <div class="row m-auto p-0 gy-3 flex-wrap">
-
-                    <img th:each="content: ${content}" th:src="${content.getPosterSrc()}"
-                         class="img-fluid col-12 col-sm-6 col-lg-4">
-
+                        <a class="col-12 col-sm-6 col-lg-4" th:each="content: ${content}" th:href="@{|/contentdetails/${content.getId()}|}">
+                            <img th:src="${content.getPosterSrc()}" class="img-fluid">
+                        </a>
                 </div>
             </div>
         </div>
@@ -59,7 +58,9 @@
                         <div class="carousel-inner">
 
                             <div th:each="item, iterStat: ${top3}" class="carousel-item" th:classappend="${iterStat.first}? 'active'">
+                                <a th:href="@{|/contentdetails/${item.getId()}|}">
                                 <img th:src="${item.getPosterSrc()}" class="d-block w-100" th:alt="${item.getName()}">
+                                </a>
                             </div>
 
                         </div>
