@@ -19,45 +19,62 @@
 <main id="posterContainer" class="container-fluid d-flex flex-column text-center flex-grow-1 col-12">
     <div class="row">
         <div class="col-12">
-            <h1 class="p-5">Content list</h1>
+            <h1 class="p-2 p-md-5">Content list</h1>
         </div>
     </div>
 
     <div class="row p-2 p-xxl-2 col-12 col-xxl-10 mx-auto bg-light">
-        <div class="col-12 col-sm-8 col-lg-6 col-xxl-4" th:if="${showFilters}">
+        <div class="col-12" th:if="${showFilters}">
             <a class="btn btn-info" th:href="@{/contentlist}">Hide Filters</a>
 
-            <form class="d-flex flex-column">
-                <select class="form-select" name="contentType">
-                    <option value="" selected>Content Type</option>
-                    <option th:selected="${contentType == 'Movie'}" value="Movie">Movies</option>
-                    <option th:selected="${contentType == 'Show'}" value="Show">Shows</option>
-                </select>
-                <select class="form-select" name="genre">
-                    <option value="">Genre</option>
-                    <option th:each="item: ${distinctGenres}" th:value="${item}" th:text="${item}"
-                            th:selected="${item == selectedGenre}"></option>
-                </select>
-                <select class="form-select" name="platform">
-                    <option value="">Platform</option>
-                    <option th:each="platform: ${distinctPlatformNames}" th:value="${platform}" th:text="${platform}"
-                            th:selected="${platform == selectedPlatform}"></option>
-                </select>
-                <div class="py-2 text-start" id="keywordSearch">
-                    <label class="fw-bold" for="keyword">Keyword search</label>
-                    <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Search on title, actor, director"
-                         th:value="${keyword}" value="">
-                </div>
+            <form class="d-flex flex-column py-2">
+                <div class="row wrapper d-flex flex-wrap justify-content-center g-2 py-1 py-md-2">
+                    <div class="col-12 col-sm-4 col-lg-2">
+                        <select class="form-select" name="contentType">
+                            <option value="" selected>Content Type</option>
+                            <option th:selected="${contentType == 'Movie'}" value="Movie">Movies</option>
+                            <option th:selected="${contentType == 'Show'}" value="Show">Shows</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-sm-4 col-lg-2">
+                        <select class="form-select" name="genre">
+                            <option value="">Genre</option>
+                            <option th:each="item: ${distinctGenres}" th:value="${item}" th:text="${item}"
+                                    th:selected="${item == selectedGenre}"></option>
+                        </select>
+                    </div>
 
-                <div class="py-2 text-start fw-bold" id="minScoreRange">
-                <label for="scoreRange" class="form-label">Minimum reviewer score:</label>
-                    <span th:text="${minScore}" id="sliderValue">0</span>
-                    <input type="range" class="form-range" id="scoreRange" min="0" max="10" step="1" th:value="${minScore ?:0}" name="minScore" value="5" onChange="updateSliderValue()">
-                </div>
+                    <div class="col-12 col-sm-4 col-lg-2">
+                        <select class="form-select" name="platform">
+                            <option value="">Platform</option>
+                            <option th:each="platform: ${distinctPlatformNames}" th:value="${platform}"
+                                    th:text="${platform}"
+                                    th:selected="${platform == selectedPlatform}"></option>
+                        </select>
+                    </div>
 
-                <input type="submit" value="search" class="btn btn-secondary my-2">
+
+                </div>
+                <div class="row d-flex flex-wrap justify-content-center wrapper py-1 py-md-2">
+                    <div class="col-12 col-sm-6 col-lg-4 col-xxl-3 text-center" id="keywordSearch">
+                        <label class="form-label fw-bold" for="keyword">Keyword search:</label>
+                        <input type="text" class="form-control" id="keyword" name="keyword"
+                               placeholder="Search on title, actor, director"
+                               th:value="${keyword}" value="">
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-4 col-xxl-3 text-center fw-bold" id="minScoreRange">
+                        <label for="scoreRange" class="form-label">Minimum reviewer score:
+                            <span th:text="${minScore}" id="sliderValue">0</span>
+                        </label>
+                        <input type="range" class="form-range" id="scoreRange" min="0" max="10" step="1"
+                               th:value="${minScore ?:0}" name="minScore" value="5" onChange="updateSliderValue()">
+                    </div>
+                </div>
+                <div class="wrapper text-center">
+                    <input type="submit" value="Search" class="btn btn-secondary m-0 my-sm-2 col-6 col-sm-3 col-lg-2">
+                </div>
             </form>
-            <p th:text="|Items found: ${content.size()}|"></p>
+            <p class="p-0 m-0" th:text="|Items found: ${content.size()}|"></p>
 
         </div>
         <div th:unless="${showFilters}">
