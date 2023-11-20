@@ -45,7 +45,7 @@
                 <h2>New Releases</h2>
                 <div class="row m-auto p-0 gy-3 flex-wrap">
                         <a class="col-12 col-sm-6 col-lg-4" th:each="content: ${content}" th:href="@{|/contentdetails/${content.getId()}|}">
-                            <img th:src="${content.getPosterSrc()}" class="img-fluid">
+                            <img th:src="${content.getPosterSrc()}" class="img-fluid rounded">
                         </a>
                 </div>
             </div>
@@ -54,22 +54,25 @@
             <div class="row p-2">
                 <h2>Popular</h2>
                 <div class="row m-auto p-0 gy-3">
-                    <div id="carouselExampleFade" class="carousel slide carousel-fade">
+                    <div id="carouselExampleIndicators" class="carousel slide">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
                         <div class="carousel-inner">
-
                             <div th:each="item, iterStat: ${top3}" class="carousel-item" th:classappend="${iterStat.first}? 'active'">
                                 <a th:href="@{|/contentdetails/${item.getId()}|}">
                                 <img th:src="${item.getPosterSrc()}" class="d-block w-100" th:alt="${item.getName()}">
                                 </a>
                             </div>
-
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                                 data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
                                 data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
