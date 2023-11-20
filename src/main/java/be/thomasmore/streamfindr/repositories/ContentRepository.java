@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ContentRepository extends CrudRepository<Content, Integer> {
 
@@ -45,6 +46,12 @@ public interface ContentRepository extends CrudRepository<Content, Integer> {
     @Query("SELECT DISTINCT p.name FROM Content c JOIN c.availableOnPlatforms p")
     List<String> findDistinctPlatformNames();
 
+
+    Optional<Content> findFirstByIdLessThanOrderByIdDesc(Integer id);
+    Optional<Content> findFirstByOrderByIdDesc();
+    Optional<Content> findFirstByIdGreaterThanOrderByIdAsc(Integer id);
+
+    Optional<Content> findFirstByOrderByIdAsc();
 
 
 
