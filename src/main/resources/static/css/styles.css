@@ -21,3 +21,11 @@
     /*color: black;*/
     /*font-family: 'Bubblegum Sans', sans-serif !important;*/
 }
+
+.contentContainer {
+    max-width: 1600px;
+}
+
+.contentDetailsContainer {
+    max-width: 1250px;
+}
