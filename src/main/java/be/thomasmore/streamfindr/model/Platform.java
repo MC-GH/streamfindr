@@ -16,7 +16,7 @@ public class Platform {
     private double monthlyPrice;
     private boolean yearlySubscriptionPossible;
     @Column(nullable = true)
-    private double yearlyPrice;
+    private Double yearlyPrice;
     @ManyToMany(mappedBy = "availableOnPlatforms")
     private Set<Content> catalogue;
 
@@ -73,11 +73,11 @@ public class Platform {
         this.yearlySubscriptionPossible = yearlySubscriptionPossible;
     }
 
-    public double getYearlyPrice() {
+    public Double getYearlyPrice() {
         return yearlyPrice;
     }
 
-    public void setYearlyPrice(double yearlyPrice) {
+    public void setYearlyPrice(Double yearlyPrice) {
         this.yearlyPrice = yearlyPrice;
     }
 

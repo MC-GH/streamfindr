@@ -46,12 +46,39 @@
             <img class="img-fluid rounded posterDetail" th:src="${content.getPosterSrc()}" alt="poster of movie">
         </div>
 
-        <div class="col-12 col-sm-6 col-xl-5 col-xxl-4 text-start" id="detailsContainer">
+        <div class="col-12 col-sm-6 col-xl-5 col-xxl-4 text-start d-flex flex-column gap-2" id="detailsContainer">
             <div class="h1" th:text="${content.getName()}"></div>
             <div class="info">
                 <div class="infoName fw-bold d-inline fs-5">Genre: </div>
                 <div class="infoValue d-inline fs-5" th:text="${content.getGenre()}"></div>
             </div>
+            <div class="info">
+                <div class="infoName fw-bold d-inline fs-5">Director: </div>
+                <div class="infoValue d-inline fs-5" th:text="${content.getDirector()}"></div>
+            </div>
+            <div class="info">
+                <div class="infoName fw-bold d-inline fs-5">Cast: </div>
+                <div class="infoValue d-inline fs-5">
+                    <span th:each="actor, iterStat : ${content.getCast()}">
+                        <span th:text="|${actor.getFirstName()} ${actor.getLastName()}|"></span>
+                        <span th:if="${!iterStat.last}">, </span>
+                    </span>
+                </div>
+            </div>
+            <div class="info">
+                <div class="infoName fw-bold d-inline fs-5">Summary: </div>
+                <div class="infoValue d-inline fs-5" th:text="${content.getPlotDescription()}"></div>
+            </div>
+            <div class="info">
+                <div class="infoName fw-bold d-inline fs-5">Available on platform(s): </div>
+                <div class="infoValue d-inline fs-5">
+                    <span th:each="platform, iterStat : ${content.getAvailableOnPlatforms()}">
+                        <span th:text="${platform.getName()}"></span>
+                        <span th:if="${!iterStat.last}">, </span>
+                    </span>
+                </div>
+            </div>
+
 
 
         </div>
