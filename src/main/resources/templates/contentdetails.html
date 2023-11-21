@@ -29,12 +29,14 @@
         <div id="navigationRow" class="col-12 d-flex justify-content-center">
             <div class="wrapper col-12 col-xl-10 col-xxl-8 pb-4 d-flex justify-content-center gap-5">
                 <a th:href="@{|/contentdetails/${prevContent}|}" class="d-inline">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                         class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
                         <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
                     </svg>
                 </a>
                 <a th:href="@{|/contentdetails/${nextContent}|}" class="d-inline">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                         class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                         <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
                     </svg>
                 </a>
@@ -49,15 +51,15 @@
         <div class="col-12 col-sm-6 col-xl-5 col-xxl-4 text-start d-flex flex-column gap-2" id="detailsContainer">
             <div class="h1" th:text="${content.getName()}"></div>
             <div class="info">
-                <div class="infoName fw-bold d-inline fs-5">Genre: </div>
+                <div class="infoName fw-bold d-inline fs-5">Genre:</div>
                 <div class="infoValue d-inline fs-5" th:text="${content.getGenre()}"></div>
             </div>
             <div class="info">
-                <div class="infoName fw-bold d-inline fs-5">Director: </div>
+                <div class="infoName fw-bold d-inline fs-5">Director:</div>
                 <div class="infoValue d-inline fs-5" th:text="${content.getDirector()}"></div>
             </div>
             <div class="info">
-                <div class="infoName fw-bold d-inline fs-5">Cast: </div>
+                <div class="infoName fw-bold d-inline fs-5">Cast:</div>
                 <div class="infoValue d-inline fs-5">
                     <span th:each="actor, iterStat : ${content.getCast()}">
                         <span th:text="|${actor.getFirstName()} ${actor.getLastName()}|"></span>
@@ -66,23 +68,47 @@
                 </div>
             </div>
             <div class="info">
-                <div class="infoName fw-bold d-inline fs-5">Summary: </div>
+                <div class="infoName fw-bold d-inline fs-5">Summary:</div>
                 <div class="infoValue d-inline fs-5" th:text="${content.getPlotDescription()}"></div>
             </div>
             <div class="info">
-                <div class="infoName fw-bold d-inline fs-5">Available on platform(s): </div>
+                <div class="infoName fw-bold d-inline fs-5">Available on platform(s):</div>
                 <div class="infoValue d-inline fs-5">
                     <span th:each="platform, iterStat : ${content.getAvailableOnPlatforms()}">
-                        <span th:text="${platform.getName()}"></span>
+                        <a th:href="@{|/platformdetails/${platform.getId()}|}">
+                            <span th:text="${platform.getName()}"></span>
+                        </a>
                         <span th:if="${!iterStat.last}">, </span>
                     </span>
                 </div>
             </div>
 
-
-
         </div>
-        <div class="col-12 h2" id="reviewContainer">Reviews</div>
+
+        <div class="col-12 h2" id="reviewContainer">
+            <div class="col-12 h2 py-3 m-0">Reviews</div>
+            <div class="col-12 h6">
+                Average rating:
+                <span th:text="${#numbers.formatDecimal(averageRating,1,2)}"></span>
+            </div>
+
+            <div class="d-none d-sm-block">
+                <div class="row">
+                    <div class="h4 col-4">Name</div>
+                    <div class="h4 col-4">Rating</div>
+                    <div class="h4 col-4">Review</div>
+                </div>
+
+                <div th:each="review, iterStat: ${content.getReviews()}">
+                    <div class="row">
+                        <div class="fs-6 col-12 col-sm-4"
+                             th:text="|${review.getAccount().getFirstName()} ${review.getAccount().getLastName()}|"></div>
+                        <div class="fs-6 col-12 col-sm-4" th:text="${review.getScore()}"></div>
+                        <div class="fs-6 col-12 col-sm-4" th:text="${review.getReviewText()}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 

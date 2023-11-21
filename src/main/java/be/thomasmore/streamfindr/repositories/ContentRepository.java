@@ -53,6 +53,8 @@ public interface ContentRepository extends CrudRepository<Content, Integer> {
 
     Optional<Content> findFirstByOrderByIdAsc();
 
+    @Query("SELECT AVG(r.score) from Review r WHERE r.content = :content")
+    Double calculateAverageRatingForContent(@Param("content") Content content);
 
 
 }

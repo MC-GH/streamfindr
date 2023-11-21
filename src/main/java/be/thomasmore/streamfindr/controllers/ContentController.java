@@ -139,6 +139,7 @@ public class ContentController {
 //        Set<Review> reviews = content.get().getReviews();
 //        Set<Actor> cast = content.get().getCast();
 
+
         if(content.isPresent()) {
             Optional<Content> prevContent = contentRepository.findFirstByIdLessThanOrderByIdDesc(id);
             if(prevContent.isEmpty()) prevContent = contentRepository.findFirstByOrderByIdDesc();
@@ -149,6 +150,7 @@ public class ContentController {
             model.addAttribute("content",content.get());
             model.addAttribute("prevContent", prevContent.get().getId());
             model.addAttribute("nextContent", nextContent.get().getId());
+            model.addAttribute("averageRating", contentRepository.calculateAverageRatingForContent(content.get()));
         }
 
         return "contentdetails";
