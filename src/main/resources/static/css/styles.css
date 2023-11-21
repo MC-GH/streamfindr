@@ -1,7 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Lexend&display=swap');
+
+* {
+    font-family: 'Lexend', sans-serif !important;
+}
+
 #posterContainer {
     max-width: 1600px;
 }
 
 .posterDetail {
     max-height: 550px;
+}
+/*#22b6cb*/
+.main-bg {
+    background-color: #0096ff;
+    color: white;
+}
+
+.title-color {
+    /*color: black;*/
+    /*font-family: 'Bubblegum Sans', sans-serif !important;*/
 }

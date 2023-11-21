@@ -12,18 +12,19 @@
             crossorigin="anonymous"></script>
     <title>Home</title>
 </head>
-<body class="container-fluid p-0 min-vh-100 bg-dark-subtle d-flex flex-column justify-content-between">
+<body class="container-fluid bg-dark-subtle p-0 min-vh-100 d-flex flex-column justify-content-between">
 
 <div th:replace="~{fragments/nav :: nav}"></div>
 
 <main class="container-fluid d-flex flex-column text-center flex-grow-1 col-12">
     <div class="row">
-        <div class="col-12">
-            <h1 class="p-5">Welcome to StreamFindr</h1>
+        <div class="col-12 p-5">
+            <h1 class="title-color fw-bold">Welcome to StreamFindr</h1>
+            <p class="title-color"><em>Your place to entertainment</em></p>
         </div>
     </div>
     <div class="row p-xxl-2 col-12 col-xxl-10 mx-auto">
-        <div class="col-12 col-lg-3 text-start bg-secondary-subtle">
+        <div class="col-12 col-lg-3 text-start bg-light">
             <div class="row p-2">
                 <div id="leftInfo1">
                     <h2 class="mb-3">What is StreamFindr?</h2>
@@ -40,7 +41,7 @@
             </div>
 
         </div>
-        <div class="col-12 col-lg-6 text-start bg-primary-subtle">
+        <div class="col-12 col-lg-6 text-start main-bg">
             <div class="row p-2">
                 <h2>New Releases</h2>
                 <div class="row m-auto p-0 gy-3 flex-wrap">
@@ -50,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-2 text-start bg-info-subtle flex-grow-1">
+        <div class="col-2 text-start bg-light flex-grow-1">
             <div class="row p-2">
                 <h2>Popular</h2>
                 <div class="row m-auto p-0 gy-3">
