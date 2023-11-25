@@ -24,10 +24,10 @@ public class ContentController {
 
     @GetMapping({"/", "/home"})
     public String home(Model model) {
-        Iterable<Content> allContent = contentRepository.findAll();
-        //StreamSupport used to create Stream, Spliterator used to create Stream from Iterator as Iterator itself does not have a stream() method.
-        List<Content> list = StreamSupport.stream(allContent.spliterator(), false).sorted(Comparator.comparing(Content::getName)).toList();
-        List<Content> mostRecentContent = findMostRecent(list);
+        List<Content> allContent = contentRepository.findAll();
+        allContent.sort(Comparator.comparing(Content::getName));
+
+        List<Content> mostRecentContent = findMostRecent(allContent);
 
         List<Content> top3Reviewed = contentRepository.findTop3ReviewedContent();
 
@@ -86,7 +86,7 @@ public class ContentController {
 
     @GetMapping({"/contentlist", "/contentlist/"})
     public String contentList(Model model) {
-        Iterable<Content> allContent = contentRepository.findAll();
+        List<Content> allContent = contentRepository.findAll();
         model.addAttribute("content",allContent);
         return "contentlist";
     }
@@ -134,11 +134,6 @@ public class ContentController {
     public String contentDetails(Model model, @PathVariable(required = false) Integer id) {
         if(id == null) return "contentdetails";
         Optional<Content> content = contentRepository.findById(id);
-
-//        Eenvoudig reviews opvragen van film:
-//        Set<Review> reviews = content.get().getReviews();
-//        Set<Actor> cast = content.get().getCast();
-
 
         if(content.isPresent()) {
             Optional<Content> prevContent = contentRepository.findFirstByIdLessThanOrderByIdDesc(id);
