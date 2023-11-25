@@ -10,15 +10,6 @@ import java.util.Optional;
 
 public interface ContentRepository extends CrudRepository<Content, Integer> {
 
-    @Query("SELECT c FROM Content c where TYPE(c) = Movie")
-    Iterable<Content> findAllMovies();
-
-    @Query("SELECT c FROM Content c where TYPE(c) = Show")
-    Iterable<Content> findAllShows();
-
-    @Query("SELECT c FROM Content c WHERE TYPE(c) = :contentType")
-    Iterable<Content> findAllByContentType(@Param("contentType") Class<? extends Content> contentType);
-
     @Query("SELECT c FROM Content c ORDER BY (" +
             "SELECT AVG(r.score) FROM c.reviews r) DESC LIMIT 3")
     List<Content> findTop3ReviewedContent();
