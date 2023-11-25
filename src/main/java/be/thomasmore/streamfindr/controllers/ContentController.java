@@ -151,6 +151,4 @@ public class ContentController {
         return "contentdetails";
     }
 
-
-
 }
