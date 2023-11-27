@@ -16,7 +16,7 @@
 
 <div th:replace="~{fragments/nav :: nav}"></div>
 
-<main class="container-fluid d-flex flex-column text-center flex-grow-1 col-12">
+<main id="platformContainer" class="container-fluid d-flex flex-column text-center flex-grow-1 col-12">
     <div class="row">
         <div class="col-12">
             <h1 class="p-2 p-md-5">Platform list</h1>
@@ -27,8 +27,14 @@
         <div class="col-12" th:if="${showFilters}">
             <a class="btn btn-info" th:href="@{/platformlist}">Hide Filters</a>
 
-            <!--Insert form
-            Filter on: name (keyword), monthly price (slider), annual subscription available -->
+            <form class="d-flex flex-column py-2">
+                <!--Insert form
+Filter on: name (keyword), monthly price (slider), annual subscription available -->
+            </form>
+            <p class="p-0 m-0" th:text="|Items found: ${platforms.size()}|"></p>
+
+        </div>
+
 
             <div th:unless="${showFilters}">
                 <a class="btn btn-info" th:href="@{/platformlist/filter}">Show Filters</a>
@@ -36,25 +42,14 @@
         </div>
 
 
+        <div class="row p-1 p-xxl-2 col-12 col-xxl-10 mx-auto bg-light">
+                <a th:each="platform: ${platforms}" th:href="@{|/platformdetails/${platform.getId()}|}"
+                   class="col-12 col-sm-6 col-md-4 p-4 px-5 align-self-center">
+                    <img th:src="${platform.getLogoSrc()}" class="img-fluid">
+                </a>
+        </div>
 
-
-                <div class="row p-1 p-xxl-2 col-12 col-xxl-10 mx-auto bg-light gy-3">
-
-<!--            <a th:each="platform: ${platforms}" th:href="@{|/platformdetails/${platform.getId()}|}"-->
-<!--               class="col-12 col-sm-6 col-lg-4 col-xxl-3 g-2">-->
-<!--                <img th:src="${content.getPosterSrc()}" class="img-fluid rounded ">-->
-<!--            </a>-->
-
-                    <img th:src="${'/img/platformlogos/hulu.svg'}" class="platformLogo">
-                        <img th:src="${'/img/platformlogos/disneyplus.svg'}" class="platformLogo">
-                        <img th:src="${'/img/platformlogos/netflix.svg'}" class="platformLogo">
-                    <img th:src="${'/img/platformlogos/amazon-video.svg'}" class="platformLogo">
-                    <img th:src="${'/img/platformlogos/peacock-tv.svg'}" class="platformLogo">
-                    <img th:src="${'/img/platformlogos/hbo-max.svg'}" class="platformLogo">
-                    <img th:src="${'/img/platformlogos/streamz.svg'}" class="platformLogo">
-
-
-                </div>
+    </div>
 
 
 </main>

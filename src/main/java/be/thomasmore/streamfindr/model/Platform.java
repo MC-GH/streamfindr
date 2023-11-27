@@ -17,6 +17,7 @@ public class Platform {
     private boolean yearlySubscriptionPossible;
     @Column(nullable = true)
     private Double yearlyPrice;
+    private String logoSrc;
     @ManyToMany(mappedBy = "availableOnPlatforms")
     private Set<Content> catalogue;
 
@@ -79,6 +80,10 @@ public class Platform {
 
     public void setYearlyPrice(Double yearlyPrice) {
         this.yearlyPrice = yearlyPrice;
+    }
+
+    public String getLogoSrc() {
+        return this.logoSrc;
     }
 
     public Set<Content> getCatalogue() {
