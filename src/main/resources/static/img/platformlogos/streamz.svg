@@ -1,0 +1,98 @@
+<svg version="1.1" id="Layer_1" xmlns:x="ns_extend;" xmlns:i="ns_ai;" xmlns:graph="ns_graphs;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 491.1 128.2" style="enable-background:new 0 0 491.1 128.2;" xml:space="preserve">
+ <style type="text/css">
+  .st0{fill-rule:evenodd;clip-rule:evenodd;fill:#020216;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_1_);}
+	.st2{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_2_);}
+	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_3_);}
+	.st4{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_4_);}
+	.st5{fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_5_);}
+	.st6{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+ </style>
+ <metadata>
+  <sfw xmlns="ns_sfw;">
+   <slices>
+   </slices>
+   <sliceSourceBounds bottomLeftOrigin="true" height="128.2" width="491.1" x="-156.1" y="-56.4">
+   </sliceSourceBounds>
+  </sfw>
+ </metadata>
+ <g>
+  <rect class="st0" width="491.1" height="128.2">
+  </rect>
+  <g>
+   <g>
+    <g>
+     <g>
+      <g>
+       <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="31.0641" y1="212.9339" x2="34.1175" y2="212.9339" gradientTransform="matrix(31.446 0 0 -3.871 -976.842 878.3881)">
+        <stop offset="0" style="stop-color:#FED71F;stop-opacity:0.7">
+        </stop>
+        <stop offset="0.617" style="stop-color:#FED71F">
+        </stop>
+        <stop offset="1" style="stop-color:#FED71F">
+        </stop>
+       </linearGradient>
+       <path class="st1" d="M95.6,54.4c0-2.3,0.4-4.4,1.2-6.3H0v11.9h96.6C96,58.5,95.6,56.6,95.6,54.4">
+       </path>
+       <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="31.2407" y1="211.9438" x2="34.3198" y2="211.9438" gradientTransform="matrix(38.028 0 0 -3.96 -1188.0217 905.4655)">
+        <stop offset="6.100000e-04" style="stop-color:#FF0A5A;stop-opacity:0.56">
+        </stop>
+        <stop offset="0.5208" style="stop-color:#FF0A5A">
+        </stop>
+        <stop offset="1" style="stop-color:#FF0A5A">
+        </stop>
+       </linearGradient>
+       <path class="st2" d="M96.6,60.1L0,60.1v12.2h117.1C109.7,70,99.7,68.1,96.6,60.1">
+       </path>
+       <linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="31.2983" y1="212.1824" x2="34.3775" y2="212.1824" gradientTransform="matrix(40.816 0 0 -4.155 -1277.4731 960.2762)">
+        <stop offset="0" style="stop-color:#CC0243;stop-opacity:0.48">
+        </stop>
+        <stop offset="0.4732" style="stop-color:#CC0243">
+        </stop>
+        <stop offset="1" style="stop-color:#CC0243">
+        </stop>
+       </linearGradient>
+       <path class="st3" d="M117.1,72.3H0v12h93.9c-0.2-0.4-0.4-0.8-0.6-1.2l9.7-5.6c1.9,4.8,6.3,7.6,12.2,7.6c0.2,0,0.3,0,0.5,0
+							c0.1,0,0.2,0,0.4,0c5.4,0,9.5-1.8,9.5-6.3C125.7,75.3,121.9,73.7,117.1,72.3">
+       </path>
+       <linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="31.2329" y1="206.6313" x2="34.312" y2="206.6313" gradientTransform="matrix(37.678 0 0 -3.87 -1176.7922 889.8362)">
+        <stop offset="0" style="stop-color:#F20D3A;stop-opacity:0.48">
+        </stop>
+        <stop offset="0.5502" style="stop-color:#F20D3A">
+        </stop>
+        <stop offset="1" style="stop-color:#F20D3A">
+        </stop>
+       </linearGradient>
+       <path class="st4" d="M93.9,84.2H0v11.9h116l0,0C105.5,96.1,97.7,91.5,93.9,84.2">
+       </path>
+       <linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="31.2254" y1="210.2795" x2="34.288" y2="210.2795" gradientTransform="matrix(37.351 0 0 -3.512 -1166.3005 781.256)">
+        <stop offset="0" style="stop-color:#FF4B00;stop-opacity:0.71">
+        </stop>
+        <stop offset="0.5132" style="stop-color:#FF4B00">
+        </stop>
+        <stop offset="1" style="stop-color:#FF4B00">
+        </stop>
+       </linearGradient>
+       <path class="st5" d="M96.8,48.2c2.7-6.5,9.7-10.5,18.2-10.8H0v10.8H96.8L96.8,48.2z">
+       </path>
+      </g>
+      <path class="st6" d="M297.7,37.3c16.4,0,29.5,12.4,29.5,29v28.3h-12.1v-5.7c-4.9,4.2-10.9,7.2-17.4,7.2
+						c-16.3,0-29.5-12.9-29.5-29.4C268.2,50.1,281.4,37.3,297.7,37.3z M235.1,37.3c16.7,0,28.1,13.4,28.1,29.5c0,1.7-0.2,3.5-0.4,5
+						h-44.5c1.9,8.7,8.9,13.2,17.9,13.2c6.7,0,11.7-3,14.4-6.9l9.9,5.8c-5.1,7.6-13.5,12.2-24.5,12.2c-18.4,0-30.4-12.6-30.4-29.4
+						C205.6,50.2,217.5,37.3,235.1,37.3z M115.6,37.3c9.2,0,16.8,4.2,20.7,11.6l-10.2,5.7c-2-4.4-5.9-6.4-10.5-6.4
+						c-4.4,0-8.2,1.9-8.2,5.9c0,10.2,30.1,4,30.1,24.7c0,11.2-9.7,17.2-21.8,17.2c-11.2,0-19.2-5-22.8-13.1l10.4-6
+						c1.8,5,6.3,8,12.4,8c5.4,0,9.5-1.8,9.5-6.3c0-9.9-30.1-4.4-30.1-24.4C95.2,43.9,104.2,37.3,115.6,37.3z M154.9,23.1v15.6h13.9
+						v11.6h-13.9v26.8c0,7.2,4.7,7,13.9,6.6v10.8c-18.6,2.2-25.9-2.9-25.9-17.4V26.7L154.9,23.1z M461.2,38.8v8l-26,36.4h27.2v11.4
+						h-43.6v-8l26.2-36.4h-25V38.8H461.2L461.2,38.8z M390,36.2c13.7,0,22.9,8.1,22.9,20.1v38.5h-12.4V58.4
+						c0-4.2-1.8-10.5-10.5-10.5s-10.5,6.3-10.5,10.5v36.3H367V58.4c0-4.2-1.8-10.5-10.5-10.5c-8.7,0-10.5,6.3-10.5,10.5v36.3h-12.5
+						V56.2c0-12,9.2-20.1,23-20.1c6.7,0,12.6,3.3,16.7,7C377.4,39.5,383.3,36.2,390,36.2L390,36.2z M205.7,37.8v13.1
+						c-7.9-0.6-17.2,3.1-17.2,15.6v28.2h-12.1V38.8h12.1v9.4C191.9,40.6,198.7,37.8,205.7,37.8z M297.7,49.1
+						c-9.8,0-17.4,7.5-17.4,17.7s7.6,17.7,17.4,17.7l0.7,0c9.5-0.3,16.8-7.7,16.8-17.7C315.1,56.6,307.5,49.1,297.7,49.1z M235,48.3
+						c-9.1,0-15.2,5.4-16.9,13.7h32.9C249.3,52.4,242.2,48.3,235,48.3z">
+      </path>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

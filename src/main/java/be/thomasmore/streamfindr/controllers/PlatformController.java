@@ -22,4 +22,15 @@ public class PlatformController {
         return "platformlist";
     }
 
+    @GetMapping("/platformlist/filter")
+    public String platformListWithFilter(Model model) {
+
+
+        List<Platform> allPlatforms = platformRepository.findAll();
+        model.addAttribute("platforms", allPlatforms);
+
+        model.addAttribute("showFilters", true);
+        return "platformlist";
+    }
+
 }
