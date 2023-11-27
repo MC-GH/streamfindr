@@ -99,13 +99,6 @@ public class ContentController {
                                         @RequestParam(required = false) String keyword,
                                         @RequestParam(required = false) Integer minScore) {
 
-        logger.info(String.format("Contentlistfilter -- type:%s", contentType));
-        logger.info(String.format("contentlistFilter -- genre:%s", genre));
-        logger.info(String.format("contentlistFilter -- platform:%s", platform));
-        logger.info(String.format("contentlistFilter -- keyword:%s", keyword));
-        logger.info(String.format("contentlistFilter -- minScore:%d", minScore));
-
-
         List<Content> filteredContent = contentRepository.findByCombinedFilter(convertStringToClassType(contentType),
                 genre,platform,keyword,minScore);
 
