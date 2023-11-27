@@ -40,13 +40,26 @@
                         <label for="maxFeeRange" class="form-label">Max monthly fee:
                             <span th:text="${maxMonthlyFee}" id="sliderValue">0</span>
                         </label>
-                        <input th:min="${lowestFee}" th:max="${highestFee}" type="range" class="form-range" id="maxFeeRange" step="1"
-                               th:value="${maxMonthlyFee ?:0}" name="maxFeeRange" value="4.99" onChange="updateSliderValue()">
+                        <input th:min="${lowestFee}" th:max="${highestFee}" type="range" class="form-range"
+                               id="maxFeeRange" step="1"
+                               th:value="${maxMonthlyFee ?:0}" name="maxFeeRange" value="4.99"
+                               onChange="updateSliderValue()">
                     </div>
 
 
+                        <div class="col-12 col-sm-6 col-lg-4 col-xxl-3 text-center">
+                            <label class="form-label fw-bold" for="keyword">Annual Subscription?</label>
+                            <select class="form-select" name="subscription">
+                                <option selected value="all">All</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+
+
                     <div class="wrapper text-center">
-                        <input type="submit" value="Search" class="btn btn-secondary mt-2 my-sm-2 col-6 col-sm-3 col-lg-2">
+                        <input type="submit" value="Search"
+                               class="btn btn-secondary mt-2 my-sm-2 col-6 col-sm-3 col-lg-2">
                     </div>
                 </div>
 
@@ -58,18 +71,18 @@ Filter on: name (keyword), monthly price (slider), annual subscription available
         </div>
 
 
-            <div th:unless="${showFilters}">
-                <a class="btn btn-info" th:href="@{/platformlist/filter}">Show Filters</a>
-            </div>
+        <div th:unless="${showFilters}">
+            <a class="btn btn-info" th:href="@{/platformlist/filter}">Show Filters</a>
         </div>
+    </div>
 
 
-        <div class="row p-1 p-xxl-2 col-12 col-xxl-10 mx-auto bg-light d-flex justify-content-center">
-                <a th:each="platform: ${platforms}" th:href="@{|/platformdetails/${platform.getId()}|}"
-                   class="col-12 col-sm-6 col-md-4 p-4 px-5 align-self-center">
-                    <img th:src="${platform.getLogoSrc()}" class="img-fluid">
-                </a>
-        </div>
+    <div class="row p-1 p-xxl-2 col-12 col-xxl-10 mx-auto bg-light d-flex justify-content-center">
+        <a th:each="platform: ${platforms}" th:href="@{|/platformdetails/${platform.getId()}|}"
+           class="col-12 col-sm-6 col-md-4 p-4 px-5 align-self-center">
+            <img th:src="${platform.getLogoSrc()}" class="img-fluid">
+        </a>
+    </div>
     </div>
 </main>
 
@@ -84,5 +97,6 @@ Filter on: name (keyword), monthly price (slider), annual subscription available
         var output = document.getElementById("sliderValue");
         output.textContent = slider.value;
     }
+
     updateSliderValue();
 </script>
