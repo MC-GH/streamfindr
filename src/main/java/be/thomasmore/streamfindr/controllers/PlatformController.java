@@ -31,13 +31,13 @@ public class PlatformController {
     @GetMapping("/platformlist/filter")
     public String platformListWithFilter(Model model,
                                          @RequestParam(required=false) String keyword,
-                                         @RequestParam(required=false) Integer maxMonthlyFee,
+                                         @RequestParam(required=false) Double maxMonthlyFee,
                                          @RequestParam(required = false) Boolean annualSubscriptionPossible) {
 
-        logger.info(String.format("platformlist with filter -- keyword=%s, annualsubscriptionpossible=%b",
-                        keyword, annualSubscriptionPossible));
+        logger.info(String.format("platformlist with filter -- keyword=%s, maxFee=%f annualsubscriptionpossible=%b",
+                        keyword, maxMonthlyFee, annualSubscriptionPossible));
 
-        List<Platform> allPlatforms = platformRepository.findByCombinedFilter(keyword, annualSubscriptionPossible);
+        List<Platform> allPlatforms = platformRepository.findByCombinedFilter(keyword, maxMonthlyFee, annualSubscriptionPossible);
         model.addAttribute("platforms", allPlatforms);
         model.addAttribute("keyword",keyword);
         model.addAttribute("maxMonthlyFee", maxMonthlyFee);

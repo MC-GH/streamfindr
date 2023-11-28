@@ -17,8 +17,10 @@ public interface PlatformRepository extends CrudRepository<Platform,Integer> {
 
     @Query("SELECT p FROM Platform p" +
             " WHERE (:keyword IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%',:keyword,'%')))" +
+            " AND (:maxMonthlyFee IS NULL OR :maxMonthlyFee <= p.monthlyPrice)" +
             " AND (:annualSubscriptionPossible IS NULL OR p.yearlySubscriptionPossible = :annualSubscriptionPossible)")
     List<Platform> findByCombinedFilter(@Param("keyword") String keyword,
+                                        @Param("maxMonthlyFee") Double maxMonthlyFee,
                                         @Param("annualSubscriptionPossible") Boolean annualSubscriptionPossible);
 
 }

@@ -13,7 +13,7 @@ public class Platform {
     private String name;
     private String description;
     private String uniqueSellingPoint;
-    private double monthlyPrice;
+    private Double monthlyPrice;
     private boolean yearlySubscriptionPossible;
     @Column(nullable = true)
     private Double yearlyPrice;
@@ -58,11 +58,11 @@ public class Platform {
         this.uniqueSellingPoint = uniqueSellingPoint;
     }
 
-    public double getMonthlyPrice() {
+    public Double getMonthlyPrice() {
         return monthlyPrice;
     }
 
-    public void setMonthlyPrice(double monthlyPrice) {
+    public void setMonthlyPrice(Double monthlyPrice) {
         this.monthlyPrice = monthlyPrice;
     }
 
