@@ -32,7 +32,7 @@
                     <div class="col-12 col-sm-6 col-lg-4 col-xxl-3 text-center">
                         <label class="form-label fw-bold" for="keyword">Keyword search:</label>
                         <input type="text" class="form-control" id="keyword" name="keyword"
-                               placeholder="Search on title, actor, director"
+                               placeholder="Search on name"
                                th:value="${keyword}" value="">
                     </div>
 
@@ -49,10 +49,10 @@
 
                         <div class="col-12 col-sm-6 col-lg-4 col-xxl-3 text-center">
                             <label class="form-label fw-bold" for="keyword">Annual Subscription?</label>
-                            <select class="form-select" name="subscription">
-                                <option selected value="all">All</option>
-                                <option>Yes</option>
-                                <option>No</option>
+                            <select class="form-select" name="annualSubscriptionPossible">
+                                <option th:selected="${annualSubscriptionPossible == null}" value="">All</option>
+                                <option th:selected="${annualSubscriptionPossible == true}" value=true>Yes</option>
+                                <option th:selected="${annualSubscriptionPossible == false}" value=false>No</option>
                             </select>
                         </div>
 

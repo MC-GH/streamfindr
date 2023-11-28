@@ -99,7 +99,7 @@
                     <div class="h4 col-4">Review</div>
                 </div>
 
-                <div th:each="review, iterStat: ${content.getReviews()}">
+                <div th:each="review : ${content.getReviews()}">
                     <div class="row">
                         <div class="fs-6 col-12 col-sm-4"
                              th:text="|${review.getAccount().getFirstName()} ${review.getAccount().getLastName()}|"></div>
