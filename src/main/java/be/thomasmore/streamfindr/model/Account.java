@@ -15,7 +15,7 @@ public class Account {
     private String firstName;
     private String lastName;
 
-    @OneToMany(mappedBy = "account")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
     private Set<Review> reviews;
 
     @ManyToMany

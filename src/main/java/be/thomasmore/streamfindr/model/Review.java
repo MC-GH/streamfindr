@@ -10,9 +10,9 @@ public class Review {
     private Integer id;
      private int score;
      private String reviewText;
-     @ManyToOne
+     @ManyToOne (fetch = FetchType.LAZY)
      private Account account;
-     @ManyToOne
+     @ManyToOne (fetch = FetchType.LAZY)
      private Content content;
 
     public Review() {

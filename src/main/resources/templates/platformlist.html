@@ -42,7 +42,7 @@
                         </label>
                         <input th:min="${lowestFee}" th:max="${highestFee}" type="range" class="form-range"
                                id="maxFeeRange" step="1"
-                               th:value="${maxMonthlyFee ?:0}" name="maxMonthlyFee" value="4.99"
+                               th:value="${maxMonthlyFee ?: highestFee}" name="maxMonthlyFee"
                                onChange="updateSliderValue()">
                     </div>
 

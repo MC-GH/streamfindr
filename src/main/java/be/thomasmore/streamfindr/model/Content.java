@@ -23,7 +23,7 @@ public class Content {
             joinColumns = @JoinColumn(name = "content_id"),
             inverseJoinColumns = @JoinColumn(name = "actor_id"))
     private Set<Actor> cast;
-    @OneToMany(mappedBy = "content")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "content")
     private Set<Review> reviews;
     @ManyToMany
     @JoinTable(
