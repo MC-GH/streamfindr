@@ -23,8 +23,6 @@
         </div>
     </div>
 
-    <!-- add Navigation buttons for prev/next-->
-
     <div class="row contentDetailsContainer py-4 p-lg-4 col-12 col-lg-10 col-xxl-8 mx-auto bg-light d-flex justify-content-center">
         <div id="navigationRow" class="col-12 d-flex justify-content-center">
             <div class="wrapper col-12 col-xl-10 col-xxl-8 pb-4 d-flex justify-content-center gap-5">
@@ -44,11 +42,11 @@
 
         </div>
 
-        <div class="col-12 col-sm-6 col-xl-5 col-xxl-5 pb-4 text-end" id="posterContainer">
+        <div class="col-12 col-sm-6 col-xl-5 pb-4 text-end" id="posterContainer">
             <img class="img-fluid rounded posterDetail" th:src="${content.getPosterSrc()}" alt="poster of movie">
         </div>
 
-        <div class="col-12 col-sm-6 col-xl-5 col-xxl-5 text-start d-flex flex-column gap-2" id="detailsContainer">
+        <div class="col-12 col-sm-6 col-xl-5 text-start d-flex flex-column gap-2" id="detailsContainer">
             <div class="h1" th:text="${content.getName()}"></div>
             <div class="info">
                 <div class="infoName fw-bold d-inline fs-5">Genre:</div>
@@ -71,6 +69,25 @@
                 <div class="infoName fw-bold d-inline fs-5">Summary:</div>
                 <div class="infoValue d-inline fs-5" th:text="${content.getPlotDescription()}"></div>
             </div>
+
+            <div th:if="${content.class.name == 'be.thomasmore.streamfindr.model.Movie'}">
+                <div class="info">
+                    <div class="infoName fw-bold d-inline fs-5">Year Released:</div>
+                    <div class="infoValue d-inline fs-5" th:text="${content.getYearReleased()}"></div>
+                </div>
+            </div>
+
+            <div th:if="${content.class.name == 'be.thomasmore.streamfindr.model.Show'}">
+                <div class="info">
+                    <div class="infoName fw-bold d-inline fs-5">First Year Aired:</div>
+                    <div class="infoValue d-inline fs-5" th:text="${content.getFirstYearAired()}"></div>
+                </div>
+                <div class="info">
+                    <div class="infoName fw-bold d-inline fs-5">Last Year Aired:</div>
+                    <div class="infoValue d-inline fs-5" th:text="${content.getLastYearAired()}"></div>
+                </div>
+            </div>
+
             <div class="info">
                 <div class="infoName fw-bold d-inline fs-5">Available on platform(s):</div>
                 <div class="infoValue d-inline fs-5">
