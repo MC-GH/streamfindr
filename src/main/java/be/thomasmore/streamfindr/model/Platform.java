@@ -13,10 +13,10 @@ public class Platform {
     private String name;
     private String description;
     private String uniqueSellingPoint;
-    private Double monthlyPrice;
+    private Double monthlyPriceInUsd;
     private boolean yearlySubscriptionPossible;
     @Column(nullable = true)
-    private Double yearlyPrice;
+    private Double yearlyPriceInUsd;
     private String logoSrc;
     @ManyToMany(mappedBy = "availableOnPlatforms")
     private Set<Content> catalogue;
@@ -58,12 +58,12 @@ public class Platform {
         this.uniqueSellingPoint = uniqueSellingPoint;
     }
 
-    public Double getMonthlyPrice() {
-        return monthlyPrice;
+    public Double getMonthlyPriceInUsd() {
+        return monthlyPriceInUsd;
     }
 
-    public void setMonthlyPrice(Double monthlyPrice) {
-        this.monthlyPrice = monthlyPrice;
+    public void setMonthlyPriceInUsd(Double monthlyPrice) {
+        this.monthlyPriceInUsd = monthlyPrice;
     }
 
     public boolean isYearlySubscriptionPossible() {
@@ -74,12 +74,12 @@ public class Platform {
         this.yearlySubscriptionPossible = yearlySubscriptionPossible;
     }
 
-    public Double getYearlyPrice() {
-        return yearlyPrice;
+    public Double getYearlyPriceInUsd() {
+        return yearlyPriceInUsd;
     }
 
-    public void setYearlyPrice(Double yearlyPrice) {
-        this.yearlyPrice = yearlyPrice;
+    public void setYearlyPriceInUsd(Double yearlyPrice) {
+        this.yearlyPriceInUsd = yearlyPrice;
     }
 
     public String getLogoSrc() {
