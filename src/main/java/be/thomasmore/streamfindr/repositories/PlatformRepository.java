@@ -12,8 +12,8 @@ public interface PlatformRepository extends CrudRepository<Platform,Integer> {
 
     List<Platform> findAll();
 
-    Optional<Platform> findFirstByOrderByMonthlyPriceAsc();
-    Optional<Platform> findFirstByOrderByMonthlyPriceDesc();
+    Optional<Platform> findFirstByOrderByMonthlyPriceInUsdAsc();
+    Optional<Platform> findFirstByOrderByMonthlyPriceInUsdDesc();
 
     @Query("SELECT p FROM Platform p" +
             " WHERE (:keyword IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%',:keyword,'%')))" +

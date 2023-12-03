@@ -42,8 +42,8 @@ public class PlatformController {
         model.addAttribute("keyword",keyword);
         model.addAttribute("maxMonthlyFee", maxMonthlyFee);
         model.addAttribute("annualSubscriptionPossible", annualSubscriptionPossible);
-        model.addAttribute("lowestFee", platformRepository.findFirstByOrderByMonthlyPriceAsc().get().getMonthlyPriceInUsd());
-        model.addAttribute("highestFee", platformRepository.findFirstByOrderByMonthlyPriceDesc().get().getMonthlyPriceInUsd());
+        model.addAttribute("lowestFee", platformRepository.findFirstByOrderByMonthlyPriceInUsdAsc().get().getMonthlyPriceInUsd());
+        model.addAttribute("highestFee", platformRepository.findFirstByOrderByMonthlyPriceInUsdDesc().get().getMonthlyPriceInUsd());
         model.addAttribute("showFilters", true);
         return "platformlist";
     }
