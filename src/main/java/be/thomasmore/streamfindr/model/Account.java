@@ -18,11 +18,7 @@ public class Account {
     private Set<Review> reviews;
 
     @ManyToMany
-    @JoinTable(
-            name = "account_platform",
-            joinColumns = @JoinColumn(name = "account_id"),
-            inverseJoinColumns = @JoinColumn(name = "platform_id"))
-    private Set<Platform> memberOfPlatforms;
+    private Set<Platform> platforms;
 
     public Account() {
     }
@@ -83,11 +79,11 @@ public class Account {
         this.reviews = reviews;
     }
 
-    public Set<Platform> getMemberOfPlatforms() {
-        return memberOfPlatforms;
+    public Set<Platform> getPlatforms() {
+        return platforms;
     }
 
-    public void setMemberOfPlatforms(Set<Platform> memberOfPlatforms) {
-        this.memberOfPlatforms = memberOfPlatforms;
+    public void setPlatforms(Set<Platform> memberOfPlatforms) {
+        this.platforms = memberOfPlatforms;
     }
 }

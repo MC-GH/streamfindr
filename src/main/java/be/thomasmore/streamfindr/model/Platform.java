@@ -20,8 +20,8 @@ public class Platform {
     @ManyToMany(mappedBy = "availableOnPlatforms")
     private Set<Content> catalogue;
 
-    @ManyToMany(mappedBy = "memberOfPlatforms")
-    private Set<Account> members;
+    @ManyToMany(mappedBy = "platforms")
+    private Set<Account> accounts;
     public Platform() {
     }
 
@@ -93,11 +93,11 @@ public class Platform {
         this.catalogue = catalogue;
     }
 
-    public Set<Account> getMembers() {
-        return members;
+    public Set<Account> getAccounts() {
+        return accounts;
     }
 
-    public void setMembers(Set<Account> members) {
-        this.members = members;
+    public void setAccounts(Set<Account> members) {
+        this.accounts = members;
     }
 }
