@@ -10,8 +10,8 @@ public class Actor {
     private Integer id;
     private String firstName;
     private String lastName;
-    @ManyToMany(mappedBy = "cast")
-    private Set<Content> repertoire;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "actors")
+    private Set<Content> content;
 
     public Actor() {
     }
@@ -40,12 +40,12 @@ public class Actor {
         this.lastName = lastName;
     }
 
-    public Set<Content> getRepertoire() {
-        return repertoire;
+    public Set<Content> getContent() {
+        return content;
     }
 
-    public void setRepertoire(Set<Content> repertoire) {
-        this.repertoire = repertoire;
+    public void setContent(Set<Content> repertoire) {
+        this.content = repertoire;
     }
 }
 

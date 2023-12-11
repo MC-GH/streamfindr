@@ -16,20 +16,12 @@ public class Content {
     @Column(length = 500)
     private String plotDescription;
     private String posterSrc;
-    @ManyToMany
-    @JoinTable(
-                name="content_actor",
-            joinColumns = @JoinColumn(name = "content_id"),
-            inverseJoinColumns = @JoinColumn(name = "actor_id"))
-    private Set<Actor> cast;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Set<Actor> actors;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "content")
     private Set<Review> reviews;
-    @ManyToMany
-    @JoinTable(
-            name = "content_platform",
-            joinColumns = @JoinColumn(name = "content_id"),
-            inverseJoinColumns = @JoinColumn(name = "platform_id"))
-    private Set<Platform> availableOnPlatforms;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Set<Platform> platforms;
 
     public Content() {
     }
@@ -82,12 +74,12 @@ public class Content {
         this.posterSrc = posterSrc;
     }
 
-    public Set<Actor> getCast() {
-        return cast;
+    public Set<Actor> getActors() {
+        return actors;
     }
 
-    public void setCast(Set<Actor> cast) {
-        this.cast = cast;
+    public void setActors(Set<Actor> cast) {
+        this.actors = cast;
     }
 
     public Set<Review> getReviews() {
@@ -98,11 +90,11 @@ public class Content {
         this.reviews = reviews;
     }
 
-    public Set<Platform> getAvailableOnPlatforms() {
-        return availableOnPlatforms;
+    public Set<Platform> getPlatforms() {
+        return platforms;
     }
 
-    public void setAvailableOnPlatforms(Set<Platform> availableOnPlatforms) {
-        this.availableOnPlatforms = availableOnPlatforms;
+    public void setPlatforms(Set<Platform> availableOnPlatforms) {
+        this.platforms = availableOnPlatforms;
     }
 }

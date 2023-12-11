@@ -17,10 +17,10 @@ public class Platform {
     @Column(nullable = true)
     private Double yearlyPriceInUsd;
     private String logoSrc;
-    @ManyToMany(mappedBy = "availableOnPlatforms")
-    private Set<Content> catalogue;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "platforms")
+    private Set<Content> content;
 
-    @ManyToMany(mappedBy = "platforms")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "platforms")
     private Set<Account> accounts;
     public Platform() {
     }
@@ -85,12 +85,12 @@ public class Platform {
         return this.logoSrc;
     }
 
-    public Set<Content> getCatalogue() {
-        return catalogue;
+    public Set<Content> getContent() {
+        return content;
     }
 
-    public void setCatalogue(Set<Content> catalogue) {
-        this.catalogue = catalogue;
+    public void setContent(Set<Content> catalogue) {
+        this.content = catalogue;
     }
 
     public Set<Account> getAccounts() {

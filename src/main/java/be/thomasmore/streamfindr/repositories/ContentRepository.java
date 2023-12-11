@@ -15,8 +15,8 @@ public interface ContentRepository extends CrudRepository<Content, Integer> {
     List<Content> findTop3ReviewedContent();
 
     @Query("SELECT c FROM Content c " +
-            "LEFT JOIN c.cast actors " +
-            "LEFT JOIN c.availableOnPlatforms platforms " +
+            "LEFT JOIN c.actors actors " +
+            "LEFT JOIN c.platforms platforms " +
             "WHERE (:contentType IS NULL OR TYPE(c) = :contentType)" +
             " AND (:genre IS NULL OR :genre='' OR c.genre = :genre)" +
             " AND (:platformName IS NULL OR :platformName='' OR platforms.name = :platformName)" +
@@ -34,7 +34,7 @@ public interface ContentRepository extends CrudRepository<Content, Integer> {
     @Query("SELECT DISTINCT c.genre FROM Content c")
     List<String> findDistinctGenres();
 
-    @Query("SELECT DISTINCT p.name FROM Content c JOIN c.availableOnPlatforms p")
+    @Query("SELECT DISTINCT p.name FROM Content c JOIN c.platforms p")
     List<String> findDistinctPlatformNames();
 
 

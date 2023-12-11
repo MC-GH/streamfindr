@@ -59,7 +59,7 @@
             <div class="info">
                 <div class="infoName fw-bold d-inline fs-5">Cast:</div>
                 <div class="infoValue d-inline fs-5">
-                    <span th:each="actor, iterStat : ${content.getCast()}">
+                    <span th:each="actor, iterStat : ${content.getActors()}">
                         <span th:text="|${actor.getFirstName()} ${actor.getLastName()}|"></span>
                         <span th:if="${!iterStat.last}">, </span>
                     </span>
@@ -91,7 +91,7 @@
             <div class="info">
                 <div class="infoName fw-bold d-inline fs-5">Available on platform(s):</div>
                 <div class="infoValue d-inline fs-5">
-                    <span th:each="platform, iterStat : ${content.getAvailableOnPlatforms()}">
+                    <span th:each="platform, iterStat : ${content.getPlatforms()}">
                         <a th:href="@{|/platformdetails/${platform.getId()}|}">
                             <span th:text="${platform.getName()}"></span>
                         </a>

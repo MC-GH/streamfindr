@@ -17,7 +17,7 @@ public class Account {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
     private Set<Review> reviews;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<Platform> platforms;
 
     public Account() {
