@@ -7,8 +7,7 @@ import java.util.Set;
 @Entity
 public class Platform {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "platform_generator")
-    @SequenceGenerator(name = "platform_generator", sequenceName = "platform_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String description;
