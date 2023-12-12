@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Controller
@@ -22,63 +24,43 @@ public class ContentController {
     @Autowired
     private ContentRepository contentRepository;
 
+    @ModelAttribute("content")
+    public Content findContent(@PathVariable (required = false) Integer id) {
+        logger.info("findContent" + id);
+        if(id==null) return null;
+        Optional<Content> optionalContent = contentRepository.findById(id);
+        if(optionalContent.isPresent()) return optionalContent.get();
+        return null;
+    }
+
     @GetMapping({"/", "/home"})
     public String home(Model model) {
         List<Content> allContent = contentRepository.findAll();
         allContent.sort(Comparator.comparing(Content::getName));
-
         List<Content> mostRecentContent = findMostRecent(allContent);
 
         List<Content> top3Reviewed = contentRepository.findTop3ReviewedContent();
 
         model.addAttribute("content", mostRecentContent);
         model.addAttribute("top3",top3Reviewed);
-
         return "home";
     }
 
     private List<Content> findMostRecent(List<Content> sortedContent) {
         //Setting the year fixed as the data will not be updated later on
         int currentYear = 2023;
-        List<Content> mostRecentContent = new ArrayList<>();
-        for (Content c : sortedContent) {
-            if (c != null) {
-                if (c instanceof Movie) {
-                    Movie movie = (Movie) c;
-                    if (movie.getYearReleased() == currentYear + 1) {
-                        mostRecentContent.add(c);
-                    }
-                } else if (c instanceof Show) {
-                    Show show = (Show) c;
-                    if (show.getLastYearAired() == currentYear + 1) {
-                        mostRecentContent.add(c);
-                    }
-                }
-                if (mostRecentContent.size() == 6) {
-                    break;
-                }
-            }
-        }
+        List<Content> mostRecentContent = sortedContent.stream()
+                .filter(c -> (c instanceof Movie && ((Movie) c).getYearReleased() == currentYear + 1) ||
+                        (c instanceof Show && ((Show) c).getLastYearAired() == currentYear + 1))
+                .limit(6)
+                .collect(Collectors.toList());
 
-        if (mostRecentContent.size() <= 6) {
-            for (Content c : sortedContent) {
-                if (c != null) {
-                    if (c instanceof Movie) {
-                        Movie movie = (Movie) c;
-                        if (movie.getYearReleased() == currentYear) {
-                            mostRecentContent.add(c);
-                        }
-                    } else if (c instanceof Show) {
-                        Show show = (Show) c;
-                        if (show.getLastYearAired() == currentYear) {
-                            mostRecentContent.add(c);
-                        }
-                    }
-                    if (mostRecentContent.size() == 6) {
-                        break;
-                    }
-                }
-            }
+        if (mostRecentContent.size() < 6) {
+            mostRecentContent.addAll(sortedContent.stream()
+                    .filter(c -> (c instanceof Movie && ((Movie) c).getYearReleased() == currentYear) ||
+                            (c instanceof Show && ((Show) c).getLastYearAired() == currentYear))
+                    .limit(6 - mostRecentContent.size())
+                    .collect(Collectors.toList()));
         }
 
         return mostRecentContent;
