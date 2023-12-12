@@ -44,57 +44,57 @@
         </div>
 
         <div class="col-12 col-sm-6 col-xl-5 pb-4 text-end" id="posterContainer">
-            <img class="img-fluid rounded posterDetail" th:src="${content.getPosterSrc()}" alt="poster of movie">
+            <img class="img-fluid rounded posterDetail" th:src="*{posterSrc}" alt="poster of movie">
         </div>
 
         <div class="col-12 col-sm-6 col-xl-5 text-start d-flex flex-column gap-2" id="detailsContainer">
-            <div class="h1" th:text="${content.getName()}"></div>
+            <div class="h1" th:text="*{name}"></div>
             <div class="info">
                 <div class="infoName fw-bold d-inline fs-5">Genre:</div>
-                <div class="infoValue d-inline fs-5" th:text="${content.getGenre()}"></div>
+                <div class="infoValue d-inline fs-5" th:text="*{genre}"></div>
             </div>
             <div class="info">
                 <div class="infoName fw-bold d-inline fs-5">Director:</div>
-                <div class="infoValue d-inline fs-5" th:text="${content.getDirector()}"></div>
+                <div class="infoValue d-inline fs-5" th:text="*{director}"></div>
             </div>
             <div class="info">
                 <div class="infoName fw-bold d-inline fs-5">Cast:</div>
                 <div class="infoValue d-inline fs-5">
-                    <span th:each="actor, iterStat : ${content.getActors()}">
-                        <span th:text="|${actor.getFirstName()} ${actor.getLastName()}|">
+                    <span th:each="actor, iterStat : *{actors}">
+                        <span th:text="|${actor.firstName} ${actor.lastName}|">
                         </span><span th:if="${!iterStat.last}">, </span>
                     </span>
                 </div>
             </div>
             <div class="info">
                 <div class="infoName fw-bold d-inline fs-5">Summary:</div>
-                <div class="infoValue d-inline fs-5" th:text="${content.getPlotDescription()}"></div>
+                <div class="infoValue d-inline fs-5" th:text="*{plotDescription}"></div>
             </div>
 
             <div th:if="${content.class.name == 'be.thomasmore.streamfindr.model.Movie'}">
                 <div class="info">
                     <div class="infoName fw-bold d-inline fs-5">Year Released:</div>
-                    <div class="infoValue d-inline fs-5" th:text="${content.getYearReleased()}"></div>
+                    <div class="infoValue d-inline fs-5" th:text="*{yearReleased}"></div>
                 </div>
             </div>
 
             <div th:if="${content.class.name == 'be.thomasmore.streamfindr.model.Show'}">
                 <div class="info">
                     <div class="infoName fw-bold d-inline fs-5">First Year Aired:</div>
-                    <div class="infoValue d-inline fs-5" th:text="${content.getFirstYearAired()}"></div>
+                    <div class="infoValue d-inline fs-5" th:text="*{firstYearAired}"></div>
                 </div>
                 <div class="info">
                     <div class="infoName fw-bold d-inline fs-5">Last Year Aired:</div>
-                    <div class="infoValue d-inline fs-5" th:text="${content.getLastYearAired()}"></div>
+                    <div class="infoValue d-inline fs-5" th:text="*{lastYearAired}"></div>
                 </div>
             </div>
 
             <div class="info">
                 <div class="infoName fw-bold d-inline fs-5">Available on platform(s):</div>
                 <div class="infoValue d-inline fs-5">
-                    <span th:each="platform, iterStat : ${content.getPlatforms()}">
-                        <a th:href="@{|/platformdetails/${platform.getId()}|}">
-                            <span th:text="${platform.getName()}"></span>
+                    <span th:each="platform, iterStat : *{platforms}">
+                        <a th:href="@{|/platformdetails/${platform.id}|}">
+                            <span th:text="${platform.name}"></span>
                         </a>
                         <span th:if="${!iterStat.last}">, </span>
                     </span>
@@ -117,12 +117,12 @@
                     <div class="h4 col-4">Review</div>
                 </div>
 
-                <div th:each="review : ${content.getReviews()}">
+                <div th:each="review : *{reviews}">
                     <div class="row">
                         <div class="fs-6 col-12 col-sm-4"
-                             th:text="|${review.getAccount().getFirstName()} ${review.getAccount().getLastName()}|"></div>
-                        <div class="fs-6 col-12 col-sm-4" th:text="${review.getScore()}"></div>
-                        <div class="fs-6 col-12 col-sm-4" th:text="${review.getReviewText()}"></div>
+                             th:text="|${review.account.firstName} ${review.account.lastName}|"></div>
+                        <div class="fs-6 col-12 col-sm-4" th:text="${review.score}"></div>
+                        <div class="fs-6 col-12 col-sm-4" th:text="${review.reviewText}"></div>
                     </div>
                 </div>
             </div>

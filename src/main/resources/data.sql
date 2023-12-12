@@ -377,6 +377,8 @@ VALUES ('MichaëlC','test','r0333121@student.thomasmore.be','Michaël','Cornelis
 INSERT INTO REVIEW (CONTENT_ID, ACCOUNT_ID, REVIEW_TEXT, SCORE)
 VALUES
     ((SELECT ID FROM CONTENT WHERE NAME = 'Aaron'), (SELECT ID FROM ACCOUNT WHERE USER_NAME = 'MichaëlC'), 'Poor casting!', 4),
+    ((SELECT ID FROM CONTENT WHERE NAME = 'Aaron'), (SELECT ID FROM ACCOUNT WHERE USER_NAME = 'MichaëlC'), 'Did not enjoy!', 3),
+    ((SELECT ID FROM CONTENT WHERE NAME = 'Aaron'), (SELECT ID FROM ACCOUNT WHERE USER_NAME = 'MichaëlC'), 'Fell asleep.', 9),
     ((SELECT ID FROM CONTENT WHERE NAME = 'Adrift'), (SELECT ID FROM ACCOUNT WHERE USER_NAME = 'MichaëlC'), 'Great to watch!', 8),
     ((SELECT ID FROM CONTENT WHERE NAME = 'Agent'), (SELECT ID FROM ACCOUNT WHERE USER_NAME = 'MichaëlC'), 'Could be better!', 5),
     ((SELECT ID FROM CONTENT WHERE NAME = 'Basement'), (SELECT ID FROM ACCOUNT WHERE USER_NAME = 'MichaëlC'), 'Lovely!', 7),

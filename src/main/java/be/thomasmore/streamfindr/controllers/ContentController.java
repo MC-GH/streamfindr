@@ -108,7 +108,7 @@ public class ContentController {
         return null;
     }
 
-    @GetMapping({"/contentdetails","/contentdetails/{id}"})
+    @GetMapping({"/contentdetails","/contentdetails/","/contentdetails/{id}"})
     public String contentDetails(Model model, @ModelAttribute("content") Content content, @PathVariable(required = false) Integer id) {
 
         if(content != null) {
