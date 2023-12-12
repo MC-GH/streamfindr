@@ -24,3 +24,7 @@
 .contentDetailsContainer {
     max-width: 1250px;
 }
+
+.platformLogo {
+    max-width: 300px;
+}
