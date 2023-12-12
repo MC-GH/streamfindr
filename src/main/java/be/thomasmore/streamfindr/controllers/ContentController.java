@@ -27,12 +27,10 @@ public class ContentController {
     @ModelAttribute("content")
     public Content findContent(@PathVariable (required = false) Integer id) {
         logger.info("findContent" + id);
-
         if(id!=null) {
             Optional<Content> optionalContent = contentRepository.findById(id);
             if(optionalContent.isPresent()) return optionalContent.get();
         }
-
         return null;
     }
 
@@ -109,7 +107,9 @@ public class ContentController {
     }
 
     @GetMapping({"/contentdetails","/contentdetails/","/contentdetails/{id}"})
-    public String contentDetails(Model model, @ModelAttribute("content") Content content, @PathVariable(required = false) Integer id) {
+    public String contentDetails(Model model,
+                                 @ModelAttribute("content") Content content,
+                                 @PathVariable(required = false) Integer id) {
 
         if(content != null) {
             Optional<Content> prevContent = contentRepository.findFirstByIdLessThanOrderByIdDesc(id);

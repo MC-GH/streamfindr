@@ -11,10 +11,12 @@ import java.util.Optional;
 public interface PlatformRepository extends CrudRepository<Platform,Integer> {
 
     List<Platform> findAll();
-
     Optional<Platform> findFirstByOrderByMonthlyPriceInUsdAsc();
     Optional<Platform> findFirstByOrderByMonthlyPriceInUsdDesc();
-
+    Optional<Platform> findFirstByIdLessThanOrderByIdDesc(Integer id);
+    Optional<Platform> findFirstByOrderByIdDesc();
+    Optional<Platform> findFirstByIdGreaterThanOrderByIdAsc(Integer id);
+    Optional<Platform> findFirstByOrderByIdAsc();
     @Query("SELECT p FROM Platform p" +
             " WHERE (:keyword IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%',:keyword,'%')))" +
             " AND (:maxMonthlyFee IS NULL OR p.monthlyPriceInUsd <= :maxMonthlyFee)" +
