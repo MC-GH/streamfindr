@@ -27,9 +27,12 @@ public class ContentController {
     @ModelAttribute("content")
     public Content findContent(@PathVariable (required = false) Integer id) {
         logger.info("findContent" + id);
-        if(id==null) return null;
-        Optional<Content> optionalContent = contentRepository.findById(id);
-        if(optionalContent.isPresent()) return optionalContent.get();
+
+        if(id!=null) {
+            Optional<Content> optionalContent = contentRepository.findById(id);
+            if(optionalContent.isPresent()) return optionalContent.get();
+        }
+
         return null;
     }
 
@@ -106,21 +109,18 @@ public class ContentController {
     }
 
     @GetMapping({"/contentdetails","/contentdetails/{id}"})
-    public String contentDetails(Model model, @PathVariable(required = false) Integer id) {
-        if(id == null) return "contentdetails";
-        Optional<Content> content = contentRepository.findById(id);
+    public String contentDetails(Model model, @ModelAttribute("content") Content content, @PathVariable(required = false) Integer id) {
 
-        if(content.isPresent()) {
+        if(content != null) {
             Optional<Content> prevContent = contentRepository.findFirstByIdLessThanOrderByIdDesc(id);
             if(prevContent.isEmpty()) prevContent = contentRepository.findFirstByOrderByIdDesc();
 
             Optional<Content> nextContent = contentRepository.findFirstByIdGreaterThanOrderByIdAsc(id);
             if(nextContent.isEmpty()) nextContent = contentRepository.findFirstByOrderByIdAsc();
 
-            model.addAttribute("content",content.get());
             model.addAttribute("prevContent", prevContent.get().getId());
             model.addAttribute("nextContent", nextContent.get().getId());
-            model.addAttribute("averageRating", contentRepository.calculateAverageRatingForContent(content.get()));
+            model.addAttribute("averageRating", contentRepository.calculateAverageRatingForContent(content));
         }
 
         return "contentdetails";
