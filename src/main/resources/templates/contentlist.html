@@ -84,9 +84,9 @@
 
 
     <div class="row p-1 p-xxl-2 col-12 col-xxl-10 mx-auto bg-light">
-        <a th:each="content: ${content}" th:href="@{|/contentdetails/${content.getId()}|}"
+        <a th:each="content: ${content}" th:href="@{|/contentdetails/${content.id}|}"
            class="col-12 col-sm-6 col-lg-4 col-xxl-3 g-2">
-            <img th:src="${content.getPosterSrc()}" class="img-fluid rounded ">
+            <img th:src="${content.posterSrc}" class="img-fluid rounded ">
         </a>
     </div>
 
