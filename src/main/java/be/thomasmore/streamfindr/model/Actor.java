@@ -8,8 +8,7 @@ public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String firstName;
-    private String lastName;
+    private String name;
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "actors")
     private Set<Content> content;
 
@@ -24,20 +23,12 @@ public class Actor {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String firstName) {
+        this.name = firstName;
     }
 
     public Set<Content> getContent() {

@@ -61,7 +61,7 @@
                 <div class="infoName fw-bold d-inline fs-5">Cast:</div>
                 <div class="infoValue d-inline fs-5">
                     <span th:each="actor, iterStat : *{actors}">
-                        <span th:text="|${actor.firstName} ${actor.lastName}|">
+                        <span th:text="${actor.name}">
                         </span><span th:if="${!iterStat.last}">, </span>
                     </span>
                 </div>
