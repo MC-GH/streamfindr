@@ -43,13 +43,10 @@ public class ContentAdminController {
     public String contentEdit(Model model,
                               @PathVariable(required = false) Integer id) {
         //Data ophalen om te gebruiken in select fields in form
-        Iterable<Platform> allPlatforms = platformRepository.findAll();
-        Iterable<Actor> allActors = actorRepository.findAll();
-        List<String> allGenres = contentRepository.findDistinctGenres();
 
-        model.addAttribute("allPlatforms", allPlatforms);
-        model.addAttribute("allActors", allActors);
-        model.addAttribute("allGenres", allGenres);
+        model.addAttribute("allPlatforms", platformRepository.findAll());
+        model.addAttribute("allActors", actorRepository.findAll());
+        model.addAttribute("allGenres", contentRepository.findDistinctGenres());
         return "admin/contentedit";
     }
 

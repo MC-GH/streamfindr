@@ -1,5 +1,7 @@
 package be.thomasmore.streamfindr.model;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @DiscriminatorValue("Movie")
