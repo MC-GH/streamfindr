@@ -61,8 +61,7 @@
 
             <div class="row justify-content-center pb-2">
                 <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="actors">Cast: </label>
-                <select multiple class="col-12 col-sm-6 col-lg-4 bg-white" th:field="*{actors}" id="actors"
-                        th:errorclass="fieldError">
+                <select multiple class="col-12 col-sm-6 col-lg-4 bg-white" th:field="*{actors}" id="actors">
                     <option th:each="actor : ${allActors}"
                             th:selected="*{actors}"
                             th:value="${actor.id}"
@@ -73,34 +72,30 @@
             <div class="row justify-content-center pb-2">
                 <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="summary">Summary: </label>
                 <textarea class="col-12 col-sm-6 col-lg-4" th:field="*{plotDescription}" id="summary"
-                          th:errorclass="fieldError" placeholder="Enter a plot description."></textarea>
+                          placeholder="Enter a plot description."></textarea>
             </div>
 
             <div th:if="*{contentType == 'Show'}">
                 <div class="row justify-content-center pb-2">
                     <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="firstYearAired">First year aired: </label>
-                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{firstYearAired}" id="firstYearAired" type="number"
-                           th:errorclass="fieldError">
+                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{firstYearAired}" id="firstYearAired" type="number">
                 </div>
                 <div class="row justify-content-center pb-2">
                     <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="lastYearAired">Last year aired: </label>
-                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{lastYearAired}" id="lastYearAired" type="number"
-                           th:errorclass="fieldError">
+                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{lastYearAired}" id="lastYearAired" type="number">
                 </div>
             </div>
 
             <div th:if="*{contentType == 'Movie'}">
                 <div class="row justify-content-center pb-2">
                     <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="yearReleased">Year released: </label>
-                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{yearReleased}" id="yearReleased" type="number"
-                           th:errorclass="fieldError">
+                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{yearReleased}" id="yearReleased" type="number">
                 </div>
             </div>
 
             <div class="row justify-content-center pb-2">
                 <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="platforms">Platform(s): </label>
-                <select multiple class="col-12 col-sm-6 col-lg-4 bg-white" th:field="*{platforms}" id="platforms"
-                        th:errorclass="fieldError">
+                <select multiple class="col-12 col-sm-6 col-lg-4 bg-white" th:field="*{platforms}" id="platforms">
                     <option th:each="platform : ${allPlatforms}"
                             th:selected="*{platforms}"
                             th:value="${platform.id}"
@@ -108,6 +103,16 @@
                 </select>
             </div>
 
+            <div class="row justify-content-center pb-2">
+                <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="posterSource">Poster source link: </label>
+                <input class="col-12 col-sm-6 col-lg-4" th:field="*{posterSrc}" id="posterSource" type="text"
+                       placeholder="Enter an image internet link">
+            </div>
+
+            <div class="row justify-content-center pb-2">
+                <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="clearReviews">Clear reviews: </label>
+                <input class="col-12 col-sm-6 col-lg-4" name="clearReviews" id="clearReviews" type="checkbox">
+            </div>
 
         </form>
     </div>

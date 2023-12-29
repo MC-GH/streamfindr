@@ -1,7 +1,12 @@
 package be.thomasmore.streamfindr.model;
+import be.thomasmore.streamfindr.controllers.admin.ContentAdminController;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
 import java.util.Set;
 
 @Entity
@@ -23,12 +28,13 @@ public class Content {
     private String posterSrc;
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Actor> actors;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "content")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "content", cascade = CascadeType.ALL)
     private Set<Review> reviews;
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Platform> platforms;
     @Column(name = "contentType", insertable = false, updatable = false)
     private String contentType;
+
 
     public Content() {
     }
@@ -108,4 +114,9 @@ public class Content {
     public String getContentType() {
                 return this.contentType;
     }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
 }

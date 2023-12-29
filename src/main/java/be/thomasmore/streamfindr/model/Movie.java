@@ -10,6 +10,10 @@ public class Movie extends Content {
 
     public Movie() {}
 
+    public Movie(int yearReleased) {
+        this.yearReleased = yearReleased;
+    }
+
     public int getYearReleased() {
         return yearReleased;
     }
