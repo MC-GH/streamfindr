@@ -28,3 +28,7 @@
 .platformLogo {
     max-width: 300px;
 }
+
+#summary {
+    min-height: 150px;
+}
