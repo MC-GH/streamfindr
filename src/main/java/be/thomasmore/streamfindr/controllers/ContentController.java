@@ -26,7 +26,6 @@ public class ContentController {
 
     @ModelAttribute("content")
     public Content findContent(@PathVariable (required = false) Integer id) {
-        logger.info("findContent" + id);
         if(id!=null) {
             Optional<Content> optionalContent = contentRepository.findById(id);
             if(optionalContent.isPresent()) return optionalContent.get();

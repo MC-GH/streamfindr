@@ -32,11 +32,14 @@ public class ContentAdminController {
 
     @ModelAttribute("content")
     public Content findContent(@PathVariable (required = false) Integer id) {
-        Optional<Content> optionalContent = contentRepository.findById(id);
-        return optionalContent.orElse(null);
+        if(id!=null) {
+            Optional<Content> optionalContent = contentRepository.findById(id);
+            if(optionalContent.isPresent()) return optionalContent.get();
+        }
+        return null;
     }
 
-    @GetMapping("/contentedit/{id}")
+    @GetMapping({"/contentedit/{id}","/contentedit","/contentedit/"})
     public String contentEdit(Model model,
                               @PathVariable(required = false) Integer id) {
         //Data ophalen om te gebruiken in select fields in form
