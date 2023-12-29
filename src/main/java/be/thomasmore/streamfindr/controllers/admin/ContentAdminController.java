@@ -6,15 +6,14 @@ import be.thomasmore.streamfindr.model.Platform;
 import be.thomasmore.streamfindr.repositories.ActorRepository;
 import be.thomasmore.streamfindr.repositories.ContentRepository;
 import be.thomasmore.streamfindr.repositories.PlatformRepository;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,13 +32,10 @@ public class ContentAdminController {
 
     @ModelAttribute("content")
     public Content findContent(@PathVariable (required = false) Integer id) {
-        logger.info("findContent" + id);
-        if(id!=null) {
-            Optional<Content> optionalContent = contentRepository.findById(id);
-            if(optionalContent.isPresent()) return optionalContent.get();
-        }
-        return null;
+        Optional<Content> optionalContent = contentRepository.findById(id);
+        return optionalContent.orElse(null);
     }
+
     @GetMapping("/contentedit/{id}")
     public String contentEdit(Model model,
                               @PathVariable(required = false) Integer id) {
@@ -54,6 +50,22 @@ public class ContentAdminController {
         return "admin/contentedit";
     }
 
+    @PostMapping("/contentedit/{id}")
+    public String contentEditPost(Model model,
+                                  @PathVariable Integer id,
+                                  @Valid Content content,
+                                  BindingResult bindingResult) {
 
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("allPlatforms", platformRepository.findAll());
+            model.addAttribute("allActors",actorRepository.findAll());
+            model.addAttribute("allGenres", contentRepository.findDistinctGenres());
+            return "admin/contentedit";
+        }
+
+        contentRepository.save(content);
+        return "redirect:/contentdetails/" + id;
+
+    }
 
 }

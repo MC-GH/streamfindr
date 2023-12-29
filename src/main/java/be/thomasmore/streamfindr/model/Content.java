@@ -22,6 +22,8 @@ public class Content {
     private Set<Review> reviews;
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Platform> platforms;
+    @Column(name = "contentType", insertable = false, updatable = false)
+    private String contentType;
 
     public Content() {
     }
@@ -96,5 +98,9 @@ public class Content {
 
     public void setPlatforms(Set<Platform> availableOnPlatforms) {
         this.platforms = availableOnPlatforms;
+    }
+
+    public String getContentType() {
+                return this.contentType;
     }
 }

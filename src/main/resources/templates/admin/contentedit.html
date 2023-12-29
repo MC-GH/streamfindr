@@ -86,7 +86,7 @@
                           th:errorclass="fieldError" placeholder="Enter a plot description."></textarea>
             </div>
 
-            <div th:if="*{firstYearAired}">
+            <div th:if="*{contentType == 'Show'}">
                 <div class="row justify-content-center pb-2">
                     <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="firstYearAired">First year aired: </label>
                     <input class="col-12 col-sm-6 col-lg-4" th:field="*{firstYearAired}" id="firstYearAired" type="number"
@@ -99,42 +99,49 @@
                 </div>
             </div>
 
+            <div th:if="*{contentType == 'Movie'}">
+                <div class="row justify-content-center pb-2">
+                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="yearReleased">Year released: </label>
+                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{yearReleased}" id="yearReleased" type="number"
+                           th:errorclass="fieldError">
+                </div>
+            </div>
+
         </form>
-
-        <div class="col-12 col-sm-6 col-xl-5 text-start d-flex flex-column gap-2">
-            <div th:if="${content.class.name == 'be.thomasmore.streamfindr.model.Movie'}">
-                <div class="info">
-                    <div class="infoName fw-bold d-inline fs-5">Year Released:</div>
-                    <div class="infoValue d-inline fs-5" th:text="*{yearReleased}"></div>
-                </div>
-            </div>
-
-            <div th:if="${content.class.name == 'be.thomasmore.streamfindr.model.Show'}">
-                <div class="info">
-                    <div class="infoName fw-bold d-inline fs-5">First Year Aired:</div>
-                    <div class="infoValue d-inline fs-5" th:text="*{firstYearAired}"></div>
-                </div>
-                <div class="info">
-                    <div class="infoName fw-bold d-inline fs-5">Last Year Aired:</div>
-                    <div class="infoValue d-inline fs-5" th:text="*{lastYearAired}"></div>
-                </div>
-            </div>
-
-            <div class="info">
-                <div class="infoName fw-bold d-inline fs-5">Available on platform(s):</div>
-                <div class="infoValue d-inline fs-5">
-                    <span th:each="platform, iterStat : *{platforms}">
-                        <a th:href="@{|/platformdetails/${platform.id}|}">
-                            <span th:text="${platform.name}"></span>
-                        </a>
-                        <span th:if="${!iterStat.last}">, </span>
-                    </span>
-                </div>
-            </div>
-
-        </div>
-
     </div>
+
+<!--        <div class="col-12 col-sm-6 col-xl-5 text-start d-flex flex-column gap-2">-->
+<!--            <div th:if="${content.class.name == 'be.thomasmore.streamfindr.model.Movie'}">-->
+<!--                <div class="info">-->
+<!--                    <div class="infoName fw-bold d-inline fs-5">Year Released:</div>-->
+<!--                    <div class="infoValue d-inline fs-5" th:text="*{yearReleased}"></div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div th:if="${content.class.name == 'be.thomasmore.streamfindr.model.Show'}">-->
+<!--                <div class="info">-->
+<!--                    <div class="infoName fw-bold d-inline fs-5">First Year Aired:</div>-->
+<!--                    <div class="infoValue d-inline fs-5" th:text="*{firstYearAired}"></div>-->
+<!--                </div>-->
+<!--                <div class="info">-->
+<!--                    <div class="infoName fw-bold d-inline fs-5">Last Year Aired:</div>-->
+<!--                    <div class="infoValue d-inline fs-5" th:text="*{lastYearAired}"></div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="info">-->
+<!--                <div class="infoName fw-bold d-inline fs-5">Available on platform(s):</div>-->
+<!--                <div class="infoValue d-inline fs-5">-->
+<!--                    <span th:each="platform, iterStat : *{platforms}">-->
+<!--                        <a th:href="@{|/platformdetails/${platform.id}|}">-->
+<!--                            <span th:text="${platform.name}"></span>-->
+<!--                        </a>-->
+<!--                        <span th:if="${!iterStat.last}">, </span>-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </div>-->
 
 
 </main>
