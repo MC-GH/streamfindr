@@ -30,10 +30,10 @@
             <a class="text-decoration-none" th:href="@{/contentlist}">
                 <button class="btn btn-danger">Cancel</button>
             </a>
-            <input form="editForm" type="submit" value="Save" class="btn btn-success text-center">
+            <input form="newForm" type="submit" value="Create" class="btn btn-success text-center">
         </div>
 
-        <form id="editForm" th:action="@{|/admin/contentedit/*{id}|}" method="post" class="p-3">
+        <form id="newForm" th:action="@{|/admin/contentnew|}" method="post" class="p-3">
             <div class="row justify-content-center pb-2">
                 <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="contentName">Content name: </label>
                 <input class="col-12 col-sm-6 col-lg-4" th:field="*{name}" id="contentName" type="text"
@@ -105,11 +105,6 @@
                 <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="posterSource">Poster source link: </label>
                 <input class="col-12 col-sm-6 col-lg-4" th:field="*{posterSrc}" id="posterSource" type="text"
                        placeholder="Enter an image internet link">
-            </div>
-
-            <div class="row justify-content-center pb-2">
-                <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="clearReviews">Clear reviews: </label>
-                <input class="col-12 col-sm-6 col-lg-4" name="clearReviews" id="clearReviews" type="checkbox">
             </div>
 
         </form>

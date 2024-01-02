@@ -45,10 +45,7 @@ public class ContentAdminController {
     public String contentEdit(Model model,
                               @PathVariable(required = false) Integer id) {
         //Data ophalen om te gebruiken in select fields in form
-
-        model.addAttribute("allPlatforms", platformRepository.findAll());
-        model.addAttribute("allActors", actorRepository.findAll());
-        model.addAttribute("allGenres", contentRepository.findDistinctGenres());
+        addModelAttributes(model);
         return "admin/contentedit";
     }
 
@@ -60,9 +57,7 @@ public class ContentAdminController {
                                   @RequestParam(name = "clearReviews", defaultValue = "false") boolean clearReviews) {
 
         if (bindingResult.hasErrors()) {
-            model.addAttribute("allPlatforms", platformRepository.findAll());
-            model.addAttribute("allActors", actorRepository.findAll());
-            model.addAttribute("allGenres", contentRepository.findDistinctGenres());
+            addModelAttributes(model);
             return "admin/contentedit";
         }
 
@@ -79,11 +74,28 @@ public class ContentAdminController {
 
     @GetMapping("/contentnew")
     public String contentNew(Model model) {
-        logger.info("New Content");
-        model.addAttribute("allPlatforms", platformRepository.findAll());
-        model.addAttribute("allActors", actorRepository.findAll());
-        model.addAttribute("allGenres", contentRepository.findDistinctGenres());
+        addModelAttributes(model);
         return "admin/contentnew";
     }
 
+    @PostMapping("/contentnew")
+    public String contentNewPost(Model model,
+                                 @Valid Content content,
+                                 BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            addModelAttributes(model);
+            return "admin/contentnew";
+        }
+
+        Content newContent = contentRepository.save(content);
+        return "redirect:/contentdetails/" + newContent.getId();
+
+    }
+
+    private void addModelAttributes(Model model) {
+        model.addAttribute("allPlatforms", platformRepository.findAll());
+        model.addAttribute("allActors", actorRepository.findAll());
+        model.addAttribute("allGenres", contentRepository.findDistinctGenres());
+    }
 }
