@@ -1,6 +1,7 @@
 package be.thomasmore.streamfindr.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import java.util.Set;
 
@@ -9,9 +10,13 @@ public class Platform {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotBlank
     private String name;
     private String description;
+    @NotBlank
     private String uniqueSellingPoint;
+    @NotNull
+    @DecimalMin(value = "0.00")
     private Double monthlyPriceInUsd;
     private boolean yearlySubscriptionPossible;
     @Column(nullable = true)
@@ -99,5 +104,9 @@ public class Platform {
 
     public void setAccounts(Set<Account> members) {
         this.accounts = members;
+    }
+
+    public void setLogoSrc(String logoSrc) {
+        this.logoSrc = logoSrc;
     }
 }

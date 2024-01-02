@@ -36,3 +36,7 @@
 .fieldError {
     background-color: #db647d;
 }
+
+.errorText {
+    color: red;
+}

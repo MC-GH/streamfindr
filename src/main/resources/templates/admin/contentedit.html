@@ -27,7 +27,7 @@
     <div th:if="${content}"
          class="row contentDetailsContainer py-4 p-2 p-lg-4 col-12 col-lg-10 col-xxl-8 mx-auto bg-light d-flex justify-content-center">
         <h1 th:text="*{name}"></h1>
-        <h1 th:if="${#fields.hasErrors()}">Please fill out all necessary fields.</h1>
+        <h4 class="errorText" th:if="${#fields.hasErrors()}">Please fill out all necessary fields.</h4>
         <div id="buttonRow" class="col-12 d-flex justify-content-center gap-2">
             <a class="text-decoration-none" th:href="@{|/contentdetails/*{id}|}">
                 <button class="btn btn-danger">Cancel</button>

@@ -1,0 +1,51 @@
+package be.thomasmore.streamfindr.controllers.admin;
+
+import be.thomasmore.streamfindr.model.Platform;
+import be.thomasmore.streamfindr.repositories.PlatformRepository;
+import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+
+@Controller
+@RequestMapping("/admin")
+public class PlatformAdminController {
+    private Logger logger = LoggerFactory.getLogger(ContentAdminController.class);
+    @Autowired
+    private PlatformRepository platformRepository;
+
+    @ModelAttribute("platform")
+    public Platform findPlatform(@PathVariable(required = false) Integer id) {
+        if(id == null) return new Platform();
+
+        Optional<Platform> optionalPlatform = platformRepository.findById(id);
+        return optionalPlatform.orElse(null);
+    }
+
+    @GetMapping("/platformedit/{id}")
+    public String platformEdit(Model model,
+                               @PathVariable(required = false) Integer id) {
+        return "admin/platformedit";
+    }
+
+    @PostMapping("/platformedit/{id}")
+    public String platformEditPost(Model model,
+                                   @PathVariable Integer id,
+                                   @Valid Platform platform,
+                                   BindingResult bindingResult) {
+
+        logger.info("monthly value:" + platform.getMonthlyPriceInUsd());
+        if(bindingResult.hasErrors()) return "admin/platformedit";
+
+        platformRepository.save(platform);
+        return "redirect:/platformdetails/" + id;
+    }
+
+
+}

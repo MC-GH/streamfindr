@@ -71,7 +71,6 @@ public class PlatformController {
 
             model.addAttribute("prevPlatform", prevPlatform.get().getId());
             model.addAttribute("nextPlatform", nextPlatform.get().getId());
-//            model.addAttribute("averageRating", contentRepository.calculateAverageRatingForContent(content));
         }
 
         return "platformdetails";
