@@ -7,33 +7,33 @@ import jakarta.persistence.Id;
 @Entity
 @DiscriminatorValue("Show")
 public class Show extends Content{
-        private int firstYearAired;
-        private int lastYearAired;
-        private int numberOfSeasons;
+        private Integer firstYearAired;
+        private Integer lastYearAired;
+        private Integer numberOfSeasons;
         public Show() {
         }
 
-    public int getFirstYearAired() {
+    public Integer getFirstYearAired() {
         return firstYearAired;
     }
 
-    public void setFirstYearAired(int firstYearAired) {
+    public void setFirstYearAired(Integer firstYearAired) {
         this.firstYearAired = firstYearAired;
     }
 
-    public int getLastYearAired() {
+    public Integer getLastYearAired() {
         return lastYearAired;
     }
 
-    public void setLastYearAired(int lastYearAired) {
+    public void setLastYearAired(Integer lastYearAired) {
         this.lastYearAired = lastYearAired;
     }
 
-    public int getNumberOfSeasons() {
+    public Integer getNumberOfSeasons() {
         return numberOfSeasons;
     }
 
-    public void setNumberOfSeasons(int numberOfSeasons) {
+    public void setNumberOfSeasons(Integer numberOfSeasons) {
         this.numberOfSeasons = numberOfSeasons;
     }
 }

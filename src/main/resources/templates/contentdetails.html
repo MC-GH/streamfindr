@@ -72,14 +72,14 @@
                 <div class="infoValue d-inline fs-5" th:text="*{plotDescription}"></div>
             </div>
 
-            <div th:if="${content.class.name == 'be.thomasmore.streamfindr.model.Movie'}">
+            <div th:if="*{contentType == 'Movie'}">
                 <div class="info">
                     <div class="infoName fw-bold d-inline fs-5">Year Released:</div>
                     <div class="infoValue d-inline fs-5" th:text="*{yearReleased}"></div>
                 </div>
             </div>
 
-            <div th:if="${content.class.name == 'be.thomasmore.streamfindr.model.Show'}">
+            <div th:if="*{contentType == 'Show'}">
                 <div class="info">
                     <div class="infoName fw-bold d-inline fs-5">First Year Aired:</div>
                     <div class="infoValue d-inline fs-5" th:text="*{firstYearAired}"></div>
@@ -104,7 +104,7 @@
 
         </div>
 
-        <div class="col-12 h2" id="reviewContainer">
+        <div th:if="*{reviews.size() != 0}" class="col-12 h2" id="reviewContainer">
             <div class="col-12 h2 py-3 m-0">Reviews</div>
             <div class="col-12 h6">
                 Average rating:

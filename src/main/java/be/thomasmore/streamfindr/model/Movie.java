@@ -1,24 +1,18 @@
 package be.thomasmore.streamfindr.model;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 @DiscriminatorValue("Movie")
 public class Movie extends Content {
-    private int yearReleased;
-
+    private Integer yearReleased;
     public Movie() {}
 
-    public Movie(int yearReleased) {
-        this.yearReleased = yearReleased;
-    }
-
-    public int getYearReleased() {
+    public Integer getYearReleased() {
         return yearReleased;
     }
 
-    public void setYearReleased(int yearReleased) {
+    public void setYearReleased(Integer yearReleased) {
         this.yearReleased = yearReleased;
     }
 }

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Optional;
 import java.util.Set;
 
@@ -32,15 +33,15 @@ public class ContentAdminController {
 
 
     @ModelAttribute("content")
-    public Content findContent(@PathVariable (required = false) Integer id) {
-        if(id!=null) {
-            Optional<Content> optionalContent = contentRepository.findById(id);
-            if(optionalContent.isPresent()) return optionalContent.get();
-        }
-        return null;
+    public Content findContent(@PathVariable(required = false) Integer id) {
+        if (id == null) return new Content();
+
+        Optional<Content> optionalContent = contentRepository.findById(id);
+        return optionalContent.orElse(null);
+
     }
 
-    @GetMapping({"/contentedit/{id}","/contentedit","/contentedit/"})
+    @GetMapping({"/contentedit/{id}", "/contentedit", "/contentedit/"})
     public String contentEdit(Model model,
                               @PathVariable(required = false) Integer id) {
         //Data ophalen om te gebruiken in select fields in form
@@ -58,14 +59,14 @@ public class ContentAdminController {
                                   BindingResult bindingResult,
                                   @RequestParam(name = "clearReviews", defaultValue = "false") boolean clearReviews) {
 
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             model.addAttribute("allPlatforms", platformRepository.findAll());
-            model.addAttribute("allActors",actorRepository.findAll());
+            model.addAttribute("allActors", actorRepository.findAll());
             model.addAttribute("allGenres", contentRepository.findDistinctGenres());
             return "admin/contentedit";
         }
 
-        if(clearReviews) {
+        if (clearReviews) {
             Set<Review> reviewsToRemove = content.getReviews();
             content.setReviews(null);
             reviewRepository.deleteAll(reviewsToRemove);
@@ -74,6 +75,15 @@ public class ContentAdminController {
         contentRepository.save(content);
         return "redirect:/contentdetails/" + id;
 
+    }
+
+    @GetMapping("/contentnew")
+    public String contentNew(Model model) {
+        logger.info("New Content");
+        model.addAttribute("allPlatforms", platformRepository.findAll());
+        model.addAttribute("allActors", actorRepository.findAll());
+        model.addAttribute("allGenres", contentRepository.findDistinctGenres());
+        return "admin/contentnew";
     }
 
 }
