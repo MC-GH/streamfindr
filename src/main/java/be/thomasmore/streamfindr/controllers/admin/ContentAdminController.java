@@ -31,6 +31,11 @@ public class ContentAdminController {
     @Autowired
     private ReviewRepository reviewRepository;
 
+    private void addModelAttributes(Model model) {
+        model.addAttribute("allPlatforms", platformRepository.findAll());
+        model.addAttribute("allActors", actorRepository.findAll());
+        model.addAttribute("allGenres", contentRepository.findDistinctGenres());
+    }
 
     @ModelAttribute("content")
     public Content findContent(@PathVariable(required = false) Integer id) {
@@ -38,13 +43,11 @@ public class ContentAdminController {
 
         Optional<Content> optionalContent = contentRepository.findById(id);
         return optionalContent.orElse(null);
-
     }
 
     @GetMapping({"/contentedit/{id}", "/contentedit", "/contentedit/"})
     public String contentEdit(Model model,
                               @PathVariable(required = false) Integer id) {
-        //Data ophalen om te gebruiken in select fields in form
         addModelAttributes(model);
         return "admin/contentedit";
     }
@@ -90,12 +93,6 @@ public class ContentAdminController {
 
         Content newContent = contentRepository.save(content);
         return "redirect:/contentdetails/" + newContent.getId();
-
     }
 
-    private void addModelAttributes(Model model) {
-        model.addAttribute("allPlatforms", platformRepository.findAll());
-        model.addAttribute("allActors", actorRepository.findAll());
-        model.addAttribute("allGenres", contentRepository.findDistinctGenres());
-    }
 }
