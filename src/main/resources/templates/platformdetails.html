@@ -71,7 +71,7 @@
             </div>
         </div>
 
-        <div class="col-12 h2">
+        <div th:if="*{content.size() != 0}" class="col-12 h2">
             <div class="col-12 h2 py-3 m-0">Catalogue</div>
             <div class="row p-1 p-xxl-2 col-12 col-xxl-10 mx-auto bg-light">
                 <a th:each="contentItem: *{content}" th:href="@{|/contentdetails/${contentItem.id}|}"

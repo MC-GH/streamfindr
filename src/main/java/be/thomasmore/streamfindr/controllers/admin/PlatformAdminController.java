@@ -30,15 +30,14 @@ public class PlatformAdminController {
         return optionalPlatform.orElse(null);
     }
 
-    @GetMapping("/platformedit/{id}")
-    public String platformEdit(Model model,
-                               @PathVariable(required = false) Integer id) {
+    @GetMapping({"/platformedit/{id}", "/platformedit", "/platformedit/"})
+    public String platformEdit(@PathVariable(required = false) Integer id,
+                               @ModelAttribute(name = "platform") Platform platform) {
         return "admin/platformedit";
     }
 
     @PostMapping("/platformedit/{id}")
-    public String platformEditPost(Model model,
-                                   @PathVariable Integer id,
+    public String platformEditPost(@PathVariable Integer id,
                                    @Valid Platform platform,
                                    BindingResult bindingResult,
                                    @RequestParam(name = "clearCatalogue", defaultValue = "false") boolean clearCatalogue) {
@@ -57,5 +56,9 @@ public class PlatformAdminController {
         return "redirect:/platformdetails/" + id;
     }
 
+    @GetMapping("/platformnew")
+    public String platformNew(Model model) {
+        return "admin/platformnew";
+    }
 
 }

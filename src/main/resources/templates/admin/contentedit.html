@@ -21,10 +21,10 @@
         <div class="col-12">
             <h1 class="p-2 p-md-5">Edit Content</h1>
         </div>
-        <div th:unless="${content}">Please choose a valid ID to edit.</div>
+        <div th:if="${content == null or content.id == null}">Please choose a valid ID to edit.</div>
     </div>
 
-    <div th:if="${content}"
+    <div th:if="${content != null and content.id != null}"
          class="row contentDetailsContainer py-4 p-2 p-lg-4 col-12 col-lg-10 col-xxl-8 mx-auto bg-light d-flex justify-content-center">
         <h1 th:text="*{name}"></h1>
         <h4 class="errorText" th:if="${#fields.hasErrors()}">Please fill out all necessary fields.</h4>

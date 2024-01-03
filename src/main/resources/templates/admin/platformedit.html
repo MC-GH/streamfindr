@@ -21,10 +21,10 @@
         <div class="col-12">
             <h1 class="p-2 p-md-5">Edit Platform</h1>
         </div>
-        <div th:if="${platform == null}">You did not enter a valid platform ID.</div>
+        <div th:if="${platform == null or platform.id == null}">You did not enter a valid platform ID.</div>
     </div>
 
-    <div th:unless="${platform == null}"
+    <div th:if="${platform != null and platform.id != null}"
          class="row contentDetailsContainer py-4 p-lg-4 col-12 col-lg-10 col-xxl-8 mx-auto bg-light d-flex justify-content-center">
         <h1 th:text="*{name}"></h1>
         <h4 class="errorText" th:if="${#fields.hasErrors()}">Please fill out name, monthly price and USP.</h4>
