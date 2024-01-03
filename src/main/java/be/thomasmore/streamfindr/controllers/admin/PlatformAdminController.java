@@ -1,5 +1,6 @@
 package be.thomasmore.streamfindr.controllers.admin;
 
+import be.thomasmore.streamfindr.model.Content;
 import be.thomasmore.streamfindr.model.Platform;
 import be.thomasmore.streamfindr.repositories.PlatformRepository;
 import jakarta.validation.Valid;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
@@ -38,10 +40,18 @@ public class PlatformAdminController {
     public String platformEditPost(Model model,
                                    @PathVariable Integer id,
                                    @Valid Platform platform,
-                                   BindingResult bindingResult) {
+                                   BindingResult bindingResult,
+                                   @RequestParam(name = "clearCatalogue", defaultValue = "false") boolean clearCatalogue) {
 
-        logger.info("monthly value:" + platform.getMonthlyPriceInUsd());
         if(bindingResult.hasErrors()) return "admin/platformedit";
+
+        if(clearCatalogue) {
+            Set<Content> contentToRemove = platform.getContent();
+            //Remove from content entity
+            contentToRemove.forEach(content -> content.getPlatforms().remove(platform));
+            //Remove from platform entity
+            platform.getContent().clear();
+        }
 
         platformRepository.save(platform);
         return "redirect:/platformdetails/" + id;

@@ -26,3 +26,4 @@ public interface PlatformRepository extends CrudRepository<Platform,Integer> {
                                         @Param("annualSubscriptionPossible") Boolean annualSubscriptionPossible);
 
 }
+
