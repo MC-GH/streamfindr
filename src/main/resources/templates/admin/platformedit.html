@@ -27,7 +27,7 @@
     <div th:if="${platform != null and platform.id != null}"
          class="row contentDetailsContainer py-4 p-lg-4 col-12 col-lg-10 col-xxl-8 mx-auto bg-light d-flex justify-content-center">
         <h1 th:text="*{name}"></h1>
-        <h4 class="errorText" th:if="${#fields.hasErrors()}">Please fill out name, monthly price and USP.</h4>
+        <h4 class="errorText" th:if="${#fields.hasErrors()}">Please fill out name, monthly price, USP and description.</h4>
         <div id="buttonRow" class="col-12 d-flex justify-content-center gap-2">
             <a class="text-decoration-none" th:href="@{|/platformdetails/*{id}|}">
                 <button class="btn btn-danger">Cancel</button>
@@ -65,7 +65,8 @@
             <div class="row justify-content-center pb-2">
                 <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="uniqueSP">Platform
                     description: </label>
-                <textarea class="col-12 col-sm-6 col-lg-4" th:field="*{description}" id="description" placeholder="Enter the platform description"></textarea>
+                <textarea class="col-12 col-sm-6 col-lg-4" th:field="*{description}" id="description"
+                          th:errorclass="fieldError" placeholder="Enter the platform description"></textarea>
             </div>
 
             <div class="row justify-content-center pb-2">

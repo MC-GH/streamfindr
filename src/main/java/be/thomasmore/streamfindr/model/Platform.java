@@ -12,6 +12,7 @@ public class Platform {
     private Integer id;
     @NotBlank
     private String name;
+    @NotBlank
     private String description;
     @NotBlank
     private String uniqueSellingPoint;
