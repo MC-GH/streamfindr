@@ -26,8 +26,6 @@ public class Platform {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "platforms")
     private Set<Content> content;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "platforms")
-    private Set<Account> accounts;
     public Platform() {
     }
 
@@ -97,14 +95,6 @@ public class Platform {
 
     public void setContent(Set<Content> catalogue) {
         this.content = catalogue;
-    }
-
-    public Set<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(Set<Account> members) {
-        this.accounts = members;
     }
 
     public void setLogoSrc(String logoSrc) {

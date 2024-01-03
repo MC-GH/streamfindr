@@ -9,14 +9,13 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String userName;
-    private String password;
     private String email;
     private String firstName;
     private String lastName;
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
     private Set<Review> reviews;
-
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Set<Content> content;
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Platform> platforms;
 
@@ -37,14 +36,6 @@ public class Account {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getEmail() {
@@ -85,5 +76,13 @@ public class Account {
 
     public void setPlatforms(Set<Platform> memberOfPlatforms) {
         this.platforms = memberOfPlatforms;
+    }
+
+    public Set<Content> getContent() {
+        return content;
+    }
+
+    public void setContent(Set<Content> content) {
+        this.content = content;
     }
 }
