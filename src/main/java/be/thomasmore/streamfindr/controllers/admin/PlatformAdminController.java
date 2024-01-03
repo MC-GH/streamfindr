@@ -57,8 +57,18 @@ public class PlatformAdminController {
     }
 
     @GetMapping("/platformnew")
-    public String platformNew(Model model) {
+    public String platformNew() {
         return "admin/platformnew";
+    }
+
+    @PostMapping("/platformnew")
+    public String platformNewPost(@Valid Platform platform,
+                                  BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            return "admin/platformnew";
+        }
+        Platform newPlatform = platformRepository.save(platform);
+        return "redirect:/platformdetails/" + newPlatform.getId();
     }
 
 }
