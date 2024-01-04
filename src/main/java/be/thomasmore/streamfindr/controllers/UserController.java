@@ -10,7 +10,7 @@ import java.security.Principal;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-    @GetMapping
+    @GetMapping("/login")
     public String login(Model model, Principal principal) {
         if(principal != null) return "redirect:/home";
         return "user/login";

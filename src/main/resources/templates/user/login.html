@@ -26,7 +26,18 @@
 
     <div class="row contentDetailsContainer py-4 p-lg-4 col-12 col-lg-10 col-xxl-8 mx-auto bg-light d-flex justify-content-center">
 
-        <form th:action="@{|/user/login}" method="post">
+        <form th:action="@{/user/login}" method="post">
+            <div class="row justify-content-center pb-2">
+                <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="username">Username: </label>
+                <input class="col-12 col-sm-6 col-lg-4" name="username" id="username" type="text">
+            </div>
+
+            <div class="row justify-content-center pb-2">
+                <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="password">Password: </label>
+                <input class="col-12 col-sm-6 col-lg-4" name="password" id="password" type="password">
+            </div>
+            <a th:href="@{/home}" class="btn btn-danger">Cancel</a>
+            <input type="submit" value="Submit" class="btn btn-success">
 
         </form>
 
