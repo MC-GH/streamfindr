@@ -14,13 +14,29 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
+import javax.sql.DataSource;
+
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
 @EnableWebSecurity
 @Configuration
 public class SecurityConfiguration {
+    /**
+     * @noinspection SpringJavaInjectionPointsAutowiringInspection
+     */
+@Autowired
+private DataSource dataSource;
 
     @Bean
+    public JdbcUserDetailsManager jdbcUserDetailsManager() {
+        return new JdbcUserDetailsManager(dataSource);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+@Bean
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
         HandlerMappingIntrospector introspector = new HandlerMappingIntrospector();
         MvcRequestMatcher.Builder mvcMatcherBuilder =
@@ -28,9 +44,13 @@ public class SecurityConfiguration {
 
 
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers(mvcMatcherBuilder.pattern("/admin/**")).authenticated()
+                .requestMatchers(mvcMatcherBuilder.pattern("/admin/**")).hasAnyAuthority("ADMIN")
                 .anyRequest().permitAll());
-        http.formLogin(Customizer.withDefaults());
+
+        http.formLogin(form -> form
+                .loginPage("/user/login")
+                .permitAll()
+        );
 
         //to enable h2-console:
         http.csrf(csrf -> csrf.ignoringRequestMatchers(toH2Console()));
@@ -38,4 +58,6 @@ public class SecurityConfiguration {
 
         return http.build();
     }
+
+
 }

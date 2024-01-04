@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -34,7 +35,12 @@ public class ContentController {
     }
 
     @GetMapping({"/", "/home"})
-    public String home(Model model) {
+    public String home(Model model,
+                       Principal principal) {
+
+        final String loginName = principal != null ? principal.getName() : null;
+        logger.info("Logged in as " + loginName);
+
         List<Content> allContent = contentRepository.findAll();
         allContent.sort(Comparator.comparing(Content::getName));
         List<Content> mostRecentContent = findMostRecent(allContent);
