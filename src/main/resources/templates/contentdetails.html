@@ -25,7 +25,8 @@
         <div th:unless="${content}">Please choose a valid ID to view.</div>
     </div>
 
-    <div th:if="${content}" class="row contentDetailsContainer py-4 p-lg-4 col-12 col-lg-10 col-xxl-8 mx-auto bg-light d-flex justify-content-center">
+    <div th:if="${content}"
+         class="row contentDetailsContainer py-4 p-lg-4 col-12 col-lg-10 col-xxl-8 mx-auto bg-light d-flex justify-content-center">
         <div id="navigationRow" class="col-12 d-flex justify-content-center">
             <div class="wrapper col-12 col-xl-10 col-xxl-8 pb-4 d-flex justify-content-center gap-3 gap-sm-5 flex-wrap">
                 <a th:href="@{|/contentdetails/${prevContent}|}" class="d-inline">
@@ -40,13 +41,18 @@
                         <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
                     </svg>
                 </a>
-                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{|/admin/contentedit/*{id}|}" class="btn btn-warning">Edit</a>
-                <a sec:authorize="isAuthenticated()" class="btn btn-danger">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                    </svg>
-                    Add
-                </a>
+                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{|/admin/contentedit/*{id}|}"
+                   class="btn btn-warning">Edit</a>
+                <form sec:authorize="isAuthenticated()" th:action="@{|/contentfavourite/${content.id}|}" method="post">
+
+                    <button type="submit" value="Add" th:class="${inFavourites ? 'btn btn-danger' : 'btn btn-success'}">
+                        <i class="bi bi-heart-fill"></i>
+                        <span th:text="${inFavourites ? 'Remove' : 'Add'}"></span>
+                    </button>
+<!--                    <input type="submit" value="Add To Favourite">-->
+
+                </form>
+
             </div>
 
         </div>

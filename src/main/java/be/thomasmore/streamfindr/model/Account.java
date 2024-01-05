@@ -62,14 +62,6 @@ public class Account {
         this.lastName = lastName;
     }
 
-    public Set<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(Set<Review> reviews) {
-        this.reviews = reviews;
-    }
-
     public Set<Platform> getPlatforms() {
         return platforms;
     }
@@ -84,5 +76,13 @@ public class Account {
 
     public void setContent(Set<Content> content) {
         this.content = content;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
     }
 }
