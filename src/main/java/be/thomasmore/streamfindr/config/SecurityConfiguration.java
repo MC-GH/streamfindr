@@ -52,6 +52,9 @@ private DataSource dataSource;
                 .permitAll()
         );
 
+        http.logout(form -> form
+                .logoutUrl("/user/logout"));
+
         //to enable h2-console:
         http.csrf(csrf -> csrf.ignoringRequestMatchers(toH2Console()));
         http.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
