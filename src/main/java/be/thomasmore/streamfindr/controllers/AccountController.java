@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller
@@ -16,13 +17,14 @@ public class AccountController {
     @Autowired
     private AccountRepository accountRepository;
 
-    @GetMapping({"/accountdetails", "/accountdetails/", "accountdetails/{id}"})
+    @GetMapping({"/accountdetails", "/accountdetails/"})
     public String accountDetails(Model model,
-                                 @PathVariable(required = false) Integer id) {
+                                 Principal principal) {
 
-        if(id==null) return "user/profile";
+        if(principal==null) return "redirect:/home";
 
-        Optional<Account> optionalAccount = accountRepository.findById(id);
+        Optional<Account> optionalAccount = accountRepository.findByUsername(principal.getName());
+
         if(optionalAccount.isPresent()) {
             model.addAttribute("account",optionalAccount.get());
         }

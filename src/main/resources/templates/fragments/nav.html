@@ -34,8 +34,8 @@
                 <li class="nav-item">
                     <a th:href="@{/platformlist}" href="/platformlist" class="nav-link main-bg">Streaming platforms</a>
                 </li>
-                <li class="nav-item">
-                    <a th:href="@{/}" href="#" class="nav-link main-bg">Popular</a>
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a th:href="@{/accountdetails}" class="nav-link main-bg">Profile</a>
                 </li>
             </ul>
             <a sec:authorize="!isAuthenticated()" href="/user/login" class="btn btn-success">Log in</a>

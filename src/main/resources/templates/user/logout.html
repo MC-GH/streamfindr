@@ -27,9 +27,9 @@
     <div class="row contentDetailsContainer py-4 p-lg-4 col-12 col-lg-10 col-xxl-8 mx-auto bg-light d-flex justify-content-center">
 
         <form th:action="@{/user/logout}" method="post">
-            <div class="row justify-content-center pb-2 col-2 m-auto">
-                <a th:href="@{/home}" class="btn btn-info col-6">Cancel</a>
-                <input type="submit" value="Log out" class="btn btn-danger col-6">
+            <div class="row justify-content-center pb-2 col-6 col-sm-3 col-xxl-2 m-auto g-2">
+                <a th:href="@{/home}" class="btn btn-info col-12 logoutButton">Cancel</a>
+                <input type="submit" value="Log out" class="btn btn-danger col-12 logoutButton">
             </div>
         </form>
 
