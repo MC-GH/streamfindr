@@ -54,7 +54,7 @@
         </div>
 
         <div class="col-12 col-sm-6 col-xl-5 align-self-center" id="posterContainer">
-            <img class="img-fluid rounded platformLogo" th:src="*{logoSrc}" alt="logo of platform">
+            <img class="img-fluid rounded platformLogo" th:src="*{imageUrl}" alt="logo of platform">
         </div>
 
         <div class="col-12 col-sm-6 col-xl-5 text-start d-flex flex-column gap-2" id="detailsContainer">
@@ -85,7 +85,7 @@
             <div class="row p-1 p-xxl-2 col-12 col-xxl-10 mx-auto bg-light">
                 <a th:each="contentItem: *{content}" th:href="@{|/contentdetails/${contentItem.id}|}"
                    class="col-6 col-sm-4 col-lg-3 g-2">
-                    <img th:src="${contentItem.posterSrc}" class="img-fluid rounded ">
+                    <img th:src="${contentItem.imageUrl}" class="img-fluid rounded ">
                 </a>
             </div>
 

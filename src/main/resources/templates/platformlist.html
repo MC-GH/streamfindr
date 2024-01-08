@@ -80,7 +80,7 @@
     <div class="row p-1 p-xxl-2 col-12 col-xxl-10 mx-auto bg-light d-flex justify-content-center">
         <a th:each="platform: ${platforms}" th:href="@{|/platformdetails/${platform.getId()}|}"
            class="col-12 col-sm-6 col-md-4 p-4 px-5 align-self-center">
-            <img th:src="${platform.getLogoSrc()}" class="img-fluid">
+            <img th:src="${platform.imageUrl}" class="img-fluid">
         </a>
     </div>
     </div>
