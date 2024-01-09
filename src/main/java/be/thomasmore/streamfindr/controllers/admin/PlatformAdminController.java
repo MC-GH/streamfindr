@@ -1,26 +1,28 @@
 package be.thomasmore.streamfindr.controllers.admin;
-
 import be.thomasmore.streamfindr.model.Content;
 import be.thomasmore.streamfindr.model.Platform;
 import be.thomasmore.streamfindr.repositories.PlatformRepository;
+import be.thomasmore.streamfindr.services.GoogleService;
 import jakarta.validation.Valid;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Optional;
 import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
 public class PlatformAdminController {
-    private Logger logger = LoggerFactory.getLogger(ContentAdminController.class);
     @Autowired
     private PlatformRepository platformRepository;
+    @Autowired
+    private GoogleService googleService;
 
     @ModelAttribute("platform")
     public Platform findPlatform(@PathVariable(required = false) Integer id) {
@@ -63,12 +65,39 @@ public class PlatformAdminController {
 
     @PostMapping("/platformnew")
     public String platformNewPost(@Valid Platform platform,
-                                  BindingResult bindingResult) {
+                                  BindingResult bindingResult,
+                                  @RequestParam(required = false) MultipartFile image) throws IOException {
         if(bindingResult.hasErrors()) {
             return "admin/platformnew";
         }
+
+        if (image != null && !image.isEmpty()) {
+            if (image.getSize() > 5 * 1024 * 1024) {
+                bindingResult.reject("file.size.exceeded", "File size exceeded (max:5MB)");
+                return "admin/platformnew";
+            }
+
+            try {
+                platform.setImageUrl(uploadImage(image));
+            } catch (MaxUploadSizeExceededException e) {
+                bindingResult.reject("file.size.exceeded", "File size exceeded (max:5MB)");
+                return "admin/platformnew";
+            }
+        }
+
+
         Platform newPlatform = platformRepository.save(platform);
         return "redirect:/platformdetails/" + newPlatform.getId();
+    }
+
+    private String uploadImage(MultipartFile multipartFile) throws IOException {
+        final String filename = multipartFile.getOriginalFilename();
+        final File fileToUpload = new File(filename);
+        FileOutputStream fos = new FileOutputStream(fileToUpload);
+        fos.write(multipartFile.getBytes());
+        final String urlInFirebase = googleService.toFirebase(fileToUpload, filename);
+        fileToUpload.delete();
+        return urlInFirebase;
     }
 
 }

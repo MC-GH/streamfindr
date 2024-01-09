@@ -25,7 +25,7 @@
 
     <div class="row contentDetailsContainer py-4 p-2 p-lg-4 col-12 col-lg-10 col-xxl-8 mx-auto bg-light d-flex justify-content-center">
         <h1 th:text="*{name}"></h1>
-        <h1 th:if="${#fields.hasErrors()}">Please fill out all necessary fields.</h1>
+        <div class="fs-5 text-danger" th:if="${#fields.hasErrors()}">Please fill out all necessary fields. Max filesize is 5MB.</div>
         <div id="buttonRow" class="col-12 d-flex justify-content-center gap-2">
             <a class="text-decoration-none" th:href="@{/contentlist}">
                 <button class="btn btn-danger">Cancel</button>
@@ -33,7 +33,7 @@
             <input form="newForm" type="submit" value="Create" class="btn btn-success text-center">
         </div>
 
-        <form id="newForm" th:action="@{|/admin/contentnew|}" method="post" class="p-3">
+        <form id="newForm" th:action="@{|/admin/contentnew|}" enctype="multipart/form-data" method="post" class="p-3">
             <div class="row justify-content-center pb-2">
                 <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="contentName">Content name: </label>
                 <input class="col-12 col-sm-6 col-lg-4" th:field="*{name}" id="contentName" type="text"
@@ -75,18 +75,23 @@
 
             <div th:if="*{contentType == 'Show'}">
                 <div class="row justify-content-center pb-2">
-                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="firstYearAired">First year aired: </label>
-                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{firstYearAired}" id="firstYearAired" type="number">
+                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="firstYearAired">First year
+                        aired: </label>
+                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{firstYearAired}" id="firstYearAired"
+                           type="number">
                 </div>
                 <div class="row justify-content-center pb-2">
-                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="lastYearAired">Last year aired: </label>
-                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{lastYearAired}" id="lastYearAired" type="number">
+                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="lastYearAired">Last year
+                        aired: </label>
+                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{lastYearAired}" id="lastYearAired"
+                           type="number">
                 </div>
             </div>
 
             <div th:if="*{contentType == 'Movie'}">
                 <div class="row justify-content-center pb-2">
-                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="yearReleased">Year released: </label>
+                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="yearReleased">Year
+                        released: </label>
                     <input class="col-12 col-sm-6 col-lg-4" th:field="*{yearReleased}" id="yearReleased" type="number">
                 </div>
             </div>
@@ -102,11 +107,10 @@
             </div>
 
             <div class="row justify-content-center pb-2">
-                <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="posterSource">Poster source link: </label>
-                <input class="col-12 col-sm-6 col-lg-4" th:field="*{imageUrl}" id="posterSource" type="text"
-                       placeholder="Enter an image internet link">
+                <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="posterSource">Poster source
+                    link: </label>
+                <input class="col-12 col-sm-6 col-lg-4" id="posterSource" type="file" accept="image" name="image">
             </div>
-
         </form>
     </div>
 </main>

@@ -183,61 +183,71 @@ INSERT INTO Content(NAME, DIRECTOR, GENRE, PLOT_DESCRIPTION, IMAGE_URL, CONTENT_
                     NUMBER_OF_SEASONS)
 VALUES ('Animus', 'Neil Tran', 'Lifestyle',
         'Join an amateur painter as he embarks on a passionate journey to turn his artistic hobby into a thriving profession. Witness his struggles, creative breakthroughs, and encounters with the art world''s elite.',
-        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/animus.jpg?alt=media&token=92c7913d-3ed4-4aea-a47e-bcef1f7cf31b', 'Show', 2018, 2020, 2);
+        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/animus.jpg?alt=media&token=92c7913d-3ed4-4aea-a47e-bcef1f7cf31b',
+        'Show', 2018, 2020, 2);
 
 INSERT INTO Content(NAME, DIRECTOR, GENRE, PLOT_DESCRIPTION, IMAGE_URL, CONTENT_TYPE, FIRST_YEAR_AIRED, LAST_YEAR_AIRED,
                     NUMBER_OF_SEASONS)
 VALUES ('Journey To The Peak', 'Avery Davis', 'Adventure',
         'Follow the thrilling adventures of a courageous woman who globe-trots to conquer the world''s most formidable mountains. Experience the triumphs, physical challenges, and emotional highs of her quest for the ultimate peak.',
-        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/journey-to-the-peak.jpg?alt=media&token=795d53aa-1693-4340-9e97-d0d59b93c8cc', 'Show', 2016, 2020, 4);
+        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/journey-to-the-peak.jpg?alt=media&token=795d53aa-1693-4340-9e97-d0d59b93c8cc',
+        'Show', 2016, 2020, 4);
 
 INSERT INTO Content(NAME, DIRECTOR, GENRE, PLOT_DESCRIPTION, IMAGE_URL, CONTENT_TYPE, FIRST_YEAR_AIRED, LAST_YEAR_AIRED,
                     NUMBER_OF_SEASONS)
 VALUES ('Love At First Sight', 'Greta Mae Evans', 'Reality',
         'Enter the whirlwind world of reality dating as contestants search for love. With spontaneous encounters and heartfelt connections, they''ll discover if love can truly strike at first sight.',
-        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/love-at-first-sight.jpg?alt=media&token=b7e6ee34-53ef-4ee6-aa02-dac26873ef63', 'Show', 2022, 2023, 1);
+        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/love-at-first-sight.jpg?alt=media&token=b7e6ee34-53ef-4ee6-aa02-dac26873ef63',
+        'Show', 2022, 2023, 1);
 
 INSERT INTO Content(NAME, DIRECTOR, GENRE, PLOT_DESCRIPTION, IMAGE_URL, CONTENT_TYPE, FIRST_YEAR_AIRED, LAST_YEAR_AIRED,
                     NUMBER_OF_SEASONS)
 VALUES ('Midtown', 'Neil Tran', 'Adventure',
         'Travel with an investigative reporter exploring major cities worldwide. Discover the hidden stories, unique cultures, and captivating people that define the world''s bustling metropolises.',
-        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/midtown.jpg?alt=media&token=60ce85f4-4ce0-4632-988c-2e5a70f5c77b', 'Show', 2019, 2023, 4);
+        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/midtown.jpg?alt=media&token=60ce85f4-4ce0-4632-988c-2e5a70f5c77b',
+        'Show', 2019, 2023, 4);
 
 INSERT INTO Content(NAME, DIRECTOR, GENRE, PLOT_DESCRIPTION, IMAGE_URL, CONTENT_TYPE, FIRST_YEAR_AIRED, LAST_YEAR_AIRED,
                     NUMBER_OF_SEASONS)
 VALUES ('Never Be Alone', 'Lorna Alvarado', 'Adventure',
         'Accompany a nature photographer on breathtaking journeys to capture elusive exotic animals. Witness close encounters with wildlife as the lens captures the raw beauty of nature.',
-        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/never-be-alone.jpg?alt=media&token=3ce85f93-3cf9-46fc-80da-be77de919ed4', 'Show', 2024, 2024, 1);
+        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/never-be-alone.jpg?alt=media&token=3ce85f93-3cf9-46fc-80da-be77de919ed4',
+        'Show', 2024, 2024, 1);
 
 INSERT INTO Content(NAME, DIRECTOR, GENRE, PLOT_DESCRIPTION, IMAGE_URL, CONTENT_TYPE, FIRST_YEAR_AIRED, LAST_YEAR_AIRED,
                     NUMBER_OF_SEASONS)
 VALUES ('Raw', 'Neil Tran', 'Action',
         'Step into the brutal world of MMA fighting. Follow the grueling training, rivalries, and intense bouts of a dedicated fighter on their path to glory.',
-        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/raw.jpg?alt=media&token=aff584d4-8dc0-4fa3-b5e4-320f02dd4a50', 'Show', 2018, 2022, 2);
+        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/raw.jpg?alt=media&token=aff584d4-8dc0-4fa3-b5e4-320f02dd4a50',
+        'Show', 2018, 2022, 2);
 
 INSERT INTO Content(NAME, DIRECTOR, GENRE, PLOT_DESCRIPTION, IMAGE_URL, CONTENT_TYPE, FIRST_YEAR_AIRED, LAST_YEAR_AIRED,
                     NUMBER_OF_SEASONS)
 VALUES ('Silent Street', 'Alfredo Torres', 'Reality',
         'Delve into the darkest mysteries and unsolved crimes, from kidnappings to violent acts. Uncover chilling details and shocking revelations in a suspenseful journey to solve the unsolvable.',
-        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/silent-street.jpg?alt=media&token=2ec7477e-4457-4bc8-89e2-d3c6ed10f324', 'Show', 2019, 2024, 5);
+        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/silent-street.jpg?alt=media&token=2ec7477e-4457-4bc8-89e2-d3c6ed10f324',
+        'Show', 2019, 2024, 5);
 
 INSERT INTO Content(NAME, DIRECTOR, GENRE, PLOT_DESCRIPTION, IMAGE_URL, CONTENT_TYPE, FIRST_YEAR_AIRED, LAST_YEAR_AIRED,
                     NUMBER_OF_SEASONS)
 VALUES ('Speed', 'Neil Tran', 'Action',
         'Join a fearless female F1 racer as she strives to break through the male-dominated world of motorsport. Witness her passion, determination, and dreams of becoming a professional racer.',
-        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/speed.jpg?alt=media&token=2ac48971-ae30-435e-895e-9785d4a6dab8', 'Show', 2022, 2023, 1);
+        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/speed.jpg?alt=media&token=2ac48971-ae30-435e-895e-9785d4a6dab8',
+        'Show', 2022, 2023, 1);
 
 INSERT INTO Content(NAME, DIRECTOR, GENRE, PLOT_DESCRIPTION, IMAGE_URL, CONTENT_TYPE, FIRST_YEAR_AIRED, LAST_YEAR_AIRED,
                     NUMBER_OF_SEASONS)
 VALUES ('The Talk', 'Olivia Wilson', 'Reality',
         'Experience intriguing conversations as a charismatic host invites a diverse array of fascinating guests, discussing a wide range of topics from culture and society to personal stories and inspiration.',
-        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/the-talk.jpg?alt=media&token=564e239f-1c73-427c-814e-3feb20d2c61e', 'Show', 2018, 2023, 5);
+        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/the-talk.jpg?alt=media&token=564e239f-1c73-427c-814e-3feb20d2c61e',
+        'Show', 2018, 2023, 5);
 
 INSERT INTO Content(NAME, DIRECTOR, GENRE, PLOT_DESCRIPTION, IMAGE_URL, CONTENT_TYPE, FIRST_YEAR_AIRED, LAST_YEAR_AIRED,
                     NUMBER_OF_SEASONS)
 VALUES ('The Train Of Love', 'Aaron Loeb', 'Adventure',
         'Follow a young woman''s life-changing adventure as she embarks on a cross-country journey by train. Explore America''s diverse landscapes, meet unique characters, and witness her search for a new place to call home.',
-        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/the-train-of-love.jpg?alt=media&token=73cf79bb-afe3-49ea-8b90-4cd900d49936', 'Show', 2022, 2023, 1);
+        'https://firebasestorage.googleapis.com/v0/b/streamfindr.appspot.com/o/the-train-of-love.jpg?alt=media&token=73cf79bb-afe3-49ea-8b90-4cd900d49936',
+        'Show', 2022, 2023, 1);
 
 --ACTOR INSERTS
 INSERT INTO ACTOR(NAME)
@@ -453,7 +463,6 @@ VALUES ('admin', 'ADMIN');
 INSERT INTO ACCOUNT (USERNAME, EMAIL, FIRST_NAME, LAST_NAME)
 VALUES ('admin', 'r0333121@student.thomasmore.be', 'admin', 'admin');
 
--- pw MichaëlC ilovejava
 INSERT INTO USERS (USERNAME, PASSWORD, ENABLED)
 VALUES ('MichaëlC', '$2a$10$PqhIuiSpA8ZL8wtHmTzI6OImV5mso1eddK102Sy2mKlVvm4sMpQsO', true);
 INSERT INTO AUTHORITIES (USERNAME, AUTHORITY)

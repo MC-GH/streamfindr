@@ -32,3 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 /streamfindr-firebase-adminsdk-6b5ve-d1aef96d48.json
+/src/main/resources/application-local.properties

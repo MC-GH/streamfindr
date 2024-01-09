@@ -3,6 +3,7 @@ package be.thomasmore.streamfindr.controllers;
 import be.thomasmore.streamfindr.model.*;
 import be.thomasmore.streamfindr.repositories.AccountRepository;
 import be.thomasmore.streamfindr.repositories.ContentRepository;
+import be.thomasmore.streamfindr.services.GoogleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.security.Principal;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -26,10 +28,10 @@ public class ContentController {
     private AccountRepository accountRepository;
 
     @ModelAttribute("content")
-    public Content findContent(@PathVariable (required = false) Integer id) {
-        if(id!=null) {
+    public Content findContent(@PathVariable(required = false) Integer id) {
+        if (id != null) {
             Optional<Content> optionalContent = contentRepository.findById(id);
-            if(optionalContent.isPresent()) return optionalContent.get();
+            if (optionalContent.isPresent()) return optionalContent.get();
         }
         return null;
     }
@@ -44,7 +46,7 @@ public class ContentController {
         List<Content> top3Reviewed = contentRepository.findTop3ReviewedContent();
 
         model.addAttribute("content", mostRecentContent);
-        model.addAttribute("top3",top3Reviewed);
+        model.addAttribute("top3", top3Reviewed);
         return "home";
     }
 
@@ -71,7 +73,7 @@ public class ContentController {
     @GetMapping({"/contentlist", "/contentlist/"})
     public String contentList(Model model) {
         List<Content> allContent = contentRepository.findAll();
-        model.addAttribute("content",allContent);
+        model.addAttribute("content", allContent);
         return "contentlist";
     }
 
@@ -84,30 +86,34 @@ public class ContentController {
                                         @RequestParam(required = false) Integer minScore) {
 
         List<Content> filteredContent = contentRepository.findByCombinedFilter(convertStringToClassType(contentType),
-                genre,platform,keyword,minScore);
+                genre, platform, keyword, minScore);
 
-        model.addAttribute("showFilters",true);
-        model.addAttribute("content",filteredContent);
-        model.addAttribute("contentType",contentType);
-        model.addAttribute("selectedGenre",genre);
+        model.addAttribute("showFilters", true);
+        model.addAttribute("content", filteredContent);
+        model.addAttribute("contentType", contentType);
+        model.addAttribute("selectedGenre", genre);
         model.addAttribute("selectedPlatform", platform);
-        model.addAttribute("keyword",keyword);
-        model.addAttribute("minScore",minScore);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("minScore", minScore);
 
-        model.addAttribute("distinctGenres",contentRepository.findDistinctGenres());
+        model.addAttribute("distinctGenres", contentRepository.findDistinctGenres());
         model.addAttribute("distinctPlatformNames", contentRepository.findDistinctPlatformNames());
         return "contentlist";
     }
 
     public Class<? extends Content> convertStringToClassType(String contentType) {
-        if(contentType != null) {
-            if(contentType.equals("Movie")) { return Movie.class;}
-            if(contentType.equals("Show")) { return Show.class;}
+        if (contentType != null) {
+            if (contentType.equals("Movie")) {
+                return Movie.class;
+            }
+            if (contentType.equals("Show")) {
+                return Show.class;
+            }
         }
         return null;
     }
 
-    @GetMapping({"/contentdetails","/contentdetails/","/contentdetails/{id}"})
+    @GetMapping({"/contentdetails", "/contentdetails/", "/contentdetails/{id}"})
     public String contentDetails(Model model,
                                  @ModelAttribute("content") Content content,
                                  @PathVariable(required = false) Integer id,
@@ -115,46 +121,46 @@ public class ContentController {
 
         //Doorgeven welke user ingelogd is via Principal, en of content in favorieten zit.
 
-        if(content != null) {
+        if (content != null) {
             Content foundContentForAccount = null;
-            if(principal != null) {
+            if (principal != null) {
                 Optional<Account> optionalAccount = accountRepository.findByUsername(principal.getName());
-                if(optionalAccount.isPresent()) {
+                if (optionalAccount.isPresent()) {
                     Account account = optionalAccount.get();
-                    foundContentForAccount = findContentById(account.getContent(),id);
+                    foundContentForAccount = findContentById(account.getContent(), id);
                 }
             }
 
             Optional<Content> prevContent = contentRepository.findFirstByIdLessThanOrderByIdDesc(id);
-            if(prevContent.isEmpty()) prevContent = contentRepository.findFirstByOrderByIdDesc();
+            if (prevContent.isEmpty()) prevContent = contentRepository.findFirstByOrderByIdDesc();
 
             Optional<Content> nextContent = contentRepository.findFirstByIdGreaterThanOrderByIdAsc(id);
-            if(nextContent.isEmpty()) nextContent = contentRepository.findFirstByOrderByIdAsc();
+            if (nextContent.isEmpty()) nextContent = contentRepository.findFirstByOrderByIdAsc();
 
             model.addAttribute("prevContent", prevContent.get().getId());
             model.addAttribute("nextContent", nextContent.get().getId());
             model.addAttribute("averageRating", contentRepository.calculateAverageRatingForContent(content));
-            model.addAttribute("inFavourites",foundContentForAccount != null);
+            model.addAttribute("inFavourites", foundContentForAccount != null);
         }
 
         return "contentdetails";
     }
 
-    @PostMapping({"/contentfavourite","/contentfavourite/{id}"})
+    @PostMapping({"/contentfavourite", "/contentfavourite/{id}"})
     public String contentFavourite(Model model,
                                    Principal principal,
                                    @PathVariable(required = false) Integer id) {
-        if(id==null) return "redirect:/contentlist";
-        if(principal==null) return "redirect:/contentdetails/" + id;
+        if (id == null) return "redirect:/contentlist";
+        if (principal == null) return "redirect:/contentdetails/" + id;
 
         Optional<Content> optionalContent = contentRepository.findById(id);
         Optional<Account> optionalAccount = accountRepository.findByUsername(principal.getName());
 
-        if(optionalContent.isPresent() && optionalAccount.isPresent()) {
+        if (optionalContent.isPresent() && optionalAccount.isPresent()) {
             Account account = optionalAccount.get();
             //check if the content is already in account favourites
-            Content content = findContentById(account.getContent(),id);
-            if(content == null) {
+            Content content = findContentById(account.getContent(), id);
+            if (content == null) {
                 account.getContent().add(optionalContent.get());
             } else {
                 account.getContent().remove(content);
@@ -165,8 +171,8 @@ public class ContentController {
     }
 
     private Content findContentById(Collection<Content> content, int contentId) {
-        for(Content contentItem : content) {
-            if(contentItem.getId() == contentId) return contentItem;
+        for (Content contentItem : content) {
+            if (contentItem.getId() == contentId) return contentItem;
         }
         return null;
     }
