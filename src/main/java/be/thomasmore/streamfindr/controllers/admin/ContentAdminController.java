@@ -1,5 +1,4 @@
 package be.thomasmore.streamfindr.controllers.admin;
-
 import be.thomasmore.streamfindr.model.Content;
 import be.thomasmore.streamfindr.model.Review;
 import be.thomasmore.streamfindr.repositories.ActorRepository;
@@ -8,25 +7,18 @@ import be.thomasmore.streamfindr.repositories.PlatformRepository;
 import be.thomasmore.streamfindr.repositories.ReviewRepository;
 import be.thomasmore.streamfindr.services.GoogleService;
 import jakarta.validation.Valid;
-import org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.annotation.PreDestroy;
-import javax.naming.Binding;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
