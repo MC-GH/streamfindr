@@ -33,6 +33,8 @@ import java.util.Set;
 @Controller
 @RequestMapping("/admin")
 public class ContentAdminController {
+    private final Logger logger = LoggerFactory.getLogger(ContentAdminController.class);
+
     @Autowired
     private ContentRepository contentRepository;
     @Autowired
@@ -128,7 +130,13 @@ public class ContentAdminController {
 
     private String uploadImage(MultipartFile multipartFile) throws IOException {
         final String filename = multipartFile.getOriginalFilename();
+        logger.info("filename: " + filename);
         final File fileToUpload = new File(filename);
+        logger.info("fileToUpload getname method: " + fileToUpload.getName());
+        logger.info("fileToUpload location: " + fileToUpload.getAbsolutePath());
+        logger.info("fileToUpload exists: " + fileToUpload.exists());
+        logger.info("fileToUpload canRead: " + fileToUpload.canRead());
+        logger.info("fileToUpload canWrite: " + fileToUpload.canWrite());
         FileOutputStream fos = new FileOutputStream(fileToUpload);
         fos.write(multipartFile.getBytes());
         final String urlInFirebase = googleService.toFirebase(fileToUpload, filename);
