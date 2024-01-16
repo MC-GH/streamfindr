@@ -131,6 +131,7 @@ public class ContentAdminController {
         logger.info("fileToUpload canWrite: " + fileToUpload.canWrite());
         FileOutputStream fos = new FileOutputStream(fileToUpload);
         fos.write(multipartFile.getBytes());
+        fos.close();
         final String urlInFirebase = googleService.toFirebase(fileToUpload, filename);
         fileToUpload.delete();
         return urlInFirebase;

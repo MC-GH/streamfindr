@@ -95,6 +95,7 @@ public class PlatformAdminController {
         final File fileToUpload = new File(filename);
         FileOutputStream fos = new FileOutputStream(fileToUpload);
         fos.write(multipartFile.getBytes());
+        fos.close();
         final String urlInFirebase = googleService.toFirebase(fileToUpload, filename);
         fileToUpload.delete();
         return urlInFirebase;

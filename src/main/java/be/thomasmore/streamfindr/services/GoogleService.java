@@ -40,6 +40,7 @@ public class GoogleService {
         Storage storage = getFirebaseStorage();
         InputStream inputStream = new FileInputStream(file);
         storage.createFrom(blobInfo, inputStream);
+        inputStream.close();
         String DOWNLOAD_URL = "https://firebasestorage.googleapis.com/v0/b/%s/o/%s?alt=media";
         return String.format(DOWNLOAD_URL, imageBucket, URLEncoder.encode(fileName, StandardCharsets.UTF_8));
     }
