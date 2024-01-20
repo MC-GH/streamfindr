@@ -33,3 +33,4 @@ build/
 .vscode/
 /streamfindr-firebase-adminsdk-6b5ve-d1aef96d48.json
 /src/main/resources/application-local.properties
+/src/main/resources/static/img/
