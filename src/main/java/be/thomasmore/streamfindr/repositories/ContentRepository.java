@@ -17,14 +17,14 @@ public interface ContentRepository extends CrudRepository<Content, Integer> {
     @Query("SELECT c FROM Content c " +
             "LEFT JOIN c.actors actors " +
             "LEFT JOIN c.platforms platforms " +
-            "WHERE (:contentType IS NULL OR TYPE(c) = :contentType)" +
+            "WHERE (:contentType IS NULL OR :contentType='' OR c.contentType = :contentType)" +
             " AND (:genre IS NULL OR :genre='' OR c.genre = :genre)" +
             " AND (:platformName IS NULL OR :platformName='' OR platforms.name = :platformName)" +
             " AND (:keyword IS NULL OR :keyword = '' OR LOWER(c.name) LIKE LOWER(CONCAT('%',:keyword,'%'))" +
             " OR LOWER(actors.name) LIKE LOWER(CONCAT('%', :keyword, '%'))" +
             " OR LOWER(c.director) LIKE LOWER(CONCAT('%', :keyword, '%')))" +
-            " AND (:minScore IS NULL or :minScore <= (SELECT AVG(r.score) FROM c.reviews r))")
-    List<Content> findByCombinedFilter(@Param("contentType") Class<? extends Content> contentType,
+            " AND (:minScore IS NULL OR :minScore=0 OR :minScore <= (SELECT AVG(r.score) FROM c.reviews r))")
+    List<Content> findByCombinedFilter(@Param("contentType") String contentType,
                                        @Param("genre") String genre,
                                        @Param("platformName") String platformName,
                                        @Param("keyword") String keyword,
@@ -36,6 +36,8 @@ public interface ContentRepository extends CrudRepository<Content, Integer> {
     @Query("SELECT DISTINCT p.name FROM Content c JOIN c.platforms p")
     List<String> findDistinctPlatformNames();
 
+    @Query("SELECT DISTINCT c.contentType FROM Content c")
+    List<String> findDistinctContentTypes();
 
     Optional<Content> findFirstByIdLessThanOrderByIdDesc(Integer id);
     Optional<Content> findFirstByOrderByIdDesc();

@@ -1,11 +1,14 @@
 package be.thomasmore.streamfindr.controllers.admin;
 import be.thomasmore.streamfindr.model.Content;
+import be.thomasmore.streamfindr.model.Movie;
 import be.thomasmore.streamfindr.model.Review;
+import be.thomasmore.streamfindr.model.Show;
 import be.thomasmore.streamfindr.repositories.ActorRepository;
 import be.thomasmore.streamfindr.repositories.ContentRepository;
 import be.thomasmore.streamfindr.repositories.PlatformRepository;
 import be.thomasmore.streamfindr.repositories.ReviewRepository;
 import be.thomasmore.streamfindr.services.GoogleService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +45,7 @@ public class ContentAdminController {
         model.addAttribute("allPlatforms", platformRepository.findAll());
         model.addAttribute("allActors", actorRepository.findAll());
         model.addAttribute("allGenres", contentRepository.findDistinctGenres());
+        model.addAttribute("allContentTypes", contentRepository.findDistinctContentTypes());
     }
 
     @ModelAttribute("content")
@@ -92,12 +96,39 @@ public class ContentAdminController {
     public String contentNewPost(Model model,
                                  @Valid Content content,
                                  BindingResult bindingResult,
+                                 @RequestParam(value = "contentType") String contentType,
+                                 @RequestParam(value = "yearReleased", required = false) Integer yearReleased,
+                                 @RequestParam(value = "firstYearAired", required = false) Integer firstYearAired,
+                                 @RequestParam(value = "lastYearAired", required = false) Integer lastYearAired,
                                  @RequestParam(required = false) MultipartFile image) throws IOException {
 
         if (bindingResult.hasErrors()) {
             addModelAttributes(model);
             return "admin/contentnew";
         }
+
+        Content newContent;
+        if(contentType.equals("Movie")) {
+            Movie movie = new Movie();
+            movie.setYearReleased(yearReleased);
+            movie.setContentType("Movie");
+            newContent = movie;
+        } else {
+            Show show = new Show();
+            show.setFirstYearAired(firstYearAired);
+            show.setLastYearAired(lastYearAired);
+            show.setContentType("Show");
+            newContent = show;
+        }
+
+        newContent.setName(content.getName());
+        newContent.setDirector(content.getDirector());
+        newContent.setGenre(content.getGenre());
+        newContent.setPlotDescription(content.getPlotDescription());
+        newContent.setActors(content.getActors());
+        newContent.setReviews(content.getReviews());
+        newContent.setPlatforms(content.getPlatforms());
+
 
         if (image != null && !image.isEmpty()) {
             if (image.getSize() > 5 * 1024 * 1024) {
@@ -107,7 +138,7 @@ public class ContentAdminController {
             }
 
             try {
-                content.setImageUrl(uploadImage(image));
+                newContent.setImageUrl(uploadImage(image));
             } catch (MaxUploadSizeExceededException e) {
                 addModelAttributes(model);
                 bindingResult.reject("file.size.exceeded", "File size exceeded (max:5MB)");
@@ -115,20 +146,41 @@ public class ContentAdminController {
             }
         }
 
-        Content newContent = contentRepository.save(content);
+        contentRepository.save(newContent);
         return "redirect:/contentdetails/" + newContent.getId();
     }
+
+//    private static Content getNewContent(Content content, String contentType) {
+//        Content newContent;
+//        if ("Movie".equals(contentType)) {
+//            Movie movie = new Movie();
+//            movie.setYearReleased(((Movie) content).getYearReleased());
+//            newContent = movie;
+//        } else if ("Show".equals(contentType)) {
+//            Show show = new Show();
+//            show.setFirstYearAired(((Show) content).getFirstYearAired());
+//            show.setLastYearAired(((Show) content).getLastYearAired());
+//            newContent = show;
+//        } else {
+//            // Default to Content
+//            newContent = new Content();
+//        }
+//
+//        // Set common fields
+//        newContent.setName(content.getName());
+//        newContent.setDirector(content.getDirector());
+//        newContent.setGenre(content.getGenre());
+//        newContent.setPlotDescription(content.getPlotDescription());
+//        newContent.setActors(content.getActors());
+//        newContent.setReviews(content.getReviews());
+//        newContent.setPlatforms(content.getPlatforms());
+//        return newContent;
+//    }
 
 
     private String uploadImage(MultipartFile multipartFile) throws IOException {
         final String filename = multipartFile.getOriginalFilename();
-        logger.info("filename: " + filename);
         final File fileToUpload = new File(filename);
-        logger.info("fileToUpload getname method: " + fileToUpload.getName());
-        logger.info("fileToUpload location: " + fileToUpload.getAbsolutePath());
-        logger.info("fileToUpload exists: " + fileToUpload.exists());
-        logger.info("fileToUpload canRead: " + fileToUpload.canRead());
-        logger.info("fileToUpload canWrite: " + fileToUpload.canWrite());
         FileOutputStream fos = new FileOutputStream(fileToUpload);
         fos.write(multipartFile.getBytes());
         fos.close();

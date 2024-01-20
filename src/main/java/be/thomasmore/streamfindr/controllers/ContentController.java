@@ -1,26 +1,21 @@
 package be.thomasmore.streamfindr.controllers;
-
+import be.thomasmore.streamfindr.controllers.admin.ContentAdminController;
 import be.thomasmore.streamfindr.model.*;
 import be.thomasmore.streamfindr.repositories.AccountRepository;
 import be.thomasmore.streamfindr.repositories.ContentRepository;
-import be.thomasmore.streamfindr.services.GoogleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.File;
 import java.security.Principal;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Controller
 public class ContentController {
-
-    Logger logger = LoggerFactory.getLogger(ContentController.class);
+    private final Logger logger = LoggerFactory.getLogger(ContentAdminController.class);
 
     @Autowired
     private ContentRepository contentRepository;
@@ -85,7 +80,7 @@ public class ContentController {
                                         @RequestParam(required = false) String keyword,
                                         @RequestParam(required = false) Integer minScore) {
 
-        List<Content> filteredContent = contentRepository.findByCombinedFilter(convertStringToClassType(contentType),
+        List<Content> filteredContent = contentRepository.findByCombinedFilter(contentType,
                 genre, platform, keyword, minScore);
 
         model.addAttribute("showFilters", true);
@@ -95,22 +90,9 @@ public class ContentController {
         model.addAttribute("selectedPlatform", platform);
         model.addAttribute("keyword", keyword);
         model.addAttribute("minScore", minScore);
-
         model.addAttribute("distinctGenres", contentRepository.findDistinctGenres());
         model.addAttribute("distinctPlatformNames", contentRepository.findDistinctPlatformNames());
         return "contentlist";
-    }
-
-    public Class<? extends Content> convertStringToClassType(String contentType) {
-        if (contentType != null) {
-            if (contentType.equals("Movie")) {
-                return Movie.class;
-            }
-            if (contentType.equals("Show")) {
-                return Show.class;
-            }
-        }
-        return null;
     }
 
     @GetMapping({"/contentdetails", "/contentdetails/", "/contentdetails/{id}"})

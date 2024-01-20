@@ -58,6 +58,40 @@
             </div>
 
             <div class="row justify-content-center pb-2">
+                <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="contentType">Content type: </label>
+                <select class="col-12 col-sm-6 col-lg-4" th:field="*{contentType}" id="contentType" onchange="showContentTypeFields()">
+                    <option th:each="contentType : ${allContentTypes}"
+                            th:selected="*{contentType}"
+                            th:value="${contentType}"
+                            th:text="${contentType}"></option>
+                </select>
+            </div>
+
+
+            <div id="showFields">
+                <div class="row justify-content-center pb-2">
+                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="firstYearAired">First year
+                        aired: </label>
+                    <input class="col-12 col-sm-6 col-lg-4" th:name="firstYearAired" id="firstYearAired"
+                           type="number">
+                </div>
+                <div class="row justify-content-center pb-2">
+                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="lastYearAired">Last year
+                        aired: </label>
+                    <input class="col-12 col-sm-6 col-lg-4" th:name="lastYearAired" id="lastYearAired"
+                           type="number">
+                </div>
+            </div>
+
+            <div id="movieFields">
+                <div class="row justify-content-center pb-2">
+                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="yearReleased">Year
+                        released: </label>
+                    <input class="col-12 col-sm-6 col-lg-4" th:name="yearReleased" id="yearReleased" type="number">
+                </div>
+            </div>
+
+            <div class="row justify-content-center pb-2">
                 <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="actors">Cast: </label>
                 <select multiple class="col-12 col-sm-6 col-lg-4 bg-white" th:field="*{actors}" id="actors">
                     <option th:each="actor : ${allActors}"
@@ -73,28 +107,9 @@
                           placeholder="Enter a plot description."></textarea>
             </div>
 
-            <div th:if="*{contentType == 'Show'}">
-                <div class="row justify-content-center pb-2">
-                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="firstYearAired">First year
-                        aired: </label>
-                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{firstYearAired}" id="firstYearAired"
-                           type="number">
-                </div>
-                <div class="row justify-content-center pb-2">
-                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="lastYearAired">Last year
-                        aired: </label>
-                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{lastYearAired}" id="lastYearAired"
-                           type="number">
-                </div>
-            </div>
 
-            <div th:if="*{contentType == 'Movie'}">
-                <div class="row justify-content-center pb-2">
-                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="yearReleased">Year
-                        released: </label>
-                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{yearReleased}" id="yearReleased" type="number">
-                </div>
-            </div>
+
+
 
             <div class="row justify-content-center pb-2">
                 <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="platforms">Platform(s): </label>
@@ -118,4 +133,22 @@
 <div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
+
+<script>
+    function showContentTypeFields() {
+        let contentType = document.getElementById("contentType").value;
+        let movieFields = document.getElementById("movieFields");
+        let showFields = document.getElementById("showFields");
+        movieFields.style.display = "none";
+        showFields.style.display = "none";
+        if (contentType === 'Movie') {
+            movieFields.style.display = 'block';
+        } else if (contentType === 'Show') {
+            showFields.style.display = 'block';
+        }
+
+    }
+    showContentTypeFields();
+</script>
+
 </html>
