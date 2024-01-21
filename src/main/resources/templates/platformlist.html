@@ -48,16 +48,14 @@
                                onChange="updateSliderValue()">
                     </div>
 
-
-                        <div class="col-12 col-sm-6 col-lg-4 col-xxl-3 text-center">
-                            <label class="form-label fw-bold" for="keyword">Annual Subscription?</label>
-                            <select class="form-select" name="annualSubscriptionPossible">
-                                <option th:selected="${annualSubscriptionPossible == null}" value="">All</option>
-                                <option th:selected="${annualSubscriptionPossible == true}" value=true>Yes</option>
-                                <option th:selected="${annualSubscriptionPossible == false}" value=false>No</option>
-                            </select>
-                        </div>
-
+                    <div class="col-12 col-sm-6 col-lg-4 col-xxl-3 text-center">
+                        <label class="form-label fw-bold" for="annualSubscriptionPossible">Annual Subscription?</label>
+                        <select class="form-select" name="annualSubscriptionPossible" id="annualSubscriptionPossible">
+                            <option th:selected="${annualSubscriptionPossible == null}" value="">All</option>
+                            <option th:selected="${annualSubscriptionPossible == true}" value=true>Yes</option>
+                            <option th:selected="${annualSubscriptionPossible == false}" value=false>No</option>
+                        </select>
+                    </div>
 
                     <div class="wrapper text-center">
                         <input type="submit" value="Search"
@@ -82,7 +80,6 @@
            class="col-12 col-sm-6 col-md-4 p-4 px-5 align-self-center">
             <img th:src="${platform.imageUrl}" class="img-fluid">
         </a>
-    </div>
     </div>
 </main>
 

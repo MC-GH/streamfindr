@@ -61,7 +61,8 @@
 
             <div class="row justify-content-center pb-2">
                 <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="contentType">Content type: </label>
-                <select class="col-12 col-sm-6 col-lg-4" th:field="*{contentType}" id="contentType" onchange="showContentTypeFields()">
+                <select class="col-12 col-sm-6 col-lg-4" th:field="*{contentType}" id="contentType"
+                        onchange="showContentTypeFields()">
                     <option th:each="contentType : ${allContentTypes}"
                             th:selected="*{contentType}"
                             th:value="${contentType}"
@@ -119,7 +120,8 @@
             </div>
 
             <div class="row justify-content-center pb-2">
-                <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="posterSource">Poster image: </label>
+                <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="posterSource">Poster
+                    image: </label>
                 <input class="col-12 col-sm-6 col-lg-4" id="posterSource" type="file" accept="image" name="image">
             </div>
         </form>
@@ -144,5 +146,6 @@
             showFields.style.display = 'block';
         }
     }
+
     showContentTypeFields();
 </script>

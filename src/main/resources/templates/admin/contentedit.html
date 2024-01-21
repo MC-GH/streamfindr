@@ -78,18 +78,23 @@
 
             <div th:if="*{contentType == 'Show'}">
                 <div class="row justify-content-center pb-2">
-                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="firstYearAired">First year aired: </label>
-                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{firstYearAired}" id="firstYearAired" type="number">
+                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="firstYearAired">First year
+                        aired: </label>
+                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{firstYearAired}" id="firstYearAired"
+                           type="number">
                 </div>
                 <div class="row justify-content-center pb-2">
-                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="lastYearAired">Last year aired: </label>
-                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{lastYearAired}" id="lastYearAired" type="number">
+                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="lastYearAired">Last year
+                        aired: </label>
+                    <input class="col-12 col-sm-6 col-lg-4" th:field="*{lastYearAired}" id="lastYearAired"
+                           type="number">
                 </div>
             </div>
 
             <div th:if="*{contentType == 'Movie'}">
                 <div class="row justify-content-center pb-2">
-                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="yearReleased">Year released: </label>
+                    <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="yearReleased">Year
+                        released: </label>
                     <input class="col-12 col-sm-6 col-lg-4" th:field="*{yearReleased}" id="yearReleased" type="number">
                 </div>
             </div>
@@ -105,13 +110,15 @@
             </div>
 
             <div class="row justify-content-center pb-2">
-                <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="posterSource">Poster source link: </label>
+                <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="posterSource">Poster source
+                    link: </label>
                 <input class="col-12 col-sm-6 col-lg-4" th:field="*{imageUrl}" id="posterSource" type="text"
                        placeholder="Enter an image internet link">
             </div>
 
             <div th:if="*{reviews.size() != 0}" class="row justify-content-center pb-2">
-                <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="clearReviews">Clear reviews: </label>
+                <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="clearReviews">Clear
+                    reviews: </label>
                 <input class="col-12 col-sm-6 col-lg-4" name="clearReviews" id="clearReviews" type="checkbox">
             </div>
 
