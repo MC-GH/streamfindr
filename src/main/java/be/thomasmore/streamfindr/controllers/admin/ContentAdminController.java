@@ -116,6 +116,7 @@ public class ContentAdminController {
                 model.addAttribute("fileSizeExceededMessage","File size exceeded (max: 5MB)");
                 return "admin/contentnew";
             }
+            newContent.setImageUrl(uploadImage(image));
         }
 
         contentRepository.save(newContent);
