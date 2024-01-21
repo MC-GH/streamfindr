@@ -25,7 +25,9 @@
 
     <div class="row contentDetailsContainer py-4 p-2 p-lg-4 col-12 col-lg-10 col-xxl-8 mx-auto bg-light d-flex justify-content-center">
         <h1 th:text="*{name}"></h1>
-        <div class="fs-5 text-danger" th:if="${#fields.hasErrors()}">Please fill out all necessary fields. Max filesize is 5MB.</div>
+        <div class="fs-5 text-danger" th:if="${#fields.hasErrors()}">Please fill out all necessary fields.</div>
+        <div class="fs-5 text-danger" th:if="${fileSizeExceededMessage}" th:text="${fileSizeExceededMessage}"></div>
+
         <div id="buttonRow" class="col-12 d-flex justify-content-center gap-2">
             <a class="text-decoration-none" th:href="@{/contentlist}">
                 <button class="btn btn-danger">Cancel</button>
@@ -67,7 +69,6 @@
                 </select>
             </div>
 
-
             <div id="showFields">
                 <div class="row justify-content-center pb-2">
                     <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="firstYearAired">First year
@@ -107,10 +108,6 @@
                           placeholder="Enter a plot description."></textarea>
             </div>
 
-
-
-
-
             <div class="row justify-content-center pb-2">
                 <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="platforms">Platform(s): </label>
                 <select multiple class="col-12 col-sm-6 col-lg-4 bg-white" th:field="*{platforms}" id="platforms">
@@ -122,8 +119,7 @@
             </div>
 
             <div class="row justify-content-center pb-2">
-                <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="posterSource">Poster source
-                    link: </label>
+                <label class="col-12 col-sm-6 col-lg-3 fw-bold fs-5 text-start" for="posterSource">Poster image: </label>
                 <input class="col-12 col-sm-6 col-lg-4" id="posterSource" type="file" accept="image" name="image">
             </div>
         </form>
@@ -133,6 +129,7 @@
 <div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
+</html>
 
 <script>
     function showContentTypeFields() {
@@ -150,5 +147,3 @@
     }
     showContentTypeFields();
 </script>
-
-</html>

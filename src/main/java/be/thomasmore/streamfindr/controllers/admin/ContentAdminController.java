@@ -107,8 +107,24 @@ public class ContentAdminController {
             return "admin/contentnew";
         }
 
+        Content newContent = getNewContent(content,contentType,firstYearAired,lastYearAired,yearReleased);
+
+        if (image != null && !image.isEmpty()) {
+            if (image.getSize() > 5 * 1024 * 1024) {
+                addModelAttributes(model);
+                bindingResult.reject("file.size.exceeded", "File size exceeded (max:5MB)");
+                model.addAttribute("fileSizeExceededMessage","File size exceeded (max: 5MB)");
+                return "admin/contentnew";
+            }
+        }
+
+        contentRepository.save(newContent);
+        return "redirect:/contentdetails/" + newContent.getId();
+    }
+
+    private static Content getNewContent(Content content, String contentType, Integer firstYearAired, Integer lastYearAired, Integer yearReleased) {
         Content newContent;
-        if(contentType.equals("Movie")) {
+        if ("Movie".equals(contentType)) {
             Movie movie = new Movie();
             movie.setYearReleased(yearReleased);
             movie.setContentType("Movie");
@@ -121,6 +137,7 @@ public class ContentAdminController {
             newContent = show;
         }
 
+        // Set common fields
         newContent.setName(content.getName());
         newContent.setDirector(content.getDirector());
         newContent.setGenre(content.getGenre());
@@ -128,54 +145,8 @@ public class ContentAdminController {
         newContent.setActors(content.getActors());
         newContent.setReviews(content.getReviews());
         newContent.setPlatforms(content.getPlatforms());
-
-
-        if (image != null && !image.isEmpty()) {
-            if (image.getSize() > 5 * 1024 * 1024) {
-                addModelAttributes(model);
-                bindingResult.reject("file.size.exceeded", "File size exceeded (max:5MB)");
-                return "admin/contentnew";
-            }
-
-            try {
-                newContent.setImageUrl(uploadImage(image));
-            } catch (MaxUploadSizeExceededException e) {
-                addModelAttributes(model);
-                bindingResult.reject("file.size.exceeded", "File size exceeded (max:5MB)");
-                return "admin/contentnew";
-            }
-        }
-
-        contentRepository.save(newContent);
-        return "redirect:/contentdetails/" + newContent.getId();
+        return newContent;
     }
-
-//    private static Content getNewContent(Content content, String contentType) {
-//        Content newContent;
-//        if ("Movie".equals(contentType)) {
-//            Movie movie = new Movie();
-//            movie.setYearReleased(((Movie) content).getYearReleased());
-//            newContent = movie;
-//        } else if ("Show".equals(contentType)) {
-//            Show show = new Show();
-//            show.setFirstYearAired(((Show) content).getFirstYearAired());
-//            show.setLastYearAired(((Show) content).getLastYearAired());
-//            newContent = show;
-//        } else {
-//            // Default to Content
-//            newContent = new Content();
-//        }
-//
-//        // Set common fields
-//        newContent.setName(content.getName());
-//        newContent.setDirector(content.getDirector());
-//        newContent.setGenre(content.getGenre());
-//        newContent.setPlotDescription(content.getPlotDescription());
-//        newContent.setActors(content.getActors());
-//        newContent.setReviews(content.getReviews());
-//        newContent.setPlatforms(content.getPlatforms());
-//        return newContent;
-//    }
 
 
     private String uploadImage(MultipartFile multipartFile) throws IOException {
