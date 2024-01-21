@@ -1,5 +1,4 @@
 package be.thomasmore.streamfindr.model;
-
 import jakarta.persistence.*;
 
 @Entity

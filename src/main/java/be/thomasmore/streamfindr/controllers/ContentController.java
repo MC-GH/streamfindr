@@ -1,10 +1,7 @@
 package be.thomasmore.streamfindr.controllers;
-import be.thomasmore.streamfindr.controllers.admin.ContentAdminController;
 import be.thomasmore.streamfindr.model.*;
 import be.thomasmore.streamfindr.repositories.AccountRepository;
 import be.thomasmore.streamfindr.repositories.ContentRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +12,6 @@ import java.util.stream.Collectors;
 
 @Controller
 public class ContentController {
-    private final Logger logger = LoggerFactory.getLogger(ContentAdminController.class);
-
     @Autowired
     private ContentRepository contentRepository;
     @Autowired
@@ -33,13 +28,10 @@ public class ContentController {
 
     @GetMapping({"/", "/home"})
     public String home(Model model) {
-
         List<Content> allContent = contentRepository.findAll();
         allContent.sort(Comparator.comparing(Content::getName));
         List<Content> mostRecentContent = findMostRecent(allContent);
-
         List<Content> top3Reviewed = contentRepository.findTop3ReviewedContent();
-
         model.addAttribute("content", mostRecentContent);
         model.addAttribute("top3", top3Reviewed);
         return "home";
