@@ -19,7 +19,6 @@ import java.util.Optional;
 
 @Controller
 public class PlatformController {
-    Logger logger = LoggerFactory.getLogger(ContentController.class);
     @Autowired
     private PlatformRepository platformRepository;
     @Autowired
@@ -27,7 +26,6 @@ public class PlatformController {
 
     @ModelAttribute("platform")
     public Platform findPlatform(@PathVariable (required = false) Integer id) {
-        logger.info("findPlatform" + id);
         if(id!=null) {
             Optional<Platform> optionalPlatform = platformRepository.findById(id);
             if(optionalPlatform.isPresent()) return optionalPlatform.get();
@@ -46,9 +44,6 @@ public class PlatformController {
                                          @RequestParam(required = false) String keyword,
                                          @RequestParam(required = false) Double maxMonthlyFee,
                                          @RequestParam(required = false) Boolean annualSubscriptionPossible) {
-
-        logger.info(String.format("platformlist with filter -- keyword=%s, maxFee=%f annualsubscriptionpossible=%b",
-                keyword, maxMonthlyFee, annualSubscriptionPossible));
 
         List<Platform> platforms = platformRepository.findByCombinedFilter(keyword, maxMonthlyFee, annualSubscriptionPossible);
         model.addAttribute("platforms", platforms);
