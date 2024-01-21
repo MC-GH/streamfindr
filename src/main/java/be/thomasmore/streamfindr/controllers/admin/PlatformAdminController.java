@@ -6,6 +6,7 @@ import be.thomasmore.streamfindr.services.GoogleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
@@ -27,7 +28,6 @@ public class PlatformAdminController {
     @ModelAttribute("platform")
     public Platform findPlatform(@PathVariable(required = false) Integer id) {
         if(id == null) return new Platform();
-
         Optional<Platform> optionalPlatform = platformRepository.findById(id);
         return optionalPlatform.orElse(null);
     }
@@ -64,7 +64,8 @@ public class PlatformAdminController {
     }
 
     @PostMapping("/platformnew")
-    public String platformNewPost(@Valid Platform platform,
+    public String platformNewPost(Model model,
+                                  @Valid Platform platform,
                                   BindingResult bindingResult,
                                   @RequestParam(required = false) MultipartFile image) throws IOException {
         if(bindingResult.hasErrors()) {
@@ -74,15 +75,10 @@ public class PlatformAdminController {
         if (image != null && !image.isEmpty()) {
             if (image.getSize() > 5 * 1024 * 1024) {
                 bindingResult.reject("file.size.exceeded", "File size exceeded (max:5MB)");
+                model.addAttribute("fileSizeExceededMessage","File size exceeded (max: 5MB)");
                 return "admin/platformnew";
             }
-
-            try {
-                platform.setImageUrl(uploadImage(image));
-            } catch (MaxUploadSizeExceededException e) {
-                bindingResult.reject("file.size.exceeded", "File size exceeded (max:5MB)");
-                return "admin/platformnew";
-            }
+            platform.setImageUrl(uploadImage(image));
         }
 
 

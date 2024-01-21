@@ -25,7 +25,8 @@
 
     <div class="row contentDetailsContainer py-4 p-lg-4 col-12 col-lg-10 col-xxl-8 mx-auto bg-light d-flex justify-content-center">
         <h1 th:text="*{name}"></h1>
-        <div class="fs-5 text-danger" th:if="${#fields.hasErrors()}">Please fill out name, monthly price, USP and description. Max filesize is 5MB.</div>
+        <div class="fs-5 text-danger" th:if="${#fields.hasErrors()}">Please fill out name, monthly price, USP and description.</div>
+        <div class="fs-5 text-danger" th:if="${fileSizeExceededMessage}" th:text="${fileSizeExceededMessage}"></div>
         <div id="buttonRow" class="col-12 d-flex justify-content-center gap-2">
             <a class="text-decoration-none" th:href="@{/platformlist}">
                 <button class="btn btn-danger">Cancel</button>

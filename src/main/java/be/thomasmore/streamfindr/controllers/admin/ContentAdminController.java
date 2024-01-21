@@ -8,16 +8,12 @@ import be.thomasmore.streamfindr.repositories.ContentRepository;
 import be.thomasmore.streamfindr.repositories.PlatformRepository;
 import be.thomasmore.streamfindr.repositories.ReviewRepository;
 import be.thomasmore.streamfindr.services.GoogleService;
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -28,8 +24,6 @@ import java.util.Set;
 @Controller
 @RequestMapping("/admin")
 public class ContentAdminController {
-    private final Logger logger = LoggerFactory.getLogger(ContentAdminController.class);
-
     @Autowired
     private ContentRepository contentRepository;
     @Autowired
@@ -51,7 +45,6 @@ public class ContentAdminController {
     @ModelAttribute("content")
     public Content findContent(@PathVariable(required = false) Integer id) {
         if (id == null) return new Content();
-
         Optional<Content> optionalContent = contentRepository.findById(id);
         return optionalContent.orElse(null);
     }
