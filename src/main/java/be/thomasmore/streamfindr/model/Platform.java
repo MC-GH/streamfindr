@@ -1,8 +1,6 @@
 package be.thomasmore.streamfindr.model;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-
 import java.util.Set;
 
 @Entity
@@ -22,7 +20,7 @@ public class Platform {
     private boolean yearlySubscriptionPossible;
     @Column(nullable = true)
     private Double yearlyPriceInUsd;
-    private String logoSrc;
+    private String imageUrl;
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "platforms")
     private Set<Content> content;
 
@@ -85,8 +83,8 @@ public class Platform {
         this.yearlyPriceInUsd = yearlyPrice;
     }
 
-    public String getLogoSrc() {
-        return this.logoSrc;
+    public String getImageUrl() {
+        return this.imageUrl;
     }
 
     public Set<Content> getContent() {
@@ -97,7 +95,7 @@ public class Platform {
         this.content = catalogue;
     }
 
-    public void setLogoSrc(String logoSrc) {
-        this.logoSrc = logoSrc;
+    public void setImageUrl(String logoSrc) {
+        this.imageUrl = logoSrc;
     }
 }

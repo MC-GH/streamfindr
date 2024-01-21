@@ -31,3 +31,11 @@ build/
 
 ### VS Code ###
 .vscode/
+/streamfindr-firebase-adminsdk-6b5ve-d1aef96d48.json
+/src/main/resources/application-local.properties
+/src/main/resources/static/img/
+/src/main/resources/static/img/movieposters/
+/src/main/resources/static/img/movieposters/Archive original size/
+/src/main/resources/static/img/platformlogos/
+/src/main/resources/static/img/showposters/
+/src/main/resources/static/img/showposters/Archive - original size/

@@ -1,17 +1,17 @@
 package be.thomasmore.streamfindr.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+
 @Entity
 @DiscriminatorValue("Show")
-public class Show extends Content{
-        private Integer firstYearAired;
-        private Integer lastYearAired;
-        private Integer numberOfSeasons;
-        public Show() {
-        }
+public class Show extends Content {
+    private Integer firstYearAired;
+    private Integer lastYearAired;
+    private Integer numberOfSeasons;
+
+    public Show() {
+    }
 
     public Integer getFirstYearAired() {
         return firstYearAired;

@@ -33,7 +33,7 @@
                 <div class="row wrapper d-flex flex-wrap justify-content-center g-2 py-1 py-md-2">
                     <div class="col-12 col-sm-4 col-lg-2">
                         <select class="form-select" name="contentType">
-                            <option value="" selected>Content Type</option>
+                            <option value="">Content Type</option>
                             <option th:selected="${contentType == 'Movie'}" value="Movie">Movies</option>
                             <option th:selected="${contentType == 'Show'}" value="Show">Shows</option>
                         </select>
@@ -62,7 +62,7 @@
                         <label class="form-label fw-bold" for="keyword">Keyword search:</label>
                         <input type="text" class="form-control" id="keyword" name="keyword"
                                placeholder="Search on title, actor, director"
-                               th:value="${keyword}" value="">
+                               th:value="${keyword}">
                     </div>
                     <div class="col-12 col-sm-6 col-lg-4 col-xxl-3 text-center fw-bold" id="minScoreRange">
                         <label for="scoreRange" class="form-label">Minimum reviewer score:
@@ -89,7 +89,7 @@
     <div class="row p-1 p-xxl-2 col-12 col-xxl-10 mx-auto bg-light">
         <a th:each="content: ${content}" th:href="@{|/contentdetails/${content.id}|}"
            class="col-12 col-sm-6 col-lg-4 col-xxl-3 g-2">
-            <img th:src="${content.posterSrc}" class="img-fluid rounded ">
+            <img alt="content image" th:src="${content.imageUrl}" class="img-fluid rounded ">
         </a>
     </div>
 
@@ -102,9 +102,10 @@
 
 <script>
     function updateSliderValue() {
-        var slider = document.getElementById("scoreRange");
-        var output = document.getElementById("sliderValue");
+        let slider = document.getElementById("scoreRange");
+        let output = document.getElementById("sliderValue");
         output.textContent = slider.value;
     }
+
     updateSliderValue();
 </script>

@@ -1,9 +1,7 @@
 package be.thomasmore.streamfindr.config;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
@@ -54,7 +52,7 @@ private DataSource dataSource;
 
         http.logout(form -> form.logoutUrl("/user/logout"));
 
-        //to enable h2-console:
+        //to enable h2-console - comment out before deploying:
 //        http.csrf(csrf -> csrf.ignoringRequestMatchers(toH2Console()));
 //        http.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
 

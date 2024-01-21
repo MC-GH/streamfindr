@@ -41,8 +41,10 @@
                         <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
                     </svg>
                 </a>
-                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{|/admin/platformedit/*{id}|}" class="btn btn-warning">Edit</a>
-                <form sec:authorize="isAuthenticated()" th:action="@{|/platformfavourite/${platform.id}|}" method="post">
+                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{|/admin/platformedit/*{id}|}"
+                   class="btn btn-warning">Edit</a>
+                <form sec:authorize="isAuthenticated()" th:action="@{|/platformfavourite/${platform.id}|}"
+                      method="post">
 
                     <button type="submit" value="Add" th:class="${inFavourites ? 'btn btn-danger' : 'btn btn-success'}">
                         <i class="bi bi-heart-fill"></i>
@@ -54,19 +56,21 @@
         </div>
 
         <div class="col-12 col-sm-6 col-xl-5 align-self-center" id="posterContainer">
-            <img class="img-fluid rounded platformLogo" th:src="*{logoSrc}" alt="logo of platform">
+            <img class="img-fluid rounded platformLogo" th:src="*{imageUrl}" alt="logo of platform">
         </div>
 
         <div class="col-12 col-sm-6 col-xl-5 text-start d-flex flex-column gap-2" id="detailsContainer">
             <div class="h1" th:text="*{name}"></div>
             <div class="info">
                 <div class="infoName fw-bold d-inline fs-5">Monthly Price:</div>
-                <div class="infoValue d-inline fs-5" th:text="|&dollar; ${#numbers.formatDecimal(platform.monthlyPriceInUsd,1,2)}|"></div>
+                <div class="infoValue d-inline fs-5"
+                     th:text="|&dollar; ${#numbers.formatDecimal(platform.monthlyPriceInUsd,1,2)}|"></div>
             </div>
 
             <div th:if="*{yearlySubscriptionPossible || yearlyPriceInUsd > 0}" class="info">
                 <div class="infoName fw-bold d-inline fs-5">Yearly Price:</div>
-                <div class="infoValue d-inline fs-5" th:text="|&dollar; ${#numbers.formatDecimal(platform.yearlyPriceInUsd,1,2)}|"></div>
+                <div class="infoValue d-inline fs-5"
+                     th:text="|&dollar; ${#numbers.formatDecimal(platform.yearlyPriceInUsd,1,2)}|"></div>
             </div>
 
             <div class="info">
@@ -85,7 +89,7 @@
             <div class="row p-1 p-xxl-2 col-12 col-xxl-10 mx-auto bg-light">
                 <a th:each="contentItem: *{content}" th:href="@{|/contentdetails/${contentItem.id}|}"
                    class="col-6 col-sm-4 col-lg-3 g-2">
-                    <img th:src="${contentItem.posterSrc}" class="img-fluid rounded ">
+                    <img th:src="${contentItem.imageUrl}" class="img-fluid rounded ">
                 </a>
             </div>
 

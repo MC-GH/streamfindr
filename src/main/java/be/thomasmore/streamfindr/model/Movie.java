@@ -1,5 +1,4 @@
 package be.thomasmore.streamfindr.model;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 @Entity

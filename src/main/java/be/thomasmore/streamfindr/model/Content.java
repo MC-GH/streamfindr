@@ -1,12 +1,7 @@
 package be.thomasmore.streamfindr.model;
-import be.thomasmore.streamfindr.controllers.admin.ContentAdminController;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.util.Collections;
 import java.util.Set;
 
 @Entity
@@ -25,7 +20,7 @@ public class Content {
     private String genre;
     @Column(length = 500)
     private String plotDescription;
-    private String posterSrc;
+    private String imageUrl;
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Actor> actors;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "content", cascade = CascadeType.ALL)
@@ -79,12 +74,12 @@ public class Content {
         this.plotDescription = plotDescription;
     }
 
-    public String getPosterSrc() {
-        return posterSrc;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setPosterSrc(String posterSrc) {
-        this.posterSrc = posterSrc;
+    public void setImageUrl(String posterSrc) {
+        this.imageUrl = posterSrc;
     }
 
     public Set<Actor> getActors() {
@@ -118,5 +113,7 @@ public class Content {
     public void setContentType(String contentType) {
         this.contentType = contentType;
     }
+
+
 
 }
