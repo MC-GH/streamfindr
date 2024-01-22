@@ -42,7 +42,7 @@ private DataSource dataSource;
 
 
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers(mvcMatcherBuilder.pattern("/admin/**")).hasAnyAuthority("ADMIN")
+                .requestMatchers(mvcMatcherBuilder.pattern("/admin/**")).hasAuthority("ADMIN")
                 .anyRequest().permitAll());
 
         http.formLogin(form -> form
